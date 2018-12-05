@@ -18,7 +18,7 @@
 
 <!--myBatis相关-->
     <!-- 1.配置数据库相关参数properties的属性：${url} -->
-    <!--<context:property-placeholder location="classpath:mydb.properties" />-->
+    <context:property-placeholder location="classpath:mydb.properties" />
 
     <!--2.数据库连接池-->
     <!--datasource配置-->
