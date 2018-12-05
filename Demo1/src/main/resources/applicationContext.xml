@@ -18,18 +18,15 @@
 
 <!--myBatis相关-->
     <!-- 1.配置数据库相关参数properties的属性：${url} -->
-    <!--<context:property-placeholder location="classpath:jdbc.properties" />-->
+    <!--<context:property-placeholder location="classpath:mydb.properties" />-->
 
     <!--2.数据库连接池-->
     <!--datasource配置-->
-    <bean id="mydatasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <bean id="mydatasource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="password" value="618383"></property>
-        <property name="user" value="root"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hrm_db3?serverTimezone=GMT"></property>
-        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
-        <property name="maxPoolSize" value="20"></property>
-        <property name="minPoolSize" value="10"></property>
-        <property name="initialPoolSize" value="5"></property>
+        <property name="username" value="root"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/hrm_db3?serverTimezone=GMT"></property>
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
     </bean>
 
     <!-- 3.配置SqlSessionFactory对象 ，把一些原来在conf中的也可以放在这里做-->
