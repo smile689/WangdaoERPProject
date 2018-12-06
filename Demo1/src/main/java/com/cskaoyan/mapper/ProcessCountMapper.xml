@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.processCountMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.processCount">
+<mapper namespace="com.cskaoyan.mapper.ProcessCountMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.ProcessCount">
     <id column="p_count_check_id" jdbcType="VARCHAR" property="pCountCheckId" />
     <result column="process_id" jdbcType="VARCHAR" property="processId" />
     <result column="check_item" jdbcType="VARCHAR" property="checkItem" />
@@ -29,7 +29,7 @@
     delete from process_count_check
     where p_count_check_id = #{pCountCheckId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.processCount">
+  <insert id="insert" parameterType="com.cskaoyan.bean.ProcessCount">
     insert into process_count_check (p_count_check_id, process_id, check_item, 
       sample, check_number, unqualify, 
       qualify, cdate, measure_data, 
@@ -41,7 +41,7 @@
       #{empId,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.processCount">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.ProcessCount">
     insert into process_count_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pCountCheckId != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.processCount">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.ProcessCount">
     update process_count_check
     <set>
       <if test="processId != null">
@@ -159,7 +159,7 @@
     </set>
     where p_count_check_id = #{pCountCheckId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.processCount">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.ProcessCount">
     update process_count_check
     set process_id = #{processId,jdbcType=VARCHAR},
       check_item = #{checkItem,jdbcType=VARCHAR},

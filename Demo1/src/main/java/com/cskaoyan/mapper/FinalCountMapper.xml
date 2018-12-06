@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.finalCountMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.finalCount">
+<mapper namespace="com.cskaoyan.mapper.FinalCountMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.FinalCount">
     <id column="f_count_check_id" jdbcType="VARCHAR" property="fCountCheckId" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="check_item" jdbcType="VARCHAR" property="checkItem" />
@@ -29,7 +29,7 @@
     delete from final_count_check
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.finalCount">
+  <insert id="insert" parameterType="com.cskaoyan.bean.FinalCount">
     insert into final_count_check (f_count_check_id, order_id, check_item, 
       sample, check_number, unqualify, 
       qualify, cdate, measure_data, 
@@ -41,7 +41,7 @@
       #{empId,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.finalCount">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.FinalCount">
     insert into final_count_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="fCountCheckId != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.finalCount">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.FinalCount">
     update final_count_check
     <set>
       <if test="orderId != null">
@@ -159,7 +159,7 @@
     </set>
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.finalCount">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.FinalCount">
     update final_count_check
     set order_id = #{orderId,jdbcType=VARCHAR},
       check_item = #{checkItem,jdbcType=VARCHAR},

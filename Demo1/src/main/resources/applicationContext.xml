@@ -25,7 +25,7 @@
     <bean id="mydatasource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="password" value="618383"></property>
         <property name="username" value="root"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/hrm_db3?serverTimezone=GMT"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/production_ssm?serverTimezone=GMT"></property>
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
     </bean>
 
@@ -85,7 +85,7 @@
 
     <!--方式2-->
     <!--2.静态资源默认servlet配置(1)加入对静态资源的处理：js,gif,png(2)允许使用"/"做整体映射-->
-     <mvc:default-servlet-handler />
+     <mvc:default-servlet-handler/>
 
     <!--方式3-->
     <!--<mvc:resources location="/, /WEB-INF/js/"  mapping="/**"/>-->

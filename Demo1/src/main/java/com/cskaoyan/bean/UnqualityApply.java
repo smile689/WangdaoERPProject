@@ -2,7 +2,7 @@ package com.cskaoyan.bean;
 
 import java.util.Date;
 
-public class unqualityApply {
+public class UnqualityApply {
     private String unqualifyApplyId;
 
     private String productId;
