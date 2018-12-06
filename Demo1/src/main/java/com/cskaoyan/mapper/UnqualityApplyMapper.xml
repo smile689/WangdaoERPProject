@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.unqualityApplyMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.unqualityApply">
+<mapper namespace="com.cskaoyan.mapper.UnqualityApplyMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.UnqualityApply">
     <id column="unqualify_apply_id" jdbcType="VARCHAR" property="unqualifyApplyId" />
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="unqualify_item" jdbcType="VARCHAR" property="unqualifyItem" />
@@ -25,7 +25,7 @@
     delete from unqualify_apply
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.unqualityApply">
+  <insert id="insert" parameterType="com.cskaoyan.bean.UnqualityApply">
     insert into unqualify_apply (unqualify_apply_id, product_id, unqualify_item, 
       unqualify_count, assembly_date, emp_id, 
       apply_date, note)
@@ -33,7 +33,7 @@
       #{unqualifyCount,jdbcType=INTEGER}, #{assemblyDate,jdbcType=TIMESTAMP}, #{empId,jdbcType=VARCHAR}, 
       #{applyDate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.unqualityApply">
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.UnqualityApply">
     insert into unqualify_apply
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="unqualifyApplyId != null">
@@ -88,7 +88,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.unqualityApply">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.UnqualityApply">
     update unqualify_apply
     <set>
       <if test="productId != null">
@@ -115,7 +115,7 @@
     </set>
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.unqualityApply">
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.UnqualityApply">
     update unqualify_apply
     set product_id = #{productId,jdbcType=VARCHAR},
       unqualify_item = #{unqualifyItem,jdbcType=VARCHAR},

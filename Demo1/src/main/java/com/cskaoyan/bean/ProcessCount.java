@@ -1,13 +1,22 @@
 package com.cskaoyan.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class processMeasure {
-    private String pMeasureCheckId;
+public class ProcessCount {
+    private String pCountCheckId;
 
     private String processId;
 
     private String checkItem;
+
+    private Integer sample;
+
+    private Integer checkNumber;
+
+    private Integer unqualify;
+
+    private BigDecimal qualify;
 
     private Date cdate;
 
@@ -19,12 +28,12 @@ public class processMeasure {
 
     private String note;
 
-    public String getpMeasureCheckId() {
-        return pMeasureCheckId;
+    public String getpCountCheckId() {
+        return pCountCheckId;
     }
 
-    public void setpMeasureCheckId(String pMeasureCheckId) {
-        this.pMeasureCheckId = pMeasureCheckId == null ? null : pMeasureCheckId.trim();
+    public void setpCountCheckId(String pCountCheckId) {
+        this.pCountCheckId = pCountCheckId == null ? null : pCountCheckId.trim();
     }
 
     public String getProcessId() {
@@ -41,6 +50,38 @@ public class processMeasure {
 
     public void setCheckItem(String checkItem) {
         this.checkItem = checkItem == null ? null : checkItem.trim();
+    }
+
+    public Integer getSample() {
+        return sample;
+    }
+
+    public void setSample(Integer sample) {
+        this.sample = sample;
+    }
+
+    public Integer getCheckNumber() {
+        return checkNumber;
+    }
+
+    public void setCheckNumber(Integer checkNumber) {
+        this.checkNumber = checkNumber;
+    }
+
+    public Integer getUnqualify() {
+        return unqualify;
+    }
+
+    public void setUnqualify(Integer unqualify) {
+        this.unqualify = unqualify;
+    }
+
+    public BigDecimal getQualify() {
+        return qualify;
+    }
+
+    public void setQualify(BigDecimal qualify) {
+        this.qualify = qualify;
     }
 
     public Date getCdate() {

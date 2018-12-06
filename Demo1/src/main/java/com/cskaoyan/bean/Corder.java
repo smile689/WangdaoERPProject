@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 订单管理
  */
-public class COrder {
+public class Corder {
     private String orderId;
 
     private String customId;
@@ -30,6 +30,24 @@ public class COrder {
     private String file;
 
     private Integer status;
+
+    @Override
+    public String toString() {
+        return "Corder{" +
+                "orderId='" + orderId + '\'' +
+                ", customId='" + customId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", orderDate=" + orderDate +
+                ", requestDate=" + requestDate +
+                ", note='" + note + '\'' +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                ", unit='" + unit + '\'' +
+                ", image='" + image + '\'' +
+                ", file='" + file + '\'' +
+                ", status=" + status +
+                '}';
+    }
 
     public String getOrderId() {
         return orderId;

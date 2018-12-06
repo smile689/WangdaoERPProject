@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cskaoyan.mapper.finalMeasuretMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.finalMeasuret">
-    <id column="f_measure_check_id" jdbcType="VARCHAR" property="fMeasureCheckId" />
-    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+<mapper namespace="com.cskaoyan.mapper.ProcessMeasureMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.ProcessMeasure">
+    <id column="p_measure_check_id" jdbcType="VARCHAR" property="pMeasureCheckId" />
+    <result column="process_id" jdbcType="VARCHAR" property="processId" />
     <result column="check_item" jdbcType="VARCHAR" property="checkItem" />
     <result column="cdate" jdbcType="TIMESTAMP" property="cdate" />
     <result column="measure_data" jdbcType="VARCHAR" property="measureData" />
@@ -12,34 +12,35 @@
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
-    f_measure_check_id, order_id, check_item, cdate, measure_data, emp_id, result, note
+    p_measure_check_id, process_id, check_item, cdate, measure_data, emp_id, result, 
+    note
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from final_measuret_check
-    where f_measure_check_id = #{fMeasureCheckId,jdbcType=VARCHAR}
+    from process_measure_check
+    where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from final_measuret_check
-    where f_measure_check_id = #{fMeasureCheckId,jdbcType=VARCHAR}
+    delete from process_measure_check
+    where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.finalMeasuret">
-    insert into final_measuret_check (f_measure_check_id, order_id, check_item, 
+  <insert id="insert" parameterType="com.cskaoyan.bean.ProcessMeasure">
+    insert into process_measure_check (p_measure_check_id, process_id, check_item, 
       cdate, measure_data, emp_id, 
       result, note)
-    values (#{fMeasureCheckId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{checkItem,jdbcType=VARCHAR}, 
+    values (#{pMeasureCheckId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, #{checkItem,jdbcType=VARCHAR}, 
       #{cdate,jdbcType=TIMESTAMP}, #{measureData,jdbcType=VARCHAR}, #{empId,jdbcType=VARCHAR}, 
       #{result,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.finalMeasuret">
-    insert into final_measuret_check
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.ProcessMeasure">
+    insert into process_measure_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="fMeasureCheckId != null">
-        f_measure_check_id,
+      <if test="pMeasureCheckId != null">
+        p_measure_check_id,
       </if>
-      <if test="orderId != null">
-        order_id,
+      <if test="processId != null">
+        process_id,
       </if>
       <if test="checkItem != null">
         check_item,
@@ -61,11 +62,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="fMeasureCheckId != null">
-        #{fMeasureCheckId,jdbcType=VARCHAR},
+      <if test="pMeasureCheckId != null">
+        #{pMeasureCheckId,jdbcType=VARCHAR},
       </if>
-      <if test="orderId != null">
-        #{orderId,jdbcType=VARCHAR},
+      <if test="processId != null">
+        #{processId,jdbcType=VARCHAR},
       </if>
       <if test="checkItem != null">
         #{checkItem,jdbcType=VARCHAR},
@@ -87,11 +88,11 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.finalMeasuret">
-    update final_measuret_check
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.ProcessMeasure">
+    update process_measure_check
     <set>
-      <if test="orderId != null">
-        order_id = #{orderId,jdbcType=VARCHAR},
+      <if test="processId != null">
+        process_id = #{processId,jdbcType=VARCHAR},
       </if>
       <if test="checkItem != null">
         check_item = #{checkItem,jdbcType=VARCHAR},
@@ -112,17 +113,17 @@
         note = #{note,jdbcType=VARCHAR},
       </if>
     </set>
-    where f_measure_check_id = #{fMeasureCheckId,jdbcType=VARCHAR}
+    where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.finalMeasuret">
-    update final_measuret_check
-    set order_id = #{orderId,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.ProcessMeasure">
+    update process_measure_check
+    set process_id = #{processId,jdbcType=VARCHAR},
       check_item = #{checkItem,jdbcType=VARCHAR},
       cdate = #{cdate,jdbcType=TIMESTAMP},
       measure_data = #{measureData,jdbcType=VARCHAR},
       emp_id = #{empId,jdbcType=VARCHAR},
       result = #{result,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR}
-    where f_measure_check_id = #{fMeasureCheckId,jdbcType=VARCHAR}
+    where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </update>
 </mapper>
