@@ -3,7 +3,7 @@ package com.cskaoyan.MyTest;
 import com.cskaoyan.bean.Device;
 import com.cskaoyan.mapper.DeviceMapper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
