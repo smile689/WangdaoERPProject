@@ -35,11 +35,18 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- JSP相关 -->
     <dependency>
-      <groupId>javax.servlet.jsp.jstl</groupId>
+      <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+
+    <!--<dependency>
+      <groupId>javax.servlet.jsp.jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>-->
 
     <!--<dependency>
       <groupId>javax.servlet</groupId>
