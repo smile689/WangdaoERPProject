@@ -7,40 +7,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d2e9c52-7989-455c-8399-a020f4dcf3af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/EUDateGridResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Vo/FinalCountVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/ProcessVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyPlanVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyRequirementVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FinalCountCheckController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/JsonResult/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/JsonResult/TestResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/MaterialController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/ProcessController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyPlanController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyRequirement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ToLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/pojo/PageShowResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/FinalCountCheckService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/MaterialService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/ProcessService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyPlanService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyRequirementService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/FinalCountCheckImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/MaterialServiceimpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/ProcessServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/TechnologyPlanServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/TechnologyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Technology.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Technology.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Corder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Custom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Device.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/DeviceCheck.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/DeviceFault.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/DeviceMaintain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/DeviceType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/EUDateGridResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/FinalCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/FinalMeasuret.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Manufacture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Material.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/MaterialConsume.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/MaterialReceive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Process.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/ProcessCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/ProcessMeasure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Task.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Technology.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/TechnologyPlan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/TechnologyRequirement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/UnqualityApply.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Vo/FinalCountVo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Work.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/ProcessVo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyPlanVo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyRequirementVo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyVo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FinalCountCheckController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/JsonResult/Result.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/JsonResult/TestResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/MaterialController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/ProcessController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyPlanController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyRequirement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ToLogin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/CorderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/CorderMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/CustomMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceCheckMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceCheckMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceFaultMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceFaultMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceMaintainMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceMaintainMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceTypeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/FinalCountMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/FinalCountMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/FinalMeasuretMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/FinalMeasuretMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ManufactureMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialConsumeMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialConsumeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialReceiveMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialReceiveMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProcessCountMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProcessCountMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProcessMeasureMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProcessMeasureMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TaskMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/UnqualityApplyMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/UnqualityApplyMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/WorkMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/pojo/PageShowResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/CorderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/FinalCountCheckService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/MaterialService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/ProcessService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyPlanService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyRequirementService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/CorderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/FinalCountCheckImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/MaterialServiceimpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/ProcessServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/TechnologyPlanServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/TechnologyServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cskaoyan/MyMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cskaoyan/MyServiceTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,21 +137,21 @@
         <counts>
           <entry key="aj" value="2" />
           <entry key="class" value="15" />
-          <entry key="java" value="68" />
+          <entry key="java" value="75" />
           <entry key="js" value="1" />
           <entry key="jsp" value="21" />
           <entry key="pom" value="2" />
-          <entry key="xml" value="27" />
+          <entry key="xml" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="AspectJ" value="2" />
           <entry key="CLASS" value="15" />
-          <entry key="JAVA" value="68" />
+          <entry key="JAVA" value="75" />
           <entry key="JSP" value="21" />
           <entry key="JavaScript" value="1" />
-          <entry key="XML" value="29" />
+          <entry key="XML" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -120,7 +179,30 @@
     <favorites_list name="Demo1" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="e#425#426#0" expanded="true" />
+                <element signature="e#456#457#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -179,6 +261,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/DepartmentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DepartmentMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DepartmentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java" />
       </list>
     </option>
   </component>
@@ -216,8 +299,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="162" />
-    <option name="y" value="-10" />
+    <option name="x" value="253" />
+    <option name="y" value="2" />
     <option name="width" value="989" />
     <option name="height" value="768" />
   </component>
@@ -238,6 +321,109 @@
               <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Demo1" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -248,7 +434,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544233079073" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544233945026" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -259,6 +445,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\myprojects\WangdaoERPProject01\Demo1\src\main\java\com\cskaoyan\controller" />
       <recent name="E:\myprojects\WangdaoERPProject01\Demo1\src\main\java\com\cskaoyan\utils" />
       <recent name="E:\myprojects\WangdaoERPProject01\Demo1\src\main\webapp\WEB-INF\js" />
       <recent name="E:\myprojects\WangdaoERPProject01\Demo1" />
@@ -362,7 +549,7 @@
       <workItem from="1544098484612" duration="11929000" />
       <workItem from="1544110500813" duration="2254000" />
       <workItem from="1544146435632" duration="37754000" />
-      <workItem from="1544232668696" duration="251000" />
+      <workItem from="1544232668696" duration="1074000" />
     </task>
     <task id="LOCAL-00001" summary="update files:&#10;com.cskaoyan.bean.Department&#10;com.cskaoyan.bean.Employee&#10;com.cskaoyan.controller.DepartmentController&#10;com.cskaoyan.mapper.DepartmentMapper&#10;com/cskaoyan/mapper/DepartmentMapper.xml&#10;com.cskaoyan.mapper.EmployeeMapper&#10;com/cskaoyan/mapper/EmployeeMapper.xml&#10;com.cskaoyan.service.DepartmentService&#10;com.cskaoyan.service.impl.DepartmentServiceImpl&#10;com.cskaoyan.utils.PageHelper&#10;com.cskaoyan.utils.EUDataGridResult&#10;WEB-INF/jsp/department_list.jsp&#10;WEB-INF/jsp/department_add.jsp&#10;WEB-INF/jsp/department_edit.jsp">
       <created>1544198762062</created>
@@ -371,16 +558,31 @@
       <option name="project" value="LOCAL" />
       <updated>1544198762062</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merge branch 'master' of https://github.com/smile689/WangdaoERPProject&#10;&#10;# Conflicts:&#10;#&#9;Demo1/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml">
+      <created>1544233133715</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1544233133715</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch 'master' of https://github.com/smile689/WangdaoERPProject&#10;&#10;# Conflicts:&#10;#&#9;Demo1/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml">
+      <created>1544233153980</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1544233153980</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52188000" />
+    <option name="totallyTimeSpent" value="53011000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.21984127" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.30873016" />
       <window_info id="Structure" order="1" sideWeight="0.5012854" side_tool="true" weight="0.13571429" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -390,15 +592,15 @@
       <window_info id="Web" order="7" sideWeight="0.5012854" side_tool="true" weight="0.13571429" />
       <window_info anchor="bottom" id="Spring" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.32973805" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.81972265" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.32973805" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.33281973" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32973805" />
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.8767334" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="bottom" id="Run" order="9" weight="0.32973805" />
-      <window_info anchor="bottom" id="Debug" order="10" weight="0.32543445" />
+      <window_info active="true" anchor="bottom" id="Debug" order="10" visible="true" weight="0.4191063" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="Application Servers" order="13" weight="0.32973805" />
@@ -466,14 +668,28 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update files:&#10;com.cskaoyan.bean.Department&#10;com.cskaoyan.bean.Employee&#10;com.cskaoyan.controller.DepartmentController&#10;com.cskaoyan.mapper.DepartmentMapper&#10;com/cskaoyan/mapper/DepartmentMapper.xml&#10;com.cskaoyan.mapper.EmployeeMapper&#10;com/cskaoyan/mapper/EmployeeMapper.xml&#10;com.cskaoyan.service.DepartmentService&#10;com.cskaoyan.service.impl.DepartmentServiceImpl&#10;com.cskaoyan.utils.PageHelper&#10;com.cskaoyan.utils.EUDataGridResult&#10;WEB-INF/jsp/department_list.jsp&#10;WEB-INF/jsp/department_add.jsp&#10;WEB-INF/jsp/department_edit.jsp" />
-    <option name="LAST_COMMIT_MESSAGE" value="update files:&#10;com.cskaoyan.bean.Department&#10;com.cskaoyan.bean.Employee&#10;com.cskaoyan.controller.DepartmentController&#10;com.cskaoyan.mapper.DepartmentMapper&#10;com/cskaoyan/mapper/DepartmentMapper.xml&#10;com.cskaoyan.mapper.EmployeeMapper&#10;com/cskaoyan/mapper/EmployeeMapper.xml&#10;com.cskaoyan.service.DepartmentService&#10;com.cskaoyan.service.impl.DepartmentServiceImpl&#10;com.cskaoyan.utils.PageHelper&#10;com.cskaoyan.utils.EUDataGridResult&#10;WEB-INF/jsp/department_list.jsp&#10;WEB-INF/jsp/department_add.jsp&#10;WEB-INF/jsp/department_edit.jsp" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/smile689/WangdaoERPProject&#10;&#10;# Conflicts:&#10;#&#9;Demo1/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/smile689/WangdaoERPProject&#10;&#10;# Conflicts:&#10;#&#9;Demo1/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java&#10;#&#9;Demo1/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java</url>
+          <line>13</line>
+          <properties class="com.cskaoyan.controller.FormController" method="toLogin">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DeviceFaultMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -564,25 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
           <caret line="562" selection-start-line="562" selection-end-line="562" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#425#426#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
         </state>
       </provider>
     </entry>
@@ -692,6 +889,61 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
           <caret line="98" column="88" selection-start-line="98" selection-start-column="88" selection-end-line="98" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Vo/FinalCountVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Technology.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/cskaoyan/MyMapperTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#425#426#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
