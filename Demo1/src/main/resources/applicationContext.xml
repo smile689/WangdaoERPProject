@@ -99,10 +99,14 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!--数据类型转换器-->
+    <mvc:annotation-driven conversion-service="dateConversionService"></mvc:annotation-driven>
 
-
-
-
-
-
+    <bean id="dateConversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.cskaoyan.utils.DateConverter"></bean>
+            </set>
+        </property>
+    </bean>
 </beans>

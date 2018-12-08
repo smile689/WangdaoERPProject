@@ -3,8 +3,6 @@ package com.cskaoyan.mapper;
 import com.cskaoyan.bean.Department;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Repository("departmentMapper")
@@ -23,7 +21,7 @@ public interface DepartmentMapper {
 
     int selectCount();
 
-    List<Department> selectByLimitAndOffset(HashMap hashMap);
+    List<Department> selectByLimitAndOffset();
 
     Department selectByName(String departmentName);
 
@@ -31,9 +29,9 @@ public interface DepartmentMapper {
 
     int selectCountById(String departmentId);
 
-    List<Department> selectByLimitAndOffsetAndId(HashMap hashMap);
+    List<Department> selectByLimitAndOffsetAndId(String departmentId);
 
     int selectCountByName(String departmentName);
 
-    List<Department> selectByLimitAndOffsetAndName(HashMap hashMap);
+    List<Department> selectByLimitAndOffsetAndName(String departmentName);
 }

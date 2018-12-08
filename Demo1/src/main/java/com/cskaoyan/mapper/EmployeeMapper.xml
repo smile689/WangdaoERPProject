@@ -185,4 +185,52 @@
       department_id = #{departmentId,jdbcType=VARCHAR}
     where emp_id = #{empId,jdbcType=VARCHAR}
   </update>
+  <select id="selectCount" resultType="int">
+        select count(*) from employee
+   </select>
+  <select id="selectByLimitAndOffset" resultMap="BaseResultMap">
+        select * from employee
+   </select>
+  <select id="selectByIdCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+    where id_code = #{idCode,jdbcType=VARCHAR}
+  </select>
+  <select id="selectOtherByIdCode" parameterType="com.cskaoyan.bean.Employee" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+    where id_code = #{idCode,jdbcType=VARCHAR} and emp_id != #{empId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountById" parameterType="string" resultType="int">
+        select count(*) from employee where emp_id = #{empId,jdbcType=VARCHAR}
+   </select>
+  <select id="selectByLimitAndOffsetAndId" parameterType="string" resultMap="BaseResultMap">
+        select * from employee where emp_id = #{empId,jdbcType=VARCHAR}
+   </select>
+  <select id="selectCountByName" parameterType="string" resultType="int">
+        select count(*) from employee where emp_name like concat('%', #{empName,jdbcType=VARCHAR}, '%')
+   </select>
+  <select id="selectByLimitAndOffsetAndName" parameterType="string" resultMap="BaseResultMap">
+        select * from employee where emp_name like concat('%', #{empName,jdbcType=VARCHAR}, '%')
+   </select>
+  <select id="selectCountByEmployeeOV" resultType="int">
+      select count(*) from employee
+    <where>
+      department_id in
+      <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")" >
+        #{departmentId}
+      </foreach>
+    </where>
+  </select>
+  <select id="selectByLimitAndOffsetAndEmployeeOV" parameterType="com.cskaoyan.utils.EmployeeOV" resultMap="BaseResultMap">
+        select * from employee
+    <where>
+      department_id in
+      <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")" >
+        #{departmentId}
+      </foreach>
+    </where>
+   </select>
 </mapper>

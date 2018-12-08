@@ -3,14 +3,11 @@ package com.cskaoyan.service.impl;
 import com.cskaoyan.bean.Department;
 import com.cskaoyan.mapper.DepartmentMapper;
 import com.cskaoyan.service.DepartmentService;
-import com.cskaoyan.utils.PageHelper;
+import com.cskaoyan.utils.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,17 +22,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     DepartmentMapper departmentMapper;
 
     @Override
-    public PageHelper<Department> findAllDepartments(String currentPageNum, String perPageNum) {
-        int totalRecordsNum = departmentMapper.selectCount();
-        PageHelper<Department> pageHelper = new PageHelper<> (totalRecordsNum, Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        int limit = Integer.parseInt(perPageNum);
-        int offset= (Integer.parseInt(currentPageNum) - 1) * limit;
-        HashMap hashMap = new HashMap();
-        hashMap.put("limit", limit);
-        hashMap.put("offset", offset);
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffset(hashMap);
-        pageHelper.setRecords(departmentList);
-        return pageHelper;
+    public EUDataGridResult findAllDepartments(String currentPageNum, String perPageNum) {
+        int selectCount = departmentMapper.selectCount();
+        com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
+        List<Department> departmentList = departmentMapper.selectByLimitAndOffset();
+        EUDataGridResult euDataGridResult = new EUDataGridResult();
+        euDataGridResult.setRows(departmentList);
+        euDataGridResult.setTotal(selectCount);
+        return euDataGridResult;
     }
 
     @Override
@@ -102,32 +96,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public PageHelper<Department> findDepartmentById(String currentPageNum, String perPageNum, String departmentId) {
-        int totalRecordsNum = departmentMapper.selectCountById(departmentId);
-        PageHelper<Department> pageHelper = new PageHelper<> (totalRecordsNum, Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        int limit = Integer.parseInt(perPageNum);
-        int offset= (Integer.parseInt(currentPageNum) - 1) * limit;
-        HashMap hashMap = new HashMap();
-        hashMap.put("limit", limit);
-        hashMap.put("offset", offset);
-        hashMap.put("departmentId", departmentId);
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndId(hashMap);
-        pageHelper.setRecords(departmentList);
-        return pageHelper;
+    public EUDataGridResult findDepartmentById(String currentPageNum, String perPageNum, String departmentId) {
+        int selectCount = departmentMapper.selectCountById(departmentId);
+        com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
+        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndId(departmentId);
+        EUDataGridResult euDataGridResult = new EUDataGridResult();
+        euDataGridResult.setRows(departmentList);
+        euDataGridResult.setTotal(selectCount);
+        return euDataGridResult;
     }
 
     @Override
-    public PageHelper<Department> findDepartmentByName(String currentPageNum, String perPageNum, String departmentName) {
-        int totalRecordsNum = departmentMapper.selectCountByName(departmentName);
-        PageHelper<Department> pageHelper = new PageHelper<> (totalRecordsNum, Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        int limit = Integer.parseInt(perPageNum);
-        int offset= (Integer.parseInt(currentPageNum) - 1) * limit;
-        HashMap hashMap = new HashMap();
-        hashMap.put("limit", limit);
-        hashMap.put("offset", offset);
-        hashMap.put("departmentName", departmentName);
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndName(hashMap);
-        pageHelper.setRecords(departmentList);
-        return pageHelper;
+    public EUDataGridResult findDepartmentByName(String currentPageNum, String perPageNum, String departmentName) {
+        int selectCount = departmentMapper.selectCountByName(departmentName);
+        com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
+        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndName(departmentName);
+        EUDataGridResult euDataGridResult = new EUDataGridResult();
+        euDataGridResult.setRows(departmentList);
+        euDataGridResult.setTotal(selectCount);
+        return euDataGridResult;
     }
 }

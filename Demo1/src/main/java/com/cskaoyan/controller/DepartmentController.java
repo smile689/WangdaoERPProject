@@ -3,18 +3,15 @@ package com.cskaoyan.controller;
 import com.cskaoyan.bean.Department;
 import com.cskaoyan.service.DepartmentService;
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.utils.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author WangGuoming
@@ -28,7 +25,10 @@ public class DepartmentController {
     @Qualifier("departmentServiceImpl")
     DepartmentService departmentService;
 
-    //动态页面跳转
+    /**
+     * 查找：查找前页面跳转
+     * @return
+     */
     @RequestMapping(value = {"/find"})
     public ModelAndView find(){
         ModelAndView modelAndView = new ModelAndView();
@@ -36,23 +36,33 @@ public class DepartmentController {
         return modelAndView;
     }
 
+    /**
+     * 查找：查找所有信息
+     * @param page
+     * @param rows
+     * @return
+     */
     @RequestMapping(value = {"/list"})
     @ResponseBody
     public EUDataGridResult findAllDepartments(String page, String rows) {
-        PageHelper<Department> departmentPageHelper = departmentService.findAllDepartments(page, rows);
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
-        euDataGridResult.setRows(departmentPageHelper.getRecords());
-        euDataGridResult.setTotal(departmentPageHelper.getTotalRecordsNum());
+        EUDataGridResult euDataGridResult = departmentService.findAllDepartments(page, rows);
         return euDataGridResult;
     }
 
+    /**
+     * 增加：增加前判断权限
+     * @return
+     */
     @RequestMapping(value = {"/add_judge"})
     @ResponseBody
     public EUDataGridResult add_judge(){
         return null;
     }
 
-    //动态页面跳转
+    /**
+     * 增加：增加前页面跳转
+     * @return
+     */
     @RequestMapping(value = {"/add"})
     public ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView();
@@ -60,6 +70,11 @@ public class DepartmentController {
         return modelAndView;
     }
 
+    /**
+     * 增加：增加一条信息
+     * @param department
+     * @return
+     */
     @RequestMapping("insert")
     @ResponseBody
     public EUDataGridResult insertOneDepartment(Department department) {
@@ -84,12 +99,21 @@ public class DepartmentController {
         return euDataGridResult;
     }
 
+    /**
+     * 删除：删除前判断权限
+     * @return
+     */
     @RequestMapping(value = {"/delete_judge"})
     @ResponseBody
     public EUDataGridResult delete_judge(){
         return null;
     }
 
+    /**
+     * 删除：删除多条信息
+     * @param ids
+     * @return
+     */
     @RequestMapping("delete_batch")
     @ResponseBody
     public EUDataGridResult deleteDepartmentsByIds(String[] ids) {
@@ -101,13 +125,20 @@ public class DepartmentController {
         return euDataGridResult;
     }
 
+    /**
+     * 更新：更新前判断权限
+     * @return
+     */
     @RequestMapping(value = {"/edit_judge"})
     @ResponseBody
     public EUDataGridResult edit_judge(){
         return null;
     }
 
-    //动态页面跳转
+    /**
+     * 更新：更新前页面跳转
+     * @return
+     */
     @RequestMapping(value = {"/edit"})
     public ModelAndView edit(){
         ModelAndView modelAndView = new ModelAndView();
@@ -115,6 +146,11 @@ public class DepartmentController {
         return modelAndView;
     }
 
+    /**
+     * 更新：更新一条信息
+     * @param department
+     * @return
+     */
     @RequestMapping("update_all")
     @ResponseBody
     public EUDataGridResult updateOneDepartment(Department department) {
@@ -132,6 +168,11 @@ public class DepartmentController {
         return euDataGridResult;
     }
 
+    /**
+     * 更新：更新一条信息的部分内容
+     * @param department
+     * @return
+     */
     @RequestMapping("update_note")
     @ResponseBody
     public EUDataGridResult updateOneDepartmentNote(Department department) {
@@ -143,23 +184,54 @@ public class DepartmentController {
         return euDataGridResult;
     }
 
+    /**
+     * 查找：根据 id 精确搜索
+     * @param page
+     * @param rows
+     * @param searchValue
+     * @return
+     */
     @RequestMapping(value = {"/search_department_by_departmentId"})
     @ResponseBody
     public EUDataGridResult findDepartmentById(String page, String rows, String searchValue) {
-        PageHelper<Department> departmentPageHelper = departmentService.findDepartmentById(page, rows, searchValue);
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
-        euDataGridResult.setRows(departmentPageHelper.getRecords());
-        euDataGridResult.setTotal(departmentPageHelper.getTotalRecordsNum());
+        EUDataGridResult euDataGridResult = departmentService.findDepartmentById(page, rows, searchValue);
         return euDataGridResult;
     }
 
+    /**
+     * 查找：根据 name 模糊搜索
+     * @param page
+     * @param rows
+     * @param searchValue
+     * @return
+     */
     @RequestMapping(value = {"/search_department_by_departmentName"})
     @ResponseBody
     public EUDataGridResult findDepartmentByName(String page, String rows, String searchValue) {
-        PageHelper<Department> departmentPageHelper = departmentService.findDepartmentByName(page, rows, searchValue);
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
-        euDataGridResult.setRows(departmentPageHelper.getRecords());
-        euDataGridResult.setTotal(departmentPageHelper.getTotalRecordsNum());
+        EUDataGridResult euDataGridResult = departmentService.findDepartmentByName(page, rows, searchValue);
         return euDataGridResult;
+    }
+
+    /**
+     * 查找：查找所有信息，返回格式变形的 json
+     * @return
+     */
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List findAllDepartments() {
+        EUDataGridResult euDataGridResult = departmentService.findAllDepartments("1", String.valueOf(Integer.MAX_VALUE));
+        return euDataGridResult.getRows();
+    }
+
+    /**
+     * 查找：查找一条信息，利用 restful 风格的 url
+     * @param departmentId
+     * @return
+     */
+    @RequestMapping("get/{departmentId}")
+    @ResponseBody
+    public Department findOneDepartmentById(@PathVariable("departmentId") String departmentId) {
+        EUDataGridResult euDataGridResult = departmentService.findDepartmentById("1", String.valueOf(Integer.MAX_VALUE), departmentId);
+        return (Department) euDataGridResult.getRows().get(0);
     }
 }
