@@ -2,6 +2,7 @@
 *.class
 
 /Demo1/.idea/workspace.xml
+.idea/*
 
 
 # Log file
