@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Corder;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CorderMapper {
     int deleteByPrimaryKey(String orderId);
@@ -14,4 +17,8 @@ public interface CorderMapper {
     int updateByPrimaryKeySelective(Corder record);
 
     int updateByPrimaryKey(Corder record);
+
+    List<Corder> selectByPage(@Param("limit") int limit, @Param("offset")int offset);
+
+    Integer countTotalRecords();
 }

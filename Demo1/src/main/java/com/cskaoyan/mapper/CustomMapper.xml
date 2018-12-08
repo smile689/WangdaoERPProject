@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.CustomMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Custom">
+    <id column="custom_id" jdbcType="VARCHAR" property="customId" />
+    <result column="custom_name" jdbcType="VARCHAR" property="customName" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
+    <result column="owner_tel" jdbcType="VARCHAR" property="ownerTel" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    custom_id, custom_name, full_name, address, fax, email, owner_name, owner_tel, status, 
+    note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from custom
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </select>
+
+  <sql id="multiCondition">
+    <where>
+      <if test="custom!=null">
+        <if test="custom.customId!=null">
+          custom_id LIKE concat ('%', #{custom.customId}, '%')
+        </if>
+        <if test="custom.customName!=null">
+          and custom_name like concat ('%', #{custom.customName}, '%')
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from custom
+    <include refid="multiCondition"/>
+  </select>
+
+  <select id="countTotalRecords" resultType="_int">
+        select count(*) from custom
+    <include refid="multiCondition"/>
+    </select>
+
+  <insert id="insert">
+      insert into custom (<include refid="Base_Column_List"/>)
+    values (#{customId,jdbcType=VARCHAR}, #{customName,jdbcType=VARCHAR}, #{fullName,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+    #{ownerName,jdbcType=VARCHAR}, #{ownerTel,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+    #{note,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" >
+    update custom
+    set custom_name = #{customName,jdbcType=VARCHAR},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
+      owner_tel = #{ownerTel,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR}
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByPrimaryKey">
+    delete from custom
+    where custom_id = #{customId,jdbcType=VARCHAR}
+  </delete>
+</mapper>

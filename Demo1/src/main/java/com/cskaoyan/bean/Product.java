@@ -1,13 +1,21 @@
 package com.cskaoyan.bean;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
+
 /**
  * 产品管理
  */
 public class Product {
+
+    @Pattern(regexp = "\\d{5}", message = "产品编号是5位数字")
     private String productId;
 
+    @NotBlank(message = "产品名称不为空")
     private String productName;
 
+    @NotBlank(message = "产品种类不为空")
     private String productType;
 
     private String image;
@@ -15,6 +23,18 @@ public class Product {
     private String note;
 
     private Integer status;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productType='" + productType + '\'' +
+                ", image='" + image + '\'' +
+                ", note='" + note + '\'' +
+                ", status=" + status +
+                '}';
+    }
 
     public String getProductId() {
         return productId;
