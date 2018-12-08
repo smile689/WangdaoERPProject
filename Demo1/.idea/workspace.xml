@@ -7,82 +7,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d2e9c52-7989-455c-8399-a020f4dcf3af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/DepartmentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/DepartmentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/DepartmentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/utils/EUDataGridResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/utils/PageHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ERPDemo1_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ERPDemo1_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_3_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_2_2_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsqlparser_jsqlparser_0_9_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_miemiedev_mybatis_paginator_1_2_15.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_pagehelper_pagehelper_4_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_2_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_javax_servlet_api_4_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_api_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jstl_jstl_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_16.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_6_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_3_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_4_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_3_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_6_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/EUDateGridResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Vo/FinalCountVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/ProcessVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyPlanVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyRequirementVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/vo/TechnologyVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FinalCountCheckController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/JsonResult/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/JsonResult/TestResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/MaterialController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/ProcessController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyPlanController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ProcessMonitoringController/TechnologyRequirement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/ToLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/pojo/PageShowResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/FinalCountCheckService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/MaterialService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/ProcessService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyPlanService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyRequirementService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/TechnologyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/FinalCountCheckImp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/MaterialServiceimpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/ProcessServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/TechnologyPlanServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/service/impl/TechnologyServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ERPDemo1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/MyTest/MyDeviceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/controller/FormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DepartmentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DepartmentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/DepartmentMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProcessMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/ProcessMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyPlanMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyPlanMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyRequirementMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyRequirementMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/department_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/department_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Technology.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/bean/Technology.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/MaterialMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cskaoyan/mapper/TechnologyMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -110,9 +68,10 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.27" value="2" />
           <entry key="project.open.time.3" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -141,6 +100,7 @@
           <entry key="aj" value="75" />
           <entry key="java" value="1927" />
           <entry key="jsp" value="21" />
+          <entry key="txt" value="14" />
           <entry key="xml" value="363" />
         </counts>
       </usages-collector>
@@ -149,6 +109,7 @@
           <entry key="AspectJ" value="75" />
           <entry key="JAVA" value="1927" />
           <entry key="JSP" value="21" />
+          <entry key="PLAIN_TEXT" value="14" />
           <entry key="SQL" value="1" />
           <entry key="XML" value="362" />
         </counts>
@@ -159,7 +120,7 @@
     <favorites_list name="Demo1" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -269,7 +230,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -278,75 +238,17 @@
               <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
               <item name="Demo1" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="cskaoyan" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Demo1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Demo1" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544198663734" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544232922654" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -459,17 +361,26 @@
       <updated>1544098480916</updated>
       <workItem from="1544098484612" duration="11929000" />
       <workItem from="1544110500813" duration="2254000" />
-      <workItem from="1544146435632" duration="37433000" />
+      <workItem from="1544146435632" duration="37754000" />
+      <workItem from="1544232668696" duration="251000" />
     </task>
+    <task id="LOCAL-00001" summary="update files:&#10;com.cskaoyan.bean.Department&#10;com.cskaoyan.bean.Employee&#10;com.cskaoyan.controller.DepartmentController&#10;com.cskaoyan.mapper.DepartmentMapper&#10;com/cskaoyan/mapper/DepartmentMapper.xml&#10;com.cskaoyan.mapper.EmployeeMapper&#10;com/cskaoyan/mapper/EmployeeMapper.xml&#10;com.cskaoyan.service.DepartmentService&#10;com.cskaoyan.service.impl.DepartmentServiceImpl&#10;com.cskaoyan.utils.PageHelper&#10;com.cskaoyan.utils.EUDataGridResult&#10;WEB-INF/jsp/department_list.jsp&#10;WEB-INF/jsp/department_add.jsp&#10;WEB-INF/jsp/department_edit.jsp">
+      <created>1544198762062</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544198762062</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51616000" />
+    <option name="totallyTimeSpent" value="52188000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="433" y="15" width="989" height="768" extended-state="0" />
+    <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.29386437" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49871466" visible="true" weight="0.21984127" />
       <window_info id="Structure" order="1" sideWeight="0.5012854" side_tool="true" weight="0.13571429" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -479,15 +390,15 @@
       <window_info id="Web" order="7" sideWeight="0.5012854" side_tool="true" weight="0.13571429" />
       <window_info anchor="bottom" id="Spring" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.40677965" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" visible="true" weight="0.32973805" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.81972265" />
       <window_info anchor="bottom" id="Java Enterprise" order="4" weight="0.32973805" />
       <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="6" weight="0.8767334" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" />
       <window_info anchor="bottom" id="Run" order="9" weight="0.32973805" />
-      <window_info anchor="bottom" id="Debug" order="10" visible="true" weight="0.32543445" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.32543445" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="Application Servers" order="13" weight="0.32973805" />
@@ -540,8 +451,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update files:&#10;com.cskaoyan.bean.Department&#10;com.cskaoyan.bean.Employee&#10;com.cskaoyan.controller.DepartmentController&#10;com.cskaoyan.mapper.DepartmentMapper&#10;com/cskaoyan/mapper/DepartmentMapper.xml&#10;com.cskaoyan.mapper.EmployeeMapper&#10;com/cskaoyan/mapper/EmployeeMapper.xml&#10;com.cskaoyan.service.DepartmentService&#10;com.cskaoyan.service.impl.DepartmentServiceImpl&#10;com.cskaoyan.utils.PageHelper&#10;com.cskaoyan.utils.EUDataGridResult&#10;WEB-INF/jsp/department_list.jsp&#10;WEB-INF/jsp/department_add.jsp&#10;WEB-INF/jsp/department_edit.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="update files:&#10;com.cskaoyan.bean.Department&#10;com.cskaoyan.bean.Employee&#10;com.cskaoyan.controller.DepartmentController&#10;com.cskaoyan.mapper.DepartmentMapper&#10;com/cskaoyan/mapper/DepartmentMapper.xml&#10;com.cskaoyan.mapper.EmployeeMapper&#10;com/cskaoyan/mapper/EmployeeMapper.xml&#10;com.cskaoyan.service.DepartmentService&#10;com.cskaoyan.service.impl.DepartmentServiceImpl&#10;com.cskaoyan.utils.PageHelper&#10;com.cskaoyan.utils.EUDataGridResult&#10;WEB-INF/jsp/department_list.jsp&#10;WEB-INF/jsp/department_add.jsp&#10;WEB-INF/jsp/department_edit.jsp" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -750,13 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="130" selection-start-line="130" selection-end-line="130" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1530#1531#0" expanded="true" />
-            <element signature="e#1588#1589#0" expanded="true" />
-            <element signature="e#3028#3029#0" expanded="true" />
-            <element signature="e#3098#3099#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
