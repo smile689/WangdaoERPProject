@@ -68,34 +68,4 @@
       note = #{note,jdbcType=VARCHAR}
     where department_id = #{departmentId,jdbcType=VARCHAR}
   </update>
-  <select id="selectCount" resultType="int">
-        select count(*) from department
-   </select>
-  <select id="selectByLimitAndOffset" parameterType="hashMap" resultMap="BaseResultMap">
-        select * from department limit #{limit} offset #{offset}
-   </select>
-  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from department
-    where department_name = #{departmentName,jdbcType=VARCHAR}
-  </select>
-  <select id="selectOtherByName" parameterType="com.cskaoyan.bean.Department" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from department
-    where department_name = #{departmentName,jdbcType=VARCHAR} and department_name != #{departmentId,jdbcType=VARCHAR}
-  </select>
-  <select id="selectCountById" parameterType="string" resultType="int">
-        select count(*) from department where department_id = #{departmentId,jdbcType=VARCHAR}
-   </select>
-  <select id="selectByLimitAndOffsetAndId" parameterType="hashMap" resultMap="BaseResultMap">
-        select * from department where department_id = #{departmentId,jdbcType=VARCHAR} limit #{limit} offset #{offset}
-   </select>
-  <select id="selectCountByName" parameterType="string" resultType="int">
-        select count(*) from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%')
-   </select>
-  <select id="selectByLimitAndOffsetAndName" parameterType="hashMap" resultMap="BaseResultMap">
-        select * from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%') limit #{limit} offset #{offset}
-   </select>
 </mapper>
