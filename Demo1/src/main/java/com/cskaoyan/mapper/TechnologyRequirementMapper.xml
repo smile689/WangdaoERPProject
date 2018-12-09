@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.TechnologyRequirementMapper">
+    <resultMap id="BaseResultMap" type="com.cskaoyan.bean.TechnologyRequirement" >
+        <id column="technology_requirement_id" property="technologyRequirementId" jdbcType="VARCHAR" />
+        <result column="technology_id" property="technologyId" jdbcType="VARCHAR" />
+        <result column="requirement" property="requirement" jdbcType="VARCHAR" />
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+        <result column="revise_time" property="reviseTime" jdbcType="TIMESTAMP" />
+        <result column="technology_name" property="technologyName" jdbcType="VARCHAR" />
+
+    </resultMap>
+    <select id="selectAll" parameterType="technologyRequirement" resultMap="BaseResultMap">
+	SELECT
+		technology_requirement_id,
+		technology_requirement.technology_id,
+		technology_name,
+		requirement,
+		add_time,
+		revise_time
+	FROM
+		technology_requirement
+	LEFT JOIN technology ON technology.technology_id = technology_requirement.technology_id
+	ORDER BY
+		technology_requirement_id ASC
+</select>
+
+
+
+
+    <sql id="Base_Column_List">
+    technology_requirement_id, technology_id, requirement, add_time, revise_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from technology_requirement
+        where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.cskaoyan.bean.TechnologyRequirement">
+    insert into technology_requirement (technology_requirement_id, technology_id,
+      requirement, add_time, revise_time
+      )
+    values (#{technologyRequirementId,jdbcType=VARCHAR}, #{technologyId,jdbcType=VARCHAR},
+      #{requirement,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{reviseTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.TechnologyRequirement">
+    update technology_requirement
+    set technology_id = #{technologyId,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      revise_time = #{reviseTime,jdbcType=TIMESTAMP}
+    where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
+  </update>
+    <delete id="deleteByPrimaryKey">
+        DELETE
+        FROM
+        technology_requirement
+        WHERE
+        technology_requirement_id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectTechnologyRequirementByTechnologyRequirementId" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			technology_requirement_id,
+			technology_requirement.technology_id,
+			technology_name,
+			requirement,
+			add_time,
+			revise_time
+		FROM
+			technology_requirement
+		LEFT JOIN technology ON technology.technology_id = technology_requirement.technology_id
+		WHERE
+			technology_requirement_id LIKE CONCAT(
+				'%',
+				#{technologyRequirementId},'%' )
+		ORDER BY
+			technology_requirement_id ASC
+	</select>
+
+    <select id="selectTechnologyRequirementByTechnologyName" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			technology_requirement_id,
+			technology_requirement.technology_id,
+			technology_name,
+			requirement,
+			add_time,
+			revise_time
+		FROM
+			technology_requirement
+		LEFT JOIN technology ON technology.technology_id = technology_requirement.technology_id
+		WHERE
+			technology_name LIKE CONCAT(
+				'%',
+				#{technologyName},'%' )
+		ORDER BY
+			technology_requirement_id ASC
+	</select>
+
+
+
+
+
+</mapper>
