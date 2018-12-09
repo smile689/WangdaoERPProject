@@ -33,9 +33,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EUDataGridResult findAllEmployees(String currentPageNum, String perPageNum) {
         int selectCount = employeeMapper.selectCount();
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        List<Employee> employeeList = employeeMapper.selectByLimitAndOffset();
+        List<Employee> employeeList = employeeMapper.select();
         for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartmentId());
+            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
             employeeList.get(i).setDepartment(selectByPrimaryKey);
         }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
@@ -61,12 +61,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean isEmployeeExistByIdCode(Employee employee) {
-        boolean ret = false;
+        if (employee.getIdCode() == null || employee.getIdCode().equals("")) {
+            return false;
+        }
         Employee selectByPrimaryKey = employeeMapper.selectByIdCode(employee.getIdCode());
         if (selectByPrimaryKey != null) {
-            ret = true;
+            return true;
         }
-        return ret;
+        return false;
     }
 
     @Override
@@ -87,6 +89,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean isOtherEmployeeExistByIdCode(Employee employee) {
+        if (employee.getIdCode() == null || employee.getIdCode().equals("")) {
+            return false;
+        }
         boolean ret = false;
         Employee selectOtherByIdCode = employeeMapper.selectOtherByIdCode(employee);
         if (selectOtherByIdCode != null) {
@@ -101,12 +106,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EUDataGridResult findEmployeeById(String currentPageNum, String perPageNum, String employeeId) {
+    public EUDataGridResult findOneEmployeeById(String currentPageNum, String perPageNum, String employeeId) {
         int selectCount = employeeMapper.selectCountById(employeeId);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        List<Employee> employeeList = employeeMapper.selectByLimitAndOffsetAndId(employeeId);
+        Employee employee = employeeMapper.selectByPrimaryKey(employeeId);
+        List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(employee);
         for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartmentId());
+            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
             employeeList.get(i).setDepartment(selectByPrimaryKey);
         }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
@@ -116,12 +123,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EUDataGridResult findEmployeeByName(String currentPageNum, String perPageNum, String employeeName) {
+    public EUDataGridResult findEmployeesByNames(String currentPageNum, String perPageNum, String employeeName) {
         int selectCount = employeeMapper.selectCountByName(employeeName);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        List<Employee> employeeList = employeeMapper.selectByLimitAndOffsetAndName(employeeName);
+        List<Employee> employeeList = employeeMapper.selectByNames(employeeName);
         for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartmentId());
+            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
             employeeList.get(i).setDepartment(selectByPrimaryKey);
         }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
@@ -131,8 +138,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EUDataGridResult findEmployeeByDepartment(String currentPageNum, String perPageNum, String departmentName) {
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndName(departmentName);
+    public EUDataGridResult findEmployeesByDepartments(String currentPageNum, String perPageNum, String departmentName) {
+        List<Department> departmentList = departmentMapper.selectByNames(departmentName);
         ArrayList<String> stringArrayList = new ArrayList<>();
         for (int i = 0; i < departmentList.size(); i++) {
             stringArrayList.add(departmentList.get(i).getDepartmentId());
@@ -141,10 +148,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeOV.setDepartmentIds(stringArrayList);
         int selectCount = employeeMapper.selectCountByEmployeeOV(employeeOV);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-
-        List<Employee> employeeList = employeeMapper.selectByLimitAndOffsetAndEmployeeOV(employeeOV);
+        List<Employee> employeeList = employeeMapper.selectByEmployeeOV(employeeOV);
         for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartmentId());
+            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
             employeeList.get(i).setDepartment(selectByPrimaryKey);
         }
         EUDataGridResult euDataGridResult = new EUDataGridResult();

@@ -6,11 +6,13 @@ import com.cskaoyan.utils.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -29,7 +31,7 @@ public class DepartmentController {
      * 查找：查找前页面跳转
      * @return
      */
-    @RequestMapping(value = {"/find"})
+    @RequestMapping("find")
     public ModelAndView find(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("department_list");
@@ -42,7 +44,7 @@ public class DepartmentController {
      * @param rows
      * @return
      */
-    @RequestMapping(value = {"/list"})
+    @RequestMapping("list")
     @ResponseBody
     public EUDataGridResult findAllDepartments(String page, String rows) {
         EUDataGridResult euDataGridResult = departmentService.findAllDepartments(page, rows);
@@ -53,7 +55,7 @@ public class DepartmentController {
      * 增加：增加前判断权限
      * @return
      */
-    @RequestMapping(value = {"/add_judge"})
+    @RequestMapping("add_judge")
     @ResponseBody
     public EUDataGridResult add_judge(){
         return null;
@@ -63,7 +65,7 @@ public class DepartmentController {
      * 增加：增加前页面跳转
      * @return
      */
-    @RequestMapping(value = {"/add"})
+    @RequestMapping("add")
     public ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("department_add");
@@ -77,18 +79,21 @@ public class DepartmentController {
      */
     @RequestMapping("insert")
     @ResponseBody
-    public EUDataGridResult insertOneDepartment(Department department) {
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
+    public EUDataGridResult insertOneDepartment(@Valid Department department, BindingResult bindingResult) {
+        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        if (euDataGridResult.getStatus() == 500) {
+            return euDataGridResult;
+        }
         boolean departmentExistById = departmentService.isDepartmentExistById(department);
         boolean departmentExistByName = departmentService.isDepartmentExistByName(department);
         if (departmentExistById || departmentExistByName) {
             euDataGridResult.setStatus(500);
             if (departmentExistById && departmentExistByName) {
-                euDataGridResult.setMsg("部门编号、部门名称重复！");
+                euDataGridResult.setMsg("errorMessage: 部门编号、部门名称重复！");
             } else if (departmentExistById) {
-                euDataGridResult.setMsg("部门编号重复！");
+                euDataGridResult.setMsg("errorMessage: 部门编号重复！");
             }else {
-                euDataGridResult.setMsg("部门名称重复！");
+                euDataGridResult.setMsg("errorMessage: 部门名称重复！");
             }
             return euDataGridResult;
         }
@@ -103,7 +108,7 @@ public class DepartmentController {
      * 删除：删除前判断权限
      * @return
      */
-    @RequestMapping(value = {"/delete_judge"})
+    @RequestMapping("delete_judge")
     @ResponseBody
     public EUDataGridResult delete_judge(){
         return null;
@@ -129,7 +134,7 @@ public class DepartmentController {
      * 更新：更新前判断权限
      * @return
      */
-    @RequestMapping(value = {"/edit_judge"})
+    @RequestMapping("edit_judge")
     @ResponseBody
     public EUDataGridResult edit_judge(){
         return null;
@@ -139,7 +144,7 @@ public class DepartmentController {
      * 更新：更新前页面跳转
      * @return
      */
-    @RequestMapping(value = {"/edit"})
+    @RequestMapping("edit")
     public ModelAndView edit(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("department_edit");
@@ -153,12 +158,15 @@ public class DepartmentController {
      */
     @RequestMapping("update_all")
     @ResponseBody
-    public EUDataGridResult updateOneDepartment(Department department) {
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
+    public EUDataGridResult updateOneDepartment(@Valid Department department, BindingResult bindingResult) {
+        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        if (euDataGridResult.getStatus() == 500) {
+            return euDataGridResult;
+        }
         boolean departmentExistByName = departmentService.isOtherDepartmentExistByName(department);
         if (departmentExistByName) {
             euDataGridResult.setStatus(500);
-            euDataGridResult.setMsg("部门名称重复！");
+            euDataGridResult.setMsg("errorMessage: 部门名称重复！");
             return euDataGridResult;
         }
         int updateOneDepartment = departmentService.updateOneDepartment(department);
@@ -175,8 +183,11 @@ public class DepartmentController {
      */
     @RequestMapping("update_note")
     @ResponseBody
-    public EUDataGridResult updateOneDepartmentNote(Department department) {
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
+    public EUDataGridResult updateOneDepartmentNote(@Valid Department department, BindingResult bindingResult) {
+        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        if (euDataGridResult.getStatus() == 500) {
+            return euDataGridResult;
+        }
         int updateOneDepartmentNote = departmentService.updateOneDepartmentNote(department);
         if (updateOneDepartmentNote == 1) {
             euDataGridResult.setStatus(200);
@@ -191,10 +202,10 @@ public class DepartmentController {
      * @param searchValue
      * @return
      */
-    @RequestMapping(value = {"/search_department_by_departmentId"})
+    @RequestMapping("search_department_by_departmentId")
     @ResponseBody
-    public EUDataGridResult findDepartmentById(String page, String rows, String searchValue) {
-        EUDataGridResult euDataGridResult = departmentService.findDepartmentById(page, rows, searchValue);
+    public EUDataGridResult findOneDepartmentById(String page, String rows, String searchValue) {
+        EUDataGridResult euDataGridResult = departmentService.findOneDepartmentById(page, rows, searchValue);
         return euDataGridResult;
     }
 
@@ -205,15 +216,15 @@ public class DepartmentController {
      * @param searchValue
      * @return
      */
-    @RequestMapping(value = {"/search_department_by_departmentName"})
+    @RequestMapping("search_department_by_departmentName")
     @ResponseBody
-    public EUDataGridResult findDepartmentByName(String page, String rows, String searchValue) {
-        EUDataGridResult euDataGridResult = departmentService.findDepartmentByName(page, rows, searchValue);
+    public EUDataGridResult findDepartmentsByNames(String page, String rows, String searchValue) {
+        EUDataGridResult euDataGridResult = departmentService.findDepartmentsByNames(page, rows, searchValue);
         return euDataGridResult;
     }
 
     /**
-     * 查找：查找所有信息，返回格式变形的 json
+     * 查找：查找所有信息，返回 List 类型的 json
      * @return
      */
     @RequestMapping("get_data")
@@ -231,7 +242,7 @@ public class DepartmentController {
     @RequestMapping("get/{departmentId}")
     @ResponseBody
     public Department findOneDepartmentById(@PathVariable("departmentId") String departmentId) {
-        EUDataGridResult euDataGridResult = departmentService.findDepartmentById("1", String.valueOf(Integer.MAX_VALUE), departmentId);
+        EUDataGridResult euDataGridResult = departmentService.findOneDepartmentById("1", String.valueOf(Integer.MAX_VALUE), departmentId);
         return (Department) euDataGridResult.getRows().get(0);
     }
 }

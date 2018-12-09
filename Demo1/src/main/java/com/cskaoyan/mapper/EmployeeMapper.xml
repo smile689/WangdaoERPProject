@@ -14,7 +14,9 @@
     <result column="major" jdbcType="VARCHAR" property="major" />
     <result column="graduate_school" jdbcType="VARCHAR" property="graduateSchool" />
     <result column="education_form" jdbcType="VARCHAR" property="educationForm" />
-    <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
+    <association column="department_id" javaType="department" property="department">
+      <result column="department_id" property="departmentId"/>
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major, 
@@ -40,7 +42,7 @@
       #{idCode,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{joinDate,jdbcType=DATE}, 
       #{status,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
       #{major,jdbcType=VARCHAR}, #{graduateSchool,jdbcType=VARCHAR}, #{educationForm,jdbcType=VARCHAR}, 
-      #{departmentId,jdbcType=VARCHAR})
+      #{department.departmentId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.Employee">
     insert into employee
@@ -81,7 +83,7 @@
       <if test="educationForm != null">
         education_form,
       </if>
-      <if test="departmentId != null">
+      <if test="department.departmentId != null">
         department_id,
       </if>
     </trim>
@@ -122,8 +124,8 @@
       <if test="educationForm != null">
         #{educationForm,jdbcType=VARCHAR},
       </if>
-      <if test="departmentId != null">
-        #{departmentId,jdbcType=VARCHAR},
+      <if test="department.departmentId != null">
+        #{department.departmentId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -163,8 +165,8 @@
       <if test="educationForm != null">
         education_form = #{educationForm,jdbcType=VARCHAR},
       </if>
-      <if test="departmentId != null">
-        department_id = #{departmentId,jdbcType=VARCHAR},
+      <if test="department.departmentId != null">
+        department_id = #{department.departmentId,jdbcType=VARCHAR},
       </if>
     </set>
     where emp_id = #{empId,jdbcType=VARCHAR}
@@ -182,13 +184,13 @@
       major = #{major,jdbcType=VARCHAR},
       graduate_school = #{graduateSchool,jdbcType=VARCHAR},
       education_form = #{educationForm,jdbcType=VARCHAR},
-      department_id = #{departmentId,jdbcType=VARCHAR}
+      department_id = #{department.departmentId,jdbcType=VARCHAR}
     where emp_id = #{empId,jdbcType=VARCHAR}
   </update>
   <select id="selectCount" resultType="int">
         select count(*) from employee
    </select>
-  <select id="selectByLimitAndOffset" resultMap="BaseResultMap">
+  <select id="select" resultMap="BaseResultMap">
         select * from employee
    </select>
   <select id="selectByIdCode" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -206,13 +208,10 @@
   <select id="selectCountById" parameterType="string" resultType="int">
         select count(*) from employee where emp_id = #{empId,jdbcType=VARCHAR}
    </select>
-  <select id="selectByLimitAndOffsetAndId" parameterType="string" resultMap="BaseResultMap">
-        select * from employee where emp_id = #{empId,jdbcType=VARCHAR}
-   </select>
   <select id="selectCountByName" parameterType="string" resultType="int">
         select count(*) from employee where emp_name like concat('%', #{empName,jdbcType=VARCHAR}, '%')
    </select>
-  <select id="selectByLimitAndOffsetAndName" parameterType="string" resultMap="BaseResultMap">
+  <select id="selectByNames" parameterType="string" resultMap="BaseResultMap">
         select * from employee where emp_name like concat('%', #{empName,jdbcType=VARCHAR}, '%')
    </select>
   <select id="selectCountByEmployeeOV" resultType="int">
@@ -224,7 +223,7 @@
       </foreach>
     </where>
   </select>
-  <select id="selectByLimitAndOffsetAndEmployeeOV" parameterType="com.cskaoyan.utils.EmployeeOV" resultMap="BaseResultMap">
+  <select id="selectByEmployeeOV" parameterType="com.cskaoyan.utils.EmployeeOV" resultMap="BaseResultMap">
         select * from employee
     <where>
       department_id in
