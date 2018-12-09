@@ -3,6 +3,8 @@ package com.cskaoyan.service;
 import com.cskaoyan.bean.Product;
 import com.cskaoyan.utils.JsonFindRet;
 
+import java.util.List;
+
 public interface ProductService {
 
     Product findProductById(String productId);
@@ -16,4 +18,6 @@ public interface ProductService {
     boolean deleteProduct(String ids);
 
     boolean updateNote(Product product);
+
+    List<Product> findAll();
 }

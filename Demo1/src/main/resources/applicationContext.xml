@@ -23,7 +23,7 @@
     <!--2.数据库连接池-->
     <!--datasource配置-->
     <bean id="mydatasource" class="com.alibaba.druid.pool.DruidDataSource">
-        <property name="password" value="618383"></property>
+        <property name="password" value="123456"></property>
         <property name="username" value="root"></property>
         <property name="url" value="jdbc:mysql://localhost:3306/production_ssm?serverTimezone=GMT"></property>
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
@@ -73,8 +73,8 @@
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
     </bean>
-    <!--自动去增加处理器适配器和处理器映射器-->
-    <mvc:annotation-driven  validator="validator"></mvc:annotation-driven>
+    <!--自动去增加处理器适配器和处理器映射器github可能出错-->
+    <mvc:annotation-driven  validator="validator" conversion-service="conversionService"></mvc:annotation-driven>
 
     <!--拦截器-->
     <mvc:interceptors>
@@ -107,7 +107,14 @@
     </bean>
 
 
-
+    <!--类型转行的时候使用你的javabean-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="com.cskaoyan.convert.MyDateConverter"></bean>
+            </set>
+        </property>
+    </bean>
 
 
 

@@ -75,4 +75,10 @@
     delete from custom
     where custom_id = #{customId,jdbcType=VARCHAR}
   </delete>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from custom
+  </select>
 </mapper>

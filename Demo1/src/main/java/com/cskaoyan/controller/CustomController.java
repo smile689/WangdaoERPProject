@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -148,6 +149,12 @@ public class CustomController {
             jsonChangeRet.setMsg("添加失败，重新添加");
         }
         return jsonChangeRet;
+    }
+
+    @ResponseBody
+    @RequestMapping("/get_data")
+    public List<Custom> getAllCustoms(){
+        return customService.findAll();
     }
 
 }

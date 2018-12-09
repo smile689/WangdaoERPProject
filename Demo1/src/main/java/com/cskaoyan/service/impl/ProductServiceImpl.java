@@ -68,4 +68,9 @@ public class ProductServiceImpl implements ProductService {
         productToUpdateNote.setNote(product.getNote());
         return productMapper.updateByPrimaryKey(productToUpdateNote)==1;
     }
+
+    @Override
+    public List<Product> findAll() {
+        return productMapper.selectAll();
+    }
 }

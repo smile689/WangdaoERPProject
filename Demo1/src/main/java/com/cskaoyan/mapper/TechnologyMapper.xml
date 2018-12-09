@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.TechnologyMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Technology">
+    <id column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="vital_process_period" jdbcType="VARCHAR" property="vitalProcessPeriod" />
+    <result column="standard_capacity" jdbcType="INTEGER" property="standardCapacity" />
+    <result column="overtime_standard_capacity" jdbcType="INTEGER" property="overtimeStandardCapacity" />
+    <result column="overtime_overfulfil_capacity" jdbcType="INTEGER" property="overtimeOverfulfilCapacity" />
+    <result column="double_capacity" jdbcType="INTEGER" property="doubleCapacity" />
+    <result column="overfulfil_capacity" jdbcType="INTEGER" property="overfulfilCapacity" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    technology_id, technology_name, price, vital_process_period, standard_capacity, overtime_standard_capacity, 
+    overtime_overfulfil_capacity, double_capacity, overfulfil_capacity
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from technology
+    where technology_id = #{technologyId,jdbcType=VARCHAR}
+  </select>
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Technology">
+    update technology
+    set technology_name = #{technologyName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      vital_process_period = #{vitalProcessPeriod,jdbcType=VARCHAR},
+      standard_capacity = #{standardCapacity,jdbcType=INTEGER},
+      overtime_standard_capacity = #{overtimeStandardCapacity,jdbcType=INTEGER},
+      overtime_overfulfil_capacity = #{overtimeOverfulfilCapacity,jdbcType=INTEGER},
+      double_capacity = #{doubleCapacity,jdbcType=INTEGER},
+      overfulfil_capacity = #{overfulfilCapacity,jdbcType=INTEGER}
+    where technology_id = #{technologyId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from technology
+  </select>
+</mapper>

@@ -3,6 +3,8 @@ package com.cskaoyan.service;
 import com.cskaoyan.bean.Custom;
 import com.cskaoyan.utils.JsonFindRet;
 
+import java.util.List;
+
 public interface CustomService {
 
     Custom findCustomById(String customId);
@@ -16,4 +18,6 @@ public interface CustomService {
     boolean deleteCustom(String ids);
 
     boolean updateNote(Custom custom);
+
+    List<Custom> findAll();
 }

@@ -1,5 +1,6 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -7,6 +8,8 @@ import java.util.Date;
  * 订单管理
  */
 public class Corder {
+
+    @Pattern(regexp = "\\d{6}", message = "客户编号由六位数字组成")
     private String orderId;
 
     //private String customId;

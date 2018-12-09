@@ -17,4 +17,6 @@ public interface CustomMapper {
     List<Custom> selectByPage(@Param("custom")Custom custom);
 
     Integer countTotalRecords(@Param("custom") Custom custom);
+
+    List<Custom> selectAll();
 }

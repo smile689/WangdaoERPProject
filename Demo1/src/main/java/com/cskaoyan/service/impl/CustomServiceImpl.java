@@ -61,10 +61,17 @@ public class CustomServiceImpl implements CustomService {
         return true;
     }
 
+    @Transactional
     @Override
     public boolean updateNote(Custom custom) {
         Custom customToUpdateNote = customMapper.selectByPrimaryKey(custom.getCustomId());
         customToUpdateNote.setNote(custom.getNote());
         return customMapper.updateByPrimaryKey(customToUpdateNote)==1;
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Custom> findAll() {
+        return customMapper.selectAll();
     }
 }
