@@ -106,7 +106,6 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-
     <!--类型转行的时候使用你的javabean-->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
@@ -115,8 +114,6 @@
             </set>
         </property>
     </bean>
-
-
 
 
 </beans>

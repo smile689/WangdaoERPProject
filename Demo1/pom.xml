@@ -243,6 +243,7 @@
       <version>1.6.12</version>
     </dependency>
 
+
   </dependencies>
 
   <!--不然maven不识别mapper，也可以放入resources文件夹-->

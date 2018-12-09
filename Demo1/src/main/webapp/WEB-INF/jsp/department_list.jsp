@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <table class="easyui-datagrid" id="departmentList" title="部门列表" data-options="singleSelect:false,collapsible:true,
-		pagination:true,rownumbers:true,url:'department/list', ethod:'get',pageSize:20,
+		pagination:true,rownumbers:true,url:'department/list', method:'get',pageSize:20,
 		fitColumns:true,toolbar:toolbar_department">
     <thead>
         <tr>
@@ -38,7 +38,23 @@
 		</c:if>
 	</c:forEach>
 	
-	<div class="datagrid-btn-separator"></div>  
+
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="department_add()">新增</a>
+	</div>
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit"
+		   onclick="department_edit()">编辑</a>
+	</div>
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel"
+		   onclick="department_delete()">删除</a>
+	</div>
+
+	<div class="datagrid-btn-separator"></div>
 	
 	<div style="float: left;">  
 		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="department_reload()">刷新</a>  

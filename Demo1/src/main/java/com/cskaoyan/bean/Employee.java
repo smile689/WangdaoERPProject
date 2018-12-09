@@ -27,9 +27,19 @@ public class Employee {
 
     private String educationForm;
 
-    //private String departmentId;
+    private String departmentId;
 
     private Department department;
+
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
 
     public String getEmpId() {
         return empId;
