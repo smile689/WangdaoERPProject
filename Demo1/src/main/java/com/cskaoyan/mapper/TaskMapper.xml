@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.TaskMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Task">
+    <id column="task_id" jdbcType="VARCHAR" property="taskId" />
+    <result column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="task_quantity" jdbcType="INTEGER" property="taskQuantity" />
+    <result column="working_hours" jdbcType="DECIMAL" property="workingHours" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    task_id, manufacture_sn, work_id, task_quantity, working_hours
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from task
+    <include refid="multiCondition"/>
+  </select>
+
+  <sql id="multiCondition">
+    <where>
+      <if test="task!=null">
+        <if test="task.taskId!=null">
+          task_id LIKE concat ('%', #{task.taskId}, '%')
+        </if>
+        <if test="task.workId!=null">
+          and work_id LIKE concat ('%', #{task.workId}, '%')
+        </if>
+        <if test="task.manufactureSn!=null">
+          and manufacture_sn LIKE concat ('%', #{task.manufactureSn}, '%')
+        </if>
+      </if>
+    </where>
+  </sql>
+
+
+  <insert id="insert" parameterType="com.cskaoyan.bean.Task">
+    insert into task (task_id, manufacture_sn, work_id,
+      task_quantity, working_hours)
+    values (#{taskId,jdbcType=VARCHAR}, #{manufactureSn,jdbcType=VARCHAR}, #{workId,jdbcType=VARCHAR},
+      #{taskQuantity,jdbcType=INTEGER}, #{workingHours,jdbcType=DECIMAL})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Task">
+    update task
+    set manufacture_sn = #{manufactureSn,jdbcType=VARCHAR},
+      work_id = #{workId,jdbcType=VARCHAR},
+      task_quantity = #{taskQuantity,jdbcType=INTEGER},
+      working_hours = #{workingHours,jdbcType=DECIMAL}
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByPrimaryKey" >
+    delete from task
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </delete>
+</mapper>

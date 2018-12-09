@@ -1,5 +1,6 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 /**
@@ -7,11 +8,17 @@ import java.util.Date;
  * --计划进度
  */
 public class Manufacture {
+
+    @Pattern(regexp = "\\d{4}", message = "生产批号由四位数字组成")
     private String manufactureSn;
 
-    private String orderId;
+    //private String orderId;
 
-    private String technologyId;
+    private Corder cOrder;
+
+    //private String technologyId;
+
+    private Technology technology;
 
     private Integer launchQuantity;
 
@@ -27,20 +34,20 @@ public class Manufacture {
         this.manufactureSn = manufactureSn == null ? null : manufactureSn.trim();
     }
 
-    public String getOrderId() {
-        return orderId;
+    public Corder getcOrder() {
+        return cOrder;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+    public void setcOrder(Corder cOrder) {
+        this.cOrder = cOrder;
     }
 
-    public String getTechnologyId() {
-        return technologyId;
+    public Technology getTechnology() {
+        return technology;
     }
 
-    public void setTechnologyId(String technologyId) {
-        this.technologyId = technologyId == null ? null : technologyId.trim();
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
     }
 
     public Integer getLaunchQuantity() {

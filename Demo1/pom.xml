@@ -35,11 +35,18 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- JSP相关 -->
     <dependency>
-      <groupId>javax.servlet.jsp.jstl</groupId>
+      <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+
+    <!--<dependency>
+      <groupId>javax.servlet.jsp.jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>-->
 
     <!--<dependency>
       <groupId>javax.servlet</groupId>
@@ -103,6 +110,18 @@
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
       <version>1.3.0</version>
+    </dependency>
+
+    <!-- validation -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>5.1.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.1.0.Final</version>
     </dependency>
 
     <!--利用mybatis-paginator实现分页？-->
@@ -223,6 +242,7 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.6.12</version>
     </dependency>
+
 
   </dependencies>
 

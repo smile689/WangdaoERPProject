@@ -8,7 +8,7 @@
         <package name="com.cskaoyan.bean"/>
     </typeAliases>
 
-<!--分頁-->
+    <!-- 配置分页插件 -->
     <plugins>
         <!--注意这里要写成PageInterceptor, 5.0之前的版本都是写PageHelper, 5.0之后要换成PageInterceptor-->
         <plugin interceptor="com.github.pagehelper.PageHelper">
@@ -16,6 +16,7 @@
             <property name="helperDialect" value="mysql"/>
         </plugin>
     </plugins>
+
     <!--<environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"></transactionManager>
@@ -31,4 +32,5 @@
     <mappers>
         <package name="com.cskaoyan.mapper"/>
     </mappers>
+
 </configuration>

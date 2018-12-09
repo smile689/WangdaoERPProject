@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Product">
+    <result column="product_id" jdbcType="VARCHAR" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_type" jdbcType="VARCHAR" property="productType" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_id, product_name, product_type, image, note, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where product_id = #{productId}
+  </select>
+
+  <sql id="multiCondition">
+    <where>
+      <if test="product!=null">
+        <if test="product.productId!=null">
+          product_id LIKE concat ('%', #{product.productId}, '%')
+        </if>
+        <if test="product.productName!=null">
+          and product_name like concat ('%', #{product.productName}, '%')
+        </if>
+        <if test="product.productType!=null">
+          and product_type like concat ('%', #{product.productType}, '%')
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from product
+    <include refid="multiCondition"/>
+  </select>
+
+  <insert id="insert">
+    insert into product (<include refid="Base_Column_List"/>)
+    values (#{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR},
+    #{image,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+    )
+  </insert>
+
+  <update id="updateByPrimaryKey" >
+    update product
+    set product_name = #{productName,jdbcType=VARCHAR},
+      product_type = #{productType,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByPrimaryKey">
+    delete from product
+    where product_id = #{productId,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from product
+  </select>
+
+</mapper>

@@ -85,7 +85,7 @@
 		productAddEditor.sync();
 		
 		//ajax的post方式提交表单
-		//$("#productAddForm").serialize()将表单序列号为key-value形式的字符串
+		//$("#productAddForm").serialize()将表单序列号为key-value形式的字符串，文件异步上传？
 		$.post("product/insert",$("#productAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增产品成功!');

@@ -24,29 +24,42 @@
 
 <div  id="toolbar_manufacture" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+	<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='manufacture:add' }" >
-		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="manufacture_add()">新增</a>  
-		    </div>  
+		    <div style="float: left;">
+		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="manufacture_add()">新增</a>
+		    </div>
 		</c:if>
 		<c:if test="${per=='manufacture:edit' }" >
-		    <div style="float: left;">  
+		    <div style="float: left;">
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="manufacture_edit()">
 					编辑
 				</a>
-		    </div>  
+		    </div>
 		</c:if>
 		<c:if test="${per=='manufacture:delete' }" >
-		    <div style="float: left;">  
+		    <div style="float: left;">
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="manufacture_delete()">
 					删除
 				</a>
-		    </div>  
+		    </div>
 		</c:if>
-	</c:forEach>
-	
-	<div class="datagrid-btn-separator"></div>  
+	</c:forEach>--%>
+		<div style="float: left;">
+			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="manufacture_add()">新增</a>
+		</div>
+		<div style="float: left;">
+			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="manufacture_edit()">
+				编辑
+			</a>
+		</div>
+		<div style="float: left;">
+			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="manufacture_delete()">
+				删除
+			</a>
+		</div>
+
+		<div class="datagrid-btn-separator"></div>
 	
 	<div style="float: left;">  
 		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="manufacture_reload()">刷新</a>  
