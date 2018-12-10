@@ -71,7 +71,7 @@
   <select id="selectCount" resultType="int">
         select count(*) from department
    </select>
-  <select id="selectByLimitAndOffset" resultMap="BaseResultMap">
+  <select id="select" resultMap="BaseResultMap">
         select * from department
    </select>
   <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -89,13 +89,10 @@
   <select id="selectCountById" parameterType="string" resultType="int">
         select count(*) from department where department_id = #{departmentId,jdbcType=VARCHAR}
    </select>
-  <select id="selectByLimitAndOffsetAndId" parameterType="string" resultMap="BaseResultMap">
-        select * from department where department_id = #{departmentId,jdbcType=VARCHAR}
-   </select>
   <select id="selectCountByName" parameterType="string" resultType="int">
         select count(*) from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%')
    </select>
-  <select id="selectByLimitAndOffsetAndName" parameterType="string" resultMap="BaseResultMap">
+  <select id="selectByNames" parameterType="string" resultMap="BaseResultMap">
         select * from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%')
    </select>
 </mapper>

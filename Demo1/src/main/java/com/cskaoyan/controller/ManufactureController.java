@@ -108,6 +108,11 @@ public class ManufactureController {
             jsonChangeRet.setMsg(errorMsg);
             return jsonChangeRet;
         }
+        Manufacture manufactureById = manufactureService.findManufactureById(manufacture.getManufactureSn());
+        if(manufactureById!=null&&manufactureById.getManufactureSn()!=null){
+            jsonChangeRet.setMsg("ID重复，更换ID");
+            return jsonChangeRet;
+        }
         manufacture.setcOrder(corder);
         manufacture.setTechnology(technology);
         if(manufactureService.addManufacture(manufacture)){

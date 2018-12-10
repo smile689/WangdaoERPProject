@@ -22,9 +22,9 @@ public interface EmployeeService {
 
     int updateOneEmployee(Employee employee);
 
-    EUDataGridResult findEmployeeById(String currentPageNum, String perPageNum, String employeeId);
+    EUDataGridResult findOneEmployeeById(String currentPageNum, String perPageNum, String employeeId);
 
-    EUDataGridResult findEmployeeByName(String currentPageNum, String perPageNum, String employeeName);
+    EUDataGridResult findEmployeesByNames(String currentPageNum, String perPageNum, String employeeName);
 
-    EUDataGridResult findEmployeeByDepartment(String currentPageNum, String perPageNum, String departmentName);
+    EUDataGridResult findEmployeesByDepartments(String currentPageNum, String perPageNum, String departmentName);
 }

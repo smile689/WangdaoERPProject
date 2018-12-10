@@ -1,5 +1,9 @@
 package com.cskaoyan.utils;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,5 +47,21 @@ public class EUDataGridResult {
     }
     public void setRows(List<?> rows) {
         this.rows = rows;
+    }
+
+    public static EUDataGridResult bindingResult(BindingResult bindingResult) {
+        EUDataGridResult euDataGridResult = new EUDataGridResult();
+        if (bindingResult.hasErrors()){
+            ArrayList<String> stringArrayList = new ArrayList<>();
+            euDataGridResult.setStatus(500);
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            for (int i = 0; i < fieldErrors.size(); i++) {
+                String defaultMessage = fieldErrors.get(i).getDefaultMessage();
+                stringArrayList.add("<br/><br/>error" + i +  ": " + defaultMessage);
+            }
+            stringArrayList.add("</br></br>");
+            euDataGridResult.setMsg("errorMessage: " + stringArrayList.toString());
+        }
+        return euDataGridResult;
     }
 }

@@ -1,15 +1,18 @@
 package com.cskaoyan.controller;
 
+import com.cskaoyan.bean.Department;
 import com.cskaoyan.bean.Employee;
 import com.cskaoyan.service.EmployeeService;
 import com.cskaoyan.utils.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -28,7 +31,7 @@ public class EmployeeController {
      * 查找：查找前页面跳转
      * @return
      */
-    @RequestMapping(value = {"/find"})
+    @RequestMapping("find")
     public ModelAndView find(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("employee_list");
@@ -41,7 +44,7 @@ public class EmployeeController {
      * @param rows
      * @return
      */
-    @RequestMapping(value = {"/list"})
+    @RequestMapping("list")
     @ResponseBody
     public EUDataGridResult findAllEmployees(String page, String rows) {
         EUDataGridResult euDataGridResult = employeeService.findAllEmployees(page, rows);
@@ -52,7 +55,7 @@ public class EmployeeController {
      * 增加：增加前判断权限
      * @return
      */
-    @RequestMapping(value = {"/add_judge"})
+    @RequestMapping("add_judge")
     @ResponseBody
     public EUDataGridResult add_judge(){
         return null;
@@ -62,7 +65,7 @@ public class EmployeeController {
      * 增加：增加前页面跳转
      * @return
      */
-    @RequestMapping(value = {"/add"})
+    @RequestMapping("add")
     public ModelAndView add(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("employee_add");
@@ -76,21 +79,27 @@ public class EmployeeController {
      */
     @RequestMapping("insert")
     @ResponseBody
-    public EUDataGridResult insertOneEmployee(Employee employee) {
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
+    public EUDataGridResult insertOneEmployee(@Valid Employee employee, BindingResult bindingResult, String departmentId) {
+        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        if (euDataGridResult.getStatus() == 500) {
+            return euDataGridResult;
+        }
         boolean employeeExistById = employeeService.isEmployeeExistById(employee);
         boolean employeeExistByIdCode = employeeService.isEmployeeExistByIdCode(employee);
         if (employeeExistById || employeeExistByIdCode) {
             euDataGridResult.setStatus(500);
             if (employeeExistById && employeeExistByIdCode) {
-                euDataGridResult.setMsg("员工编号、身份证号重复！");
+                euDataGridResult.setMsg("errorMessage:员工编号、身份证号重复！");
             } else if (employeeExistById) {
-                euDataGridResult.setMsg("员工编号重复！");
+                euDataGridResult.setMsg("errorMessage:员工编号重复！");
             }else {
-                euDataGridResult.setMsg("身份证号重复！");
+                euDataGridResult.setMsg("errorMessage:身份证号重复！");
             }
             return euDataGridResult;
         }
+        Department department = new Department();
+        department.setDepartmentId(departmentId);
+        employee.setDepartment(department);
         int insertOneEmployee = employeeService.insertOneEmployee(employee);
         if (insertOneEmployee == 1) {
             euDataGridResult.setStatus(200);
@@ -102,7 +111,7 @@ public class EmployeeController {
      * 删除：删除前判断权限
      * @return
      */
-    @RequestMapping(value = {"/delete_judge"})
+    @RequestMapping("delete_judge")
     @ResponseBody
     public EUDataGridResult delete_judge(){
         return null;
@@ -113,7 +122,7 @@ public class EmployeeController {
      * @param ids
      * @return
      */
-    @RequestMapping("/delete_batch")
+    @RequestMapping("delete_batch")
     @ResponseBody
     public EUDataGridResult deleteEmployeesByIds(String[] ids) {
         EUDataGridResult euDataGridResult = new EUDataGridResult();
@@ -128,7 +137,7 @@ public class EmployeeController {
      * 更新：更新前判断权限
      * @return
      */
-    @RequestMapping(value = {"/edit_judge"})
+    @RequestMapping("edit_judge")
     @ResponseBody
     public EUDataGridResult edit_judge(){
         return null;
@@ -138,7 +147,7 @@ public class EmployeeController {
      * 更新：更新前页面跳转
      * @return
      */
-    @RequestMapping(value = {"/edit"})
+    @RequestMapping("edit")
     public ModelAndView edit(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("employee_edit");
@@ -150,16 +159,22 @@ public class EmployeeController {
      * @param employee
      * @return
      */
-    @RequestMapping("/update_all")
+    @RequestMapping("update_all")
     @ResponseBody
-    public EUDataGridResult updateOneEmployee(Employee employee) {
-        EUDataGridResult euDataGridResult = new EUDataGridResult();
+    public EUDataGridResult updateOneEmployee(@Valid Employee employee, BindingResult bindingResult, String departmentId) {
+        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        if (euDataGridResult.getStatus() == 500) {
+            return euDataGridResult;
+        }
         boolean employeeExistByIdCode = employeeService.isOtherEmployeeExistByIdCode(employee);
         if (employeeExistByIdCode) {
             euDataGridResult.setStatus(500);
-            euDataGridResult.setMsg("身份证号重复！");
+            euDataGridResult.setMsg("errorMessage:身份证号重复！");
             return euDataGridResult;
         }
+        Department department = new Department();
+        department.setDepartmentId(departmentId);
+        employee.setDepartment(department);
         int updateOneEmployee = employeeService.updateOneEmployee(employee);
         if (updateOneEmployee == 1) {
             euDataGridResult.setStatus(200);
@@ -185,10 +200,10 @@ public class EmployeeController {
      * @param searchValue
      * @return
      */
-    @RequestMapping(value = {"/search_employee_by_employeeId"})
+    @RequestMapping("search_employee_by_employeeId")
     @ResponseBody
-    public EUDataGridResult findEmployeeById(String page, String rows, String searchValue) {
-        EUDataGridResult euDataGridResult = employeeService.findEmployeeById(page, rows, searchValue);
+    public EUDataGridResult findOneEmployeeById(String page, String rows, String searchValue) {
+        EUDataGridResult euDataGridResult = employeeService.findOneEmployeeById(page, rows, searchValue);
         return euDataGridResult;
     }
 
@@ -199,15 +214,15 @@ public class EmployeeController {
      * @param searchValue
      * @return
      */
-    @RequestMapping(value = {"/search_employee_by_employeeName"})
+    @RequestMapping("search_employee_by_employeeName")
     @ResponseBody
-    public EUDataGridResult findEmployeeByName(String page, String rows, String searchValue) {
-        EUDataGridResult euDataGridResult = employeeService.findEmployeeByName(page, rows, searchValue);
+    public EUDataGridResult findEmployeesByNames(String page, String rows, String searchValue) {
+        EUDataGridResult euDataGridResult = employeeService.findEmployeesByNames(page, rows, searchValue);
         return euDataGridResult;
     }
 
     /**
-     * 根据 department 模糊搜索
+     * 查找：根据 department 模糊搜索
      * @param page
      * @param rows
      * @param searchValue
@@ -215,8 +230,8 @@ public class EmployeeController {
      */
     @RequestMapping("search_employee_by_departmentName")
     @ResponseBody
-    public EUDataGridResult findEmployeeByDepartment(String page, String rows, String searchValue) {
-        EUDataGridResult euDataGridResult = employeeService.findEmployeeByDepartment(page, rows, searchValue);
+    public EUDataGridResult findEmployeesByDepartments(String page, String rows, String searchValue) {
+        EUDataGridResult euDataGridResult = employeeService.findEmployeesByDepartments(page, rows, searchValue);
         return euDataGridResult;
     }
 }

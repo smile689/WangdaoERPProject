@@ -24,7 +24,7 @@ public interface DepartmentService {
 
     int updateOneDepartmentNote(Department department);
 
-    EUDataGridResult findDepartmentById(String currentPageNum, String perPageNum, String departmentId);
+    EUDataGridResult findOneDepartmentById(String currentPageNum, String perPageNum, String departmentId);
 
-    EUDataGridResult findDepartmentByName(String currentPageNum, String perPageNum, String departmentName);
+    EUDataGridResult findDepartmentsByNames(String currentPageNum, String perPageNum, String departmentName);
 }

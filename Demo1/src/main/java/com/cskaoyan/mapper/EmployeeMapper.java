@@ -5,8 +5,6 @@ import com.cskaoyan.utils.EmployeeOV;
 
 import java.util.List;
 
-import java.util.List;
-
 public interface EmployeeMapper {
     int deleteByPrimaryKey(String empId);
 
@@ -22,7 +20,7 @@ public interface EmployeeMapper {
 
     int selectCount();
 
-    List<Employee> selectByLimitAndOffset();
+    List<Employee> select();
 
     Employee selectByIdCode(String idCode);
 
@@ -30,13 +28,11 @@ public interface EmployeeMapper {
 
     int selectCountById(String employeeId);
 
-    List<Employee> selectByLimitAndOffsetAndId(String employeeId);
-
     int selectCountByName(String employeeName);
 
-    List<Employee> selectByLimitAndOffsetAndName(String employeeName);
+    List<Employee> selectByNames(String employeeName);
 
     int selectCountByEmployeeOV(EmployeeOV employeeOV);
 
-    List<Employee> selectByLimitAndOffsetAndEmployeeOV(EmployeeOV employeeOV);
+    List<Employee> selectByEmployeeOV(EmployeeOV employeeOV);
 }

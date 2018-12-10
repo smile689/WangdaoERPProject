@@ -87,6 +87,11 @@ public class CustomController {
             jsonChangeRet.setMsg(errorMsg);
             return jsonChangeRet;
         }
+        Custom customById = customService.findCustomById(custom.getCustomId());
+        if(customById!=null&&customById.getCustomId()!=null){
+            jsonChangeRet.setMsg("ID重复，更换ID");
+            return jsonChangeRet;
+        }
         if(customService.addCustom(custom)){
             jsonChangeRet.setStatus(200);
             jsonChangeRet.setMsg("OK");

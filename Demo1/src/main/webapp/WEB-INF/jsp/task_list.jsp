@@ -189,8 +189,8 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
 				{field : 'workId', width : 100, align : 'center', title : '作业编号', formatter:formatTaskWork},
 				{field : 'manufactureSn', width : 100, align : 'center', title : '生产批号',
 					formatter:formatTaskManufacture},
-				{field : 'workingHours', width : 100, title : '派工数量', align:'center'},
-				{field : 'unitPrice', width : 100, title : '派工工时', align:'center'},
+				{field : 'taskQuantity', width : 100, title : '派工数量', align:'center'},
+				{field : 'workingHours', width : 100, title : '派工工时', align:'center'},
 	        ] ],  
 	    });
 	}else{
@@ -204,8 +204,8 @@ function doSearch_task(value,name){ //用户输入用户名,点击搜素,触发�
 				{field : 'workId', width : 100, align : 'center', title : '作业编号', formatter:formatTaskWork},
 				{field : 'manufactureSn', width : 100, align : 'center', title : '生产批号',
 					formatter:formatTaskManufacture},
-				{field : 'workingHours', width : 100, title : '派工数量', align:'center'},
-				{field : 'unitPrice', width : 100, title : '派工工时', align:'center'},
+				{field : 'taskQuantity', width : 100, title : '派工数量', align:'center'},
+				{field : 'workingHours', width : 100, title : '派工工时', align:'center'},
 	        ] ],  
 	    });
 	}

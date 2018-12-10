@@ -11,11 +11,10 @@
   <sql id="Base_Column_List">
     material_id, material_type, status, remaining, note
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from material
-    where material_id = #{materialId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from material
@@ -67,17 +66,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Material">
     update material
     <set>
-      <if test="materialType != null">
-        material_type = #{materialType,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="remaining != null">
-        remaining = #{remaining,jdbcType=INTEGER},
-      </if>
       <if test="note != null">
-        note = #{note,jdbcType=VARCHAR},
+        note = #{note,jdbcType=VARCHAR}
       </if>
     </set>
     where material_id = #{materialId,jdbcType=VARCHAR}
