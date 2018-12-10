@@ -120,6 +120,11 @@ public class WorkController {
             jsonChangeRet.setMsg(errorMsg);
             return jsonChangeRet;
         }
+        Work workById = workService.findWorkById(work.getWorkId());
+        if(workById!=null&&workById.getWorkId()!=null){
+            jsonChangeRet.setMsg("ID重复，更换ID");
+            return jsonChangeRet;
+        }
         work.setDevice(device);
         work.setProcess(process);
         work.setProduct(product);

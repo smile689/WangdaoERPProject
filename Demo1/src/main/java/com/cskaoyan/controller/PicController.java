@@ -16,20 +16,33 @@ import java.util.Map;
 @RequestMapping("/pic")
 public class PicController {
 
+    //先不考虑回显，url从common.js中来看是对应一个图片的
     @ResponseBody
-    @RequestMapping("/upload")
-    public Map uploadProductPic(String dir, MultipartFile[] uploadFile, HttpSession session) throws IOException {
+    @RequestMapping(value = "/upload")
+    public Map uploadProductPic(String dir, MultipartFile uploadFile, HttpSession session) throws IOException {
         String realPath = session.getServletContext().getRealPath("/pic/");
-        StringBuilder sb=new StringBuilder();
-        for (MultipartFile file: uploadFile) {
-            String originalFilename = file.getOriginalFilename();
-            String fileUploadPath=realPath+originalFilename;
-            file.transferTo(new File(fileUploadPath));
-            sb.append("/pic/"+originalFilename+",");
-        }
+        String originalFilename = uploadFile.getOriginalFilename();
+        String fileUploadPath=realPath+originalFilename;
+        uploadFile.transferTo(new File(fileUploadPath));
         Map<String, Object> map=new HashMap<>();
-        map.put("pics", sb.toString());
-        map.put("url", sb.toString());
+        map.put("error", 0);
+        map.put("url", ("/pic/"+originalFilename));
+        return map;
+    }
+
+    //删除图片
+    @ResponseBody
+    @RequestMapping("/delete")
+    public Map deletePic(String picName, HttpSession session){
+        Map<String, Object> map=new HashMap<>();
+        String realPath = session.getServletContext().getRealPath(picName);
+        File file=new File(realPath);
+        boolean delete = file.delete();
+        if(delete){
+            map.put("data", "success");
+        }else{
+            map.put("message", "文件上传失败");
+        }
         return map;
     }
 }

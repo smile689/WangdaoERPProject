@@ -34,7 +34,7 @@
 								大型生产管理中间件
 							</span><br/>
 							
-							<span style="color:#c1dff7;">${activeUser.rolename}:</span>
+							<%--<span style="color:#c1dff7;">${activeUser.rolename}:</span>--%>
 							<span style="color:#c1dff7;">
 								${activeUser.username}
 							</span>
@@ -157,7 +157,7 @@
 			</ul>
 		</div>
 		
-		<c:if test="${activeUser.rolename == '超级管理员' }">
+		<%--<c:if test="${activeUser.rolename == '超级管理员' }">--%>
 			<div title="系统管理" style="padding:10px;">
 	
 				<ul id="sysManager" class="easyui-tree"
@@ -172,7 +172,7 @@
 					</li>
 				</ul>
 			</div>
-		</c:if>
+		<%--</c:if>--%>
 	</div>
 
 	<!-- </div> -->
