@@ -12,31 +12,58 @@
         <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
         <result column="technology_name" property="technologyName" jdbcType="VARCHAR" />
 
-
-
     </resultMap>
     <select id="selectTechnologyPlanId" resultMap="BaseResultMap" parameterType="com.cskaoyan.bean.TechnologyPlan" >
     select * from technology_plan
 </select>
 
+    <select id="searchTechnologyPlanId" resultMap="BaseResultMap" parameterType="com.cskaoyan.bean.TechnologyPlan" >
+    select * from technology_plan
+</select>
+
+
 
 
     <sql id="Base_Column_List">
-    technology_plan_id, technology.technology_id, batch_amount, start_plan, end_plan, commit_plan,
-    technology_plan_start, technology_plan_end,technology_name
+    technology_plan_id,
+    technology.technology_id,
+    batch_amount,
+    start_plan,
+    end_plan,
+    commit_plan,
+    technology_plan_start,
+    technology_plan_end,
+    technology_name
+  </sql>
+
+    <sql id="Base_Column_List1">
+    technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan,
+    technology_plan_start, technology_plan_end
   </sql>
     <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from technology_plan
-        left join technology on technology.technology_id=technology_plan.technology_plan_id
+        left join technology on technology.technology_id=technology_plan.technology_id
 
     </select>
 
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+    <resultMap id="BaseResultMap1" type="com.cskaoyan.bean.TechnologyPlan">
+    <id column="technology_plan_id" jdbcType="VARCHAR" property="technologyPlanId" />
+    <result column="technology_id" jdbcType="VARCHAR" property="technologyId" />
+    <result column="batch_amount" jdbcType="INTEGER" property="batchAmount" />
+    <result column="start_plan" jdbcType="TIMESTAMP" property="startPlan" />
+    <result column="end_plan" jdbcType="TIMESTAMP" property="endPlan" />
+    <result column="commit_plan" jdbcType="TIMESTAMP" property="commitPlan" />
+    <result column="technology_plan_start" jdbcType="TIMESTAMP" property="technologyPlanStart" />
+    <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
+    </resultMap>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap1">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List1" />
         from technology_plan
         where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
     </select>
@@ -54,7 +81,75 @@
   </insert>
 
 
+    <delete id="deleteByPrimaryKey">
+        DELETE
+        FROM
+        technology_plan
+        WHERE
+        technology_plan_id IN
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 
+
+    <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.TechnologyPlan" >
+    update technology_plan
+    set technology_id = #{technologyId,jdbcType=VARCHAR},
+      batch_amount = #{batchAmount,jdbcType=INTEGER},
+      start_plan = #{startPlan,jdbcType=TIMESTAMP},
+      end_plan = #{endPlan,jdbcType=TIMESTAMP},
+      commit_plan = #{commitPlan,jdbcType=TIMESTAMP},
+      technology_plan_start = #{technologyPlanStart,jdbcType=TIMESTAMP},
+      technology_plan_end = #{technologyPlanEnd,jdbcType=TIMESTAMP}
+    where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
+  </update>
+
+
+
+    <select id="selectByTechnologyPlanId" parameterType="string" resultMap="BaseResultMap1">
+		SELECT
+			technology_plan_id,
+			technology_plan.technology_id,
+			technology_name,
+			batch_amount,
+			start_plan,
+			end_plan,
+			commit_plan,
+			technology_plan_start,
+			technology_plan_end
+		FROM
+			technology_plan
+		LEFT JOIN technology ON technology.technology_id = technology_plan.technology_id
+		WHERE
+			technology_plan_id LIKE CONCAT(
+				'%',
+				#{technologyPlanId},'%' )
+		ORDER BY
+			technology_plan_id ASC
+	</select>
+
+    <select id="selectByTechnologyName" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			technology_plan_id,
+			technology_plan.technology_id,
+			technology_name,
+			batch_amount,
+			start_plan,
+			end_plan,
+			commit_plan,
+			technology_plan_start,
+			technology_plan_end
+		FROM
+			technology_plan
+		LEFT JOIN technology ON technology.technology_id = technology_plan.technology_id
+		WHERE
+			technology_name LIKE CONCAT(
+				'%',
+				#{technologyName},'%' )
+		ORDER BY
+			technology_plan_id ASC
+	</select>
 
 
 

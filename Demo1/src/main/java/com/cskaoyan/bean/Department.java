@@ -3,6 +3,7 @@ package com.cskaoyan.bean;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 public class Department {
 
@@ -14,6 +15,16 @@ public class Department {
 
     @NotBlank(message = "部门职责不能为空或空字符串！")
     private String note;
+
+    private List<Employee> employeeList;
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
 
     public String getDepartmentId() {
         return departmentId;

@@ -50,11 +50,7 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
         return null;
     }
 
-    @Override
-    public List<Technology> search() {
-        return   technologyMapper.selectByTechnologyName();
 
-    }
 
     @Override
     public Result updateAll(TechnologyRequirement technologyRequirement) {
@@ -73,7 +69,7 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
     @Override
     public Result delete(String[] ids) {
        int i= technologyRequirementMapper.deleteByPrimaryKey(ids);
-       if (i==1){
+       if (i>=1){
            Result result = new Result();
            result.setStatus(200);
            result.setData("null");
@@ -109,4 +105,20 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
         result.setTotal(pageInfo.getTotal());
         return result;
     }
+
+    @Override
+    public Result update_requirement(TechnologyRequirement technologyRequirement) {
+        int i = technologyRequirementMapper.updateRequirement(technologyRequirement);
+        if (i==1){
+
+            Result result = new Result();
+            result.setStatus(200);
+            result.setData("null");
+            result.setMsg("ok");
+            return  result;
+        }
+        return null;
+    }
+
+
 }

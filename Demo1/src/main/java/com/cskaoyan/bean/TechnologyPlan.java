@@ -19,7 +19,16 @@ public class TechnologyPlan {
 
     private Date technologyPlanEnd;
 
+    private Technology technology;
 
+
+    public Technology getTechnology() {
+        return technology;
+    }
+
+    public void setTechnology(Technology technology) {
+        this.technology = technology;
+    }
 
     //工艺名。。
     private String technologyName;
@@ -94,5 +103,21 @@ public class TechnologyPlan {
 
     public void setTechnologyPlanEnd(Date technologyPlanEnd) {
         this.technologyPlanEnd = technologyPlanEnd;
+    }
+
+    @Override
+    public String toString() {
+        return "TechnologyPlan{" +
+                "technologyPlanId='" + technologyPlanId + '\'' +
+                ", technologyId='" + technologyId + '\'' +
+                ", batchAmount=" + batchAmount +
+                ", startPlan=" + startPlan +
+                ", endPlan=" + endPlan +
+                ", commitPlan=" + commitPlan +
+                ", technologyPlanStart=" + technologyPlanStart +
+                ", technologyPlanEnd=" + technologyPlanEnd +
+                ", technology=" + technology +
+                ", technologyName='" + technologyName + '\'' +
+                '}';
     }
 }

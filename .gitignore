@@ -3,6 +3,7 @@
 *.class
 
 /Demo1/.idea/*
+/Demo1/ERPDemo1.iml
 /Demo1/Demo1.iml
 
 

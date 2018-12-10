@@ -1,4 +1,4 @@
-package com.cskaoyan.controller.ProcessMonitoringController;
+package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Technology;
 import com.cskaoyan.controller.JsonResult.EUDataGridResult;
@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -54,11 +56,13 @@ return euDataGridResult;
  *新增一个工艺
  * /**
  *  * 通过id获取工艺，判断是否重复
+ *
+ *  通过get请求回显。
  *  *
  *  * */
 @RequestMapping(value = "/get/{technologyId}")
 @ResponseBody
-public Technology getItemById(String technologyId){
+public Technology getItemById(@PathVariable("technologyId") String technologyId){
     Technology technology= technologyService.get(technologyId);
     return technology;
 }
@@ -90,6 +94,15 @@ public Result add_judge(){
     return result;
 
 }
+
+@RequestMapping("/get_data")
+@ResponseBody
+public List<Technology> get_data(){
+
+    List<Technology> technologyList=technologyService.search();
+    return technologyList;
+}
+
 
 /**
  *

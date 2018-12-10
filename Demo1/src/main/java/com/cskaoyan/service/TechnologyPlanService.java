@@ -15,9 +15,18 @@ public interface TechnologyPlanService {
 
 
 
-    List<Technology> search();
 
-    TechnologyPlan get(String technilogyPlanId);
+    TechnologyPlan get(String technologyPlanId);
 
     Result insert(TechnologyPlan technologyPlan);
+
+    Result delete(String[] ids);
+
+    Result update(TechnologyPlan technologyPlan);
+
+    EUDataGridResult search_technologyPlan_by_tevhnologyName(Integer page, Integer rows, String technologyName);
+
+    EUDataGridResult search_technologyPlan_by_tevhnologyPlanId(Integer page, Integer rows, String technologyPlanId);
+
+    List<TechnologyPlan> search();
 }

@@ -1,6 +1,5 @@
-package com.cskaoyan.controller.ProcessMonitoringController;
+package com.cskaoyan.controller;
 
-import com.cskaoyan.bean.Technology;
 import com.cskaoyan.bean.TechnologyRequirement;
 import com.cskaoyan.controller.JsonResult.EUDataGridResult;
 import com.cskaoyan.controller.JsonResult.Result;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/technologyRequirement")
@@ -94,12 +92,7 @@ public String find(){
 /**
  * 获取下工艺名称下拉框
  * */
-@RequestMapping(value = "/get_data")
-        @ResponseBody
-public List<Technology> getData(){
-    List<Technology> list=technologyRequirementService.search();
-    return list;
-}
+
 /**
  * 编辑
  *
@@ -166,8 +159,25 @@ return technologyRequirementService.updateAll(technologyRequirement);
 
 }
 
+/**
+ * 修改工艺要求
+ * */
+@RequestMapping("/update_requirement")
+    @ResponseBody
+    public Result update_requirement(@Valid TechnologyRequirement technologyRequirement,BindingResult bindingResult){
+    Result result=null;
+    if (bindingResult.hasErrors()){
+        FieldError fieldError = bindingResult.getFieldError();
+        String defaultMessage = fieldError.getDefaultMessage();
+        result.setMsg(defaultMessage);
+        result.setStatus(0);
+        result.setData("null");
+        return  result;
+    }
+ return technologyRequirementService.update_requirement(technologyRequirement);
 
 
+}
 
 
 

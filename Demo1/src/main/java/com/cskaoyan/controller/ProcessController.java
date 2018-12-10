@@ -1,5 +1,6 @@
-package com.cskaoyan.controller.ProcessMonitoringController;
+package com.cskaoyan.controller;
 
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.controller.JsonResult.EUDataGridResult;
 import com.cskaoyan.controller.JsonResult.Result;
 import com.cskaoyan.service.ProcessService;
@@ -7,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.cskaoyan.bean.Process;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -38,6 +39,8 @@ public class ProcessController {
     EUDataGridResult euDataGridResult=processService.selectAll(page,rows,process);
     return euDataGridResult;
 }
+
+
 /**
  * 新增
  *
@@ -57,7 +60,7 @@ public class ProcessController {
      * */
   @RequestMapping("/get/{processId}")
   @ResponseBody
-  public Process getItemById(String processId){
+  public Process getItemById(@PathVariable("processId") String processId){
      Process process= processService.get(processId);
      return process;
   }

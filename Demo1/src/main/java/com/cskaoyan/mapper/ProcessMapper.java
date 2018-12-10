@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ProcessMapper {
 
-    int insert(Process record);
 
     int insertSelective(Process record);
 
@@ -26,4 +25,8 @@ public interface ProcessMapper {
     List<Process> searchProcessByProcessId(String processId);
 
     List<Process> searchProcessByTechnologyPlanId(String technologyPlanId);
+
+    List<Process> selectProcessId();
+
+    int insert(Process process);
 }
