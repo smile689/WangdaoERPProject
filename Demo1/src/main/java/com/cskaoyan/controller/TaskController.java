@@ -90,6 +90,11 @@ public class TaskController {
             jsonChangeRet.setMsg(errorMsg);
             return jsonChangeRet;
         }
+        Task taskById = taskService.findTaskById(task.getTaskId());
+        if(taskById!=null&&taskById.getTaskId()!=null){
+            jsonChangeRet.setMsg("ID重复，更换ID");
+            return jsonChangeRet;
+        }
         if(taskService.addTask(task)){
             jsonChangeRet.setStatus(200);
             jsonChangeRet.setMsg("OK");

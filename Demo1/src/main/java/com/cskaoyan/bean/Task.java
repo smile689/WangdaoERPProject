@@ -1,9 +1,13 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
+
 /**
  * 生产派工管理
  */
 public class Task {
+
+    @Pattern(regexp = "\\d{3}", message = "生产派工编号由三位数字组成")
     private String taskId;
 
     private String manufactureSn;

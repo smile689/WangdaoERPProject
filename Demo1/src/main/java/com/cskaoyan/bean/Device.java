@@ -26,44 +26,6 @@ public class Device {
 
     private String note;
 
-    public Device() {
-    }
-
-    public Device(String deviceId, String deviceName,
-                  String deviceTypeId, String deviceStatusId,
-                  String deviceStatus, Date devicePurchaseDate,
-                  BigDecimal devicePurchasePrice, Date deviceManufactureDate,
-                  Date deviceServiceLife, String deviceKeeperId, String note) {
-        this.deviceId = deviceId;
-        this.deviceName = deviceName;
-        this.deviceTypeId = deviceTypeId;
-        this.deviceStatusId = deviceStatusId;
-        this.deviceStatus = deviceStatus;
-        this.devicePurchaseDate = devicePurchaseDate;
-        this.devicePurchasePrice = devicePurchasePrice;
-        this.deviceManufactureDate = deviceManufactureDate;
-        this.deviceServiceLife = deviceServiceLife;
-        this.deviceKeeperId = deviceKeeperId;
-        this.note = note;
-    }
-
-    @Override
-    public String toString() {
-        return "Device{" +
-                "deviceId='" + deviceId + '\'' +
-                ", deviceName='" + deviceName + '\'' +
-                ", deviceTypeId='" + deviceTypeId + '\'' +
-                ", deviceStatusId='" + deviceStatusId + '\'' +
-                ", deviceStatus='" + deviceStatus + '\'' +
-                ", devicePurchaseDate=" + devicePurchaseDate +
-                ", devicePurchasePrice=" + devicePurchasePrice +
-                ", deviceManufactureDate=" + deviceManufactureDate +
-                ", deviceServiceLife=" + deviceServiceLife +
-                ", deviceKeeperId='" + deviceKeeperId + '\'' +
-                ", note='" + note + '\'' +
-                '}';
-    }
-
     public String getDeviceId() {
         return deviceId;
     }

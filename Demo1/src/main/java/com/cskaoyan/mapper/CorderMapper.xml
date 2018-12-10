@@ -3,8 +3,8 @@
 <mapper namespace="com.cskaoyan.mapper.CorderMapper">
     <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Corder">
         <id column="order_id" jdbcType="VARCHAR" property="orderId" />
-        <result column="custom_id" jdbcType="VARCHAR" property="customId" />
-        <result column="product_id" jdbcType="VARCHAR" property="productId" />
+        <!--<result column="custom_id" jdbcType="VARCHAR" property="customId" />
+        <result column="product_id" jdbcType="VARCHAR" property="productId" />-->
         <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
         <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
         <result column="note" jdbcType="VARCHAR" property="note" />
@@ -14,6 +14,8 @@
         <result column="image" jdbcType="VARCHAR" property="image" />
         <result column="file" jdbcType="VARCHAR" property="file" />
         <result column="status" jdbcType="INTEGER" property="status" />
+        <association property="custom" column="custom_id" select="com.cskaoyan.mapper.CustomMapper.selectByPrimaryKey"/>
+        <association property="product" column="product_id" select="com.cskaoyan.mapper.ProductMapper.selectByPrimaryKey"/>
     </resultMap>
     <sql id="Base_Column_List">
     order_id, custom_id, product_id, order_date, request_date, note, quantity, unit_price,
@@ -25,4 +27,123 @@
         from c_order
         where order_id = #{orderId,jdbcType=VARCHAR}
     </select>
+
+
+
+    <resultMap id="PageMap" type="com.cskaoyan.bean.Corder">
+        <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+        <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+        <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+        <result column="note" jdbcType="VARCHAR" property="note" />
+        <result column="quantity" jdbcType="INTEGER" property="quantity" />
+        <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="image" jdbcType="VARCHAR" property="image" />
+        <result column="file" jdbcType="VARCHAR" property="file" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <association property="custom" column="custom_id" javaType="com.cskaoyan.bean.Custom">
+            <result column="custom_id"  property="customId" />
+            <result column="custom_name" property="customName"/>
+        </association>
+        <association property="product" javaType="com.cskaoyan.bean.Product">
+            <result column="product_id" property="productId"/>
+            <result column="product_name" property="productName"/>
+        </association>
+    </resultMap>
+    <select id="selectByPage" resultMap="PageMap">
+        select
+        order_id, c_order.custom_id, c_order.product_id, c_order.order_date, c_order.request_date, c_order.note, c_order.quantity, c_order.unit_price,
+        c_order.unit, c_order.image, c_order.file, c_order.status, custom_name, product_name
+        from c_order left join custom on c_order.custom_id=custom.custom_id
+        left join product on c_order.product_id=product.product_id
+        <include refid="multiCondition"/>
+    </select>
+
+    <sql id="multiCondition">
+        <where>
+            <if test="corder!=null">
+                <if test="corder.orderId!=null">
+                    order_id LIKE concat ('%', #{corder.orderId}, '%')
+                </if>
+                <if test="corder.custom!=null">
+                    <if test="corder.custom.customName!=null">
+                        and custom_name like concat ('%', #{corder.custom.customName}, '%')
+                    </if>
+                </if>
+                <if test="corder.product!=null">
+                    <if test="corder.product.productName!=null">
+                        and product_name like concat ('%', #{corder.product.productName}, '%')
+                    </if>
+                </if>
+            </if>
+        </where>
+    </sql>
+
+
+
+    <select id="countTotalRecords" resultType="_int">
+        select count(*) from c_order
+    </select>
+
+
+    <resultMap id="getDataMap" type="com.cskaoyan.bean.Corder">
+        <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+        <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+        <result column="request_date" jdbcType="TIMESTAMP" property="requestDate" />
+        <result column="note" jdbcType="VARCHAR" property="note" />
+        <result column="quantity" jdbcType="INTEGER" property="quantity" />
+        <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="image" jdbcType="VARCHAR" property="image" />
+        <result column="file" jdbcType="VARCHAR" property="file" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <association property="custom" column="custom_id" javaType="com.cskaoyan.bean.Custom">
+            <result column="custom_id"  property="customId" />
+        </association>
+        <association property="product" javaType="com.cskaoyan.bean.Product">
+            <result column="product_id" property="productId"/>
+        </association>
+    </resultMap>
+    <select id="selectAll" resultMap="getDataMap">
+        select
+        <include refid="Base_Column_List" />
+        from c_order
+    </select>
+
+
+
+    <insert id="insert">
+    insert into c_order (order_id, custom_id, product_id,
+      order_date, request_date, note,
+      quantity, unit_price, unit,
+      image, file, status
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{custom.customId,jdbcType=VARCHAR}, #{product.productId,jdbcType=VARCHAR},
+      #{orderDate,jdbcType=TIMESTAMP}, #{requestDate,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR},
+      #{quantity,jdbcType=INTEGER}, #{unitPrice,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR},
+      #{image,jdbcType=VARCHAR}, #{file,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+
+    <update id="updateByPrimaryKey">
+    update c_order
+    set custom_id = #{custom.customId,jdbcType=VARCHAR},
+      product_id = #{product.productId,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      request_date = #{requestDate,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      file = #{file,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+
+
+    <delete id="deleteByPrimaryKey" >
+        delete from c_order
+        where order_id = #{orderId,jdbcType=VARCHAR}
+    </delete>
 </mapper>

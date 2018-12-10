@@ -100,7 +100,7 @@ public class CorderController {
     }
 
     //处理添加
-    //处理添加的信息，参数校验
+    //处理添加的信息，参数校验，判断是否id重复
     @ResponseBody
     @RequestMapping("/insert")
     public JsonChangeRet addOrder(@Valid Corder corder, BindingResult bindingResult, Custom custom, Product product){
@@ -108,6 +108,11 @@ public class CorderController {
         String errorMsg = ValidateUtil.handleError(bindingResult);
         if (errorMsg!=null&&!(errorMsg.trim().isEmpty())) {
             jsonChangeRet.setMsg(errorMsg);
+            return jsonChangeRet;
+        }
+        Corder orderById = corderService.findOrderById(corder.getOrderId());
+        if(orderById!=null&&orderById.getOrderId()!=null){
+            jsonChangeRet.setMsg("ID重复，更换ID");
             return jsonChangeRet;
         }
         corder.setProduct(product);

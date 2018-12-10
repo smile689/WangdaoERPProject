@@ -98,6 +98,11 @@ public class ProductController {
             jsonChangeRet.setMsg(errorMsg);
             return jsonChangeRet;
         }
+        Product productById = productService.findProductById(product.getProductId());
+        if(productById!=null&&productById.getProductId()!=null){
+            jsonChangeRet.setMsg("ID重复，更换ID");
+            return jsonChangeRet;
+        }
         if(productService.addProduct(product)){
             jsonChangeRet.setStatus(200);
             jsonChangeRet.setMsg("OK");

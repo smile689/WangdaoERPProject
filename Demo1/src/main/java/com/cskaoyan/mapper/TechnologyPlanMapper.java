@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper;
 
+import com.cskaoyan.bean.Process;
 import com.cskaoyan.bean.TechnologyPlan;
+
+import java.util.List;
 
 public interface TechnologyPlanMapper {
     int deleteByPrimaryKey(String technologyPlanId);
@@ -14,4 +17,8 @@ public interface TechnologyPlanMapper {
     int updateByPrimaryKeySelective(TechnologyPlan record);
 
     int updateByPrimaryKey(TechnologyPlan record);
+
+    List<Process> selectTechnologyPlanId();
+
+    List<TechnologyPlan> selectAll();
 }

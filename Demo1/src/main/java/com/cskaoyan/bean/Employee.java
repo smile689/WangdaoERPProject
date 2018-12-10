@@ -1,33 +1,52 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 public class Employee {
+
+    @Pattern(regexp = "[0-9]+",message = "员工编号请使用纯数字！")
     private String empId;
 
+    @Pattern(regexp = "[\\u4e00-\\u9fa5]{2,}",message = "员工姓名请输入至少两个纯中文字符！")
     private String empName;
 
     private String sex;
 
+    @Pattern(regexp = "([0-9]{17}([0-9]|x){1})?", message = "身份证号留空或使用格式：18位纯数字或17位纯数字加字母x！")
     private String idCode;
 
     private Date birthday;
 
     private Date joinDate;
 
+    @Pattern(regexp = "((在职)|(离职))?", message = "员工状态请输入‘在职’、‘离职’或留空！")
     private String status;
 
+    @Pattern(regexp = "((专科)|(本科)|(硕士研究生)|(博士研究生))?", message = "学历请输入‘专科’、‘本科’、‘硕士研究生’、‘博士研究生’或留空！")
     private String education;
 
+    @Pattern(regexp = "((学士)|(硕士)|(博士))?", message = "学位请输入‘学士’、‘硕士’、‘博士’或留空！")
     private String degree;
 
+    @Pattern(regexp = "[\\u4e00-\\u9fa5]*",message = "专业请使用中文或留空！")
     private String major;
 
+    @Pattern(regexp = "([A-Za-z]*)|([\\u4e00-\\u9fa5]*)",message = "毕业学校请使用中文、大小写字母或留空！")
     private String graduateSchool;
 
+    @Pattern(regexp = "((全日制)|(在职))?", message = "学历请输入‘全日制’、‘在职’或留空！")
     private String educationForm;
 
-    private String departmentId;
+    private Department department;
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public String getEmpId() {
         return empId;
@@ -123,13 +142,5 @@ public class Employee {
 
     public void setEducationForm(String educationForm) {
         this.educationForm = educationForm == null ? null : educationForm.trim();
-    }
-
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId == null ? null : departmentId.trim();
     }
 }

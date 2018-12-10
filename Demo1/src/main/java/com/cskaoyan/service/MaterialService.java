@@ -22,5 +22,5 @@ public interface MaterialService {
 
     int deleteMaterialService(String materialId);
 
-    int updateMaterialServiceSelective(String materialId,String note);
+    int updateMaterialServiceSelective(String materialId, String note);
 }

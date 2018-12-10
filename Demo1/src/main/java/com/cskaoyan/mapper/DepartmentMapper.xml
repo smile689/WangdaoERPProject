@@ -68,4 +68,31 @@
       note = #{note,jdbcType=VARCHAR}
     where department_id = #{departmentId,jdbcType=VARCHAR}
   </update>
+  <select id="selectCount" resultType="int">
+        select count(*) from department
+   </select>
+  <select id="select" resultMap="BaseResultMap">
+        select * from department
+   </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from department
+    where department_name = #{departmentName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectOtherByName" parameterType="com.cskaoyan.bean.Department" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from department
+    where department_name = #{departmentName,jdbcType=VARCHAR} and department_id != #{departmentId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCountById" parameterType="string" resultType="int">
+        select count(*) from department where department_id = #{departmentId,jdbcType=VARCHAR}
+   </select>
+  <select id="selectCountByName" parameterType="string" resultType="int">
+        select count(*) from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%')
+   </select>
+  <select id="selectByNames" parameterType="string" resultMap="BaseResultMap">
+        select * from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%')
+   </select>
 </mapper>
