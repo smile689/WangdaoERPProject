@@ -2,7 +2,7 @@
 # Compiled class file
 *.class
 
-/Demo1/.idea/workspace.xml
+/Demo1/.idea/*
 
 
 # Log file
