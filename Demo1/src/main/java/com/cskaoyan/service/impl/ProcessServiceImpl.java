@@ -39,16 +39,13 @@ public class ProcessServiceImpl implements ProcessService {
         return process;
     }
 
-    @Override
-    public List<Process> search() {
-return technologyPlanMapper.selectTechnologyPlanId();
-    }
+
 
     @Override
     public Result delete_batch(String[] ids) {
         int i= processMapper.deleteByPrimaryKey(ids);
         Result result = new Result();
-        if (i==1){
+        if (i>=1){
             result.setMsg("ok");
             result.setStatus(200);
             result.setData("null");
@@ -100,7 +97,22 @@ List<Process> processList=processMapper.searchProcessByTechnologyPlanId(technolo
 
     @Override
     public Result insert(Process process) {
+        int insert = processMapper.insert(process);
+        if (insert==1){
+            Result result = new Result();
+            result.setMsg("ok");
+            result.setStatus(200);
+            result.setData("null");
+            return result;
+        }
         return null;
+
+
+    }
+
+    @Override
+    public List<Process> search() {
+return processMapper.selectProcessId();
     }
 
 }

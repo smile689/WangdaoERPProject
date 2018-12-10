@@ -107,5 +107,17 @@
 	</select>
 
 
+    <select id="selectProcessId" resultMap="BaseResultMap" parameterType="com.cskaoyan.bean.Process" >
+    select * from process
+</select>
+
+
+
+    <insert id="insert" parameterType="com.cskaoyan.bean.Process" >
+    insert into process (process_id, technology_plan_id, sequence,
+      quota)
+    values (#{processId,jdbcType=VARCHAR}, #{technologyPlanId,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER},
+      #{quota,jdbcType=INTEGER})
+  </insert>
 
 </mapper>

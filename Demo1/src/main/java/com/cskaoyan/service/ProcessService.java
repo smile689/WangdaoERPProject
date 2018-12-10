@@ -15,7 +15,6 @@ public interface ProcessService {
 
     Process get(String processId);
 
-    List<Process> search();
 
     Result delete_batch(String[] ids);
 
@@ -26,4 +25,6 @@ public interface ProcessService {
     EUDataGridResult search_process_by_technologyPlanId(Integer page, Integer rows, String technologyPlanId);
 
     Result insert(Process process);
+
+    List<Process> search();
 }

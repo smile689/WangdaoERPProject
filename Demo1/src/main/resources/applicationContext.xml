@@ -83,21 +83,16 @@
             <bean class="com.cskaoyan.interceptor.AuthorizedInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
-
     <!--文件上传-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
          <property name="maxUploadSizePerFile" value="1024000">
          </property>
     </bean>
-
     <!--方式2-->
     <!--2.静态资源默认servlet配置(1)加入对静态资源的处理：js,gif,png(2)允许使用"/"做整体映射-->
      <!--<mvc:default-servlet-handler/>-->
-
     <!--方式3-->
     <mvc:resources location="/, /WEB-INF/"  mapping="/**"/>
-
-
     <!--配置警示牌、显示ViewResolver,例如controller中某个方法返回一个string类型的“login”，实际上回返回“WEB-INF/login.jsp”！！！-->
     <!--是在视图解析的时候才会用上-->
     <!-- 3.配置jsp 显示ViewResolver -->
@@ -105,7 +100,6 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
-
     <!--类型转行的时候使用你的javabean-->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
@@ -114,6 +108,9 @@
             </set>
         </property>
     </bean>
+
+
+
 
 
 </beans>
