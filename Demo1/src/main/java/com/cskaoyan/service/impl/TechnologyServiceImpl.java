@@ -55,7 +55,7 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Override
     public Result deleteById(String[] ids) {
         int i = technologyMapper.deleteByPrimaryKey(ids);
-        if (i==1){
+        if (i>=1){
             Result result = new Result();
             result.setMsg("ok");
             result.setStatus(200);
@@ -80,7 +80,7 @@ public class TechnologyServiceImpl implements TechnologyService {
             return result;
         }
         else {
-           result.setMsg("删除失败");
+           result.setMsg("更新失败");
            return result;
 
         }
@@ -112,5 +112,11 @@ public class TechnologyServiceImpl implements TechnologyService {
         PageInfo<Technology> pageInfo = new PageInfo<>(list);
         result.setTotal(pageInfo.getTotal());
         return result;
+    }
+
+    @Override
+    public List<Technology> search() {
+        return   technologyMapper.selectByTechnologyName();
+
     }
 }

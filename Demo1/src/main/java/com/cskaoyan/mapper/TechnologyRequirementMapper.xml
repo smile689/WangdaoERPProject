@@ -104,7 +104,12 @@
 			technology_requirement_id ASC
 	</select>
 
-
+    <update id="updateRequirement" parameterType="com.cskaoyan.bean.TechnologyRequirement" >
+		UPDATE technology_requirement
+		SET requirement = #{requirement}
+		WHERE
+			technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
+	</update>
 
 
 

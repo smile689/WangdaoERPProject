@@ -13,7 +13,7 @@ public interface TechnologyRequirementMapper {
 
     TechnologyRequirement selectByPrimaryKey(String technologyRequirementId);
 
-    int updateByPrimaryKeySelective(TechnologyRequirement record);
+    int updateRequirement(TechnologyRequirement record);
 
     int updateByPrimaryKey(TechnologyRequirement record);
 

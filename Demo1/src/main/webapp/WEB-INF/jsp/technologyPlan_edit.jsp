@@ -12,7 +12,7 @@
 	            	
 	            	<input class="easyui-combobox" name="technologyId" panelHeight="auto"  
     					data-options="required:true,valueField:'technologyId',textField:'technologyName',
-    						url:'technology/get_data',editable:false" /> 
+    						url:'technology/get_data',editable:false" />
 	            </td>
 	        </tr>
 	        <tr>

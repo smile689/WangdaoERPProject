@@ -5,6 +5,8 @@ import com.cskaoyan.controller.JsonResult.EUDataGridResult;
 import com.cskaoyan.controller.JsonResult.Result;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface TechnologyService {
 
@@ -21,4 +23,6 @@ public interface TechnologyService {
     EUDataGridResult search_technology_by_technologyId(Integer page, Integer rows, String tenologyId);
 
     EUDataGridResult search_technology_by_technologyName(Integer page, Integer rows, String technologyName);
+
+    List<Technology> search();
 }
