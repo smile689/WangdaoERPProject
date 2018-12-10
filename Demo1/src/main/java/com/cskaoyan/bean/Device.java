@@ -1,11 +1,18 @@
 package com.cskaoyan.bean;
 
+import org.springframework.stereotype.Repository;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Repository
 public class Device {
-    private String deviceId;
 
+    @Size(max=40, message="{id.length.error}")
+    private String deviceId;
+    @Size(max=100, message="{name.length.error}")
     private String deviceName;
 
     private String deviceTypeId;
@@ -15,7 +22,7 @@ public class Device {
     private String deviceStatus;
 
     private Date devicePurchaseDate;
-
+    @Max(value=999999999, message="{purchasePrice.length.error}")
     private BigDecimal devicePurchasePrice;
 
     private Date deviceManufactureDate;
@@ -23,8 +30,46 @@ public class Device {
     private Date deviceServiceLife;
 
     private String deviceKeeperId;
-
+    @Size(max=5000, message="{note.length.error}")
     private String note;
+
+    public Device() {
+    }
+
+    public Device(String deviceId, String deviceName,
+                  String deviceTypeId, String deviceStatusId,
+                  String deviceStatus, Date devicePurchaseDate,
+                  BigDecimal devicePurchasePrice, Date deviceManufactureDate,
+                  Date deviceServiceLife, String deviceKeeperId, String note) {
+        this.deviceId = deviceId;
+        this.deviceName = deviceName;
+        this.deviceTypeId = deviceTypeId;
+        this.deviceStatusId = deviceStatusId;
+        this.deviceStatus = deviceStatus;
+        this.devicePurchaseDate = devicePurchaseDate;
+        this.devicePurchasePrice = devicePurchasePrice;
+        this.deviceManufactureDate = deviceManufactureDate;
+        this.deviceServiceLife = deviceServiceLife;
+        this.deviceKeeperId = deviceKeeperId;
+        this.note = note;
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "deviceId='" + deviceId + '\'' +
+                ", deviceName='" + deviceName + '\'' +
+                ", deviceTypeId='" + deviceTypeId + '\'' +
+                ", deviceStatusId='" + deviceStatusId + '\'' +
+                ", deviceStatus='" + deviceStatus + '\'' +
+                ", devicePurchaseDate=" + devicePurchaseDate +
+                ", devicePurchasePrice=" + devicePurchasePrice +
+                ", deviceManufactureDate=" + deviceManufactureDate +
+                ", deviceServiceLife=" + deviceServiceLife +
+                ", deviceKeeperId='" + deviceKeeperId + '\'' +
+                ", note='" + note + '\'' +
+                '}';
+    }
 
     public String getDeviceId() {
         return deviceId;
