@@ -7,6 +7,8 @@ import java.util.List;
 
 
 public interface MaterialMapper {
+
+
     int deleteByPrimaryKey(String materialId);
 
     int insert(Material record);
@@ -22,4 +24,5 @@ public interface MaterialMapper {
     List<Material> selectByPrimaryId(String searchValue);
 
     List<Material> selectByPrimarytype(String searchValue);
+
 }

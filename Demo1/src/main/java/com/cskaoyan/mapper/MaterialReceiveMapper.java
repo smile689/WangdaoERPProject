@@ -2,10 +2,13 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.MaterialReceive;
 
-public interface MaterialReceiveMapper {
-    int deleteByPrimaryKey(String receiveId);
+import java.util.List;
 
-    int insert(MaterialReceive record);
+public interface MaterialReceiveMapper {
+
+    int deleteByPrimaryKey(String[] ids);
+
+    int insert( MaterialReceive materialReceive);
 
     int insertSelective(MaterialReceive record);
 
@@ -14,4 +17,7 @@ public interface MaterialReceiveMapper {
     int updateByPrimaryKeySelective(MaterialReceive record);
 
     int updateByPrimaryKey(MaterialReceive record);
+
+    List<MaterialReceive> selectReceiveList();
+
 }

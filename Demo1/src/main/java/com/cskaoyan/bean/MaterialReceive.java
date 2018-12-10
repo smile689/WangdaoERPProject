@@ -5,8 +5,6 @@ import java.util.Date;
 public class MaterialReceive {
     private String receiveId;
 
-    private String materialId;
-
     private Integer amount;
 
     private Date receiveDate;
@@ -17,6 +15,8 @@ public class MaterialReceive {
 
     private String note;
 
+    Material material;
+
     public String getReceiveId() {
         return receiveId;
     }
@@ -25,12 +25,12 @@ public class MaterialReceive {
         this.receiveId = receiveId == null ? null : receiveId.trim();
     }
 
-    public String getMaterialId() {
-        return materialId;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setMaterialId(String materialId) {
-        this.materialId = materialId == null ? null : materialId.trim();
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public Integer getAmount() {

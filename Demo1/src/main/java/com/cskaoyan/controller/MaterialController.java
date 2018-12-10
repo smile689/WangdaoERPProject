@@ -30,7 +30,6 @@ public class MaterialController {
     public String findMaterialList (){
         return "material_list";
     }
-
     /**
      *
      * @param page 页数
@@ -69,7 +68,7 @@ public class MaterialController {
         return hashMap;
     }
 
-
+//跳转到物料编辑页面
     @ResponseBody
     @RequestMapping("/edit_judge")
     public Map editShow(){
@@ -80,7 +79,7 @@ public class MaterialController {
         return "material_edit";
     }
 
-
+//进行物料编辑
     @ResponseBody
     @RequestMapping("/update_all")
     public Map updateMater (Material material){
@@ -92,7 +91,7 @@ public class MaterialController {
         hashMap.put("msg","失败");
         return hashMap;
     }
-
+//更新备注
     @ResponseBody
     @RequestMapping("/update_note")
     public Map updateMater (@RequestParam String materialId, @RequestParam String note ){
@@ -104,7 +103,7 @@ public class MaterialController {
         return hashMap;
     }
 
-
+//删除物料信息
     @ResponseBody
     @RequestMapping("/delete_judge")
     public Map deleteShow(){
@@ -119,15 +118,14 @@ public class MaterialController {
         hashMap.put("msg","失败");
         return hashMap;
     }
-
-
+//物料ID模糊搜索
     @ResponseBody
     @RequestMapping("/search_material_by_materialId")
     public PageShowResult  serachMaterialId (@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
         PageShowResult pageShowResult = materialService.searcMaterial(searchValue,page,rows);
         return pageShowResult;
     }
-
+//物料类型模糊搜索
     @ResponseBody
     @RequestMapping("/search_material_by_materialType")
     public PageShowResult  serachMaterialtype(@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
@@ -135,7 +133,11 @@ public class MaterialController {
         return pageShowResult;
     }
 
-
-
-
+    //物料收入页面中新增物料页面获取物料ID
+    @ResponseBody
+    @RequestMapping("/get_data")
+    public List<Material> getdata(){
+       List<Material> materials= materialService.getMaterial();
+       return materials;
+    }
 }

@@ -24,7 +24,6 @@ public class MaterialServiceimpl implements MaterialService {
     MaterialMapper materialMapper;
 
 
-
     @Override
     public PageShowResult getList(Integer page, Integer rows) {
 
@@ -84,5 +83,10 @@ public class MaterialServiceimpl implements MaterialService {
         PageInfo<Material> materialPageInfo = new PageInfo<>(materials);
         pageShowResult.setTotal(materialPageInfo.getTotal());
         return pageShowResult;
+    }
+
+    @Override
+    public List<Material> getMaterial() {
+        return materialMapper.selectByPrimaryKey();
     }
 }

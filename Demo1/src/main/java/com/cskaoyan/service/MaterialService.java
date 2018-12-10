@@ -27,4 +27,8 @@ public interface MaterialService {
     PageShowResult searcMaterial(String searchValue, Integer page, Integer rows);
 
     PageShowResult searcMaterialtype(String searchValue, Integer page, Integer rows);
+
+
+    List<Material> getMaterial();
+
 }
