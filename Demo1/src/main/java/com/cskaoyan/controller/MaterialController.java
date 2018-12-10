@@ -44,7 +44,6 @@ public class MaterialController {
         return list;
     }
 
-
     @ResponseBody
     @RequestMapping("/add_judge")
     public Map addShow(){
@@ -124,10 +123,16 @@ public class MaterialController {
 
     @ResponseBody
     @RequestMapping("/search_material_by_materialId")
-    public List<Material> serachMaterial (@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
-       // materialService.deleteMaterialService(ids);
-        HashMap<String, Object> hashMap = new HashMap<>();
-        return null;
+    public PageShowResult  serachMaterialId (@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
+        PageShowResult pageShowResult = materialService.searcMaterial(searchValue,page,rows);
+        return pageShowResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/search_material_by_materialType")
+    public PageShowResult  serachMaterialtype(@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
+        PageShowResult pageShowResult = materialService.searcMaterialtype(searchValue,page,rows);
+        return pageShowResult;
     }
 
 

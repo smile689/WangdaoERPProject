@@ -80,4 +80,21 @@
       note = #{note,jdbcType=VARCHAR}
     where material_id = #{materialId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByPrimaryId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material where material_id like concat('%', #{materialid,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="selectByPrimarytype" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material where material_type like concat('%', #{materialType,jdbcType=VARCHAR}, '%')
+  </select>
 </mapper>
+
+
+
+
+

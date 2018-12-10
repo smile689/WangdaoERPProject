@@ -18,4 +18,8 @@ public interface MaterialMapper {
     int updateByPrimaryKeySelective(@Param("materialId") String materialId, @Param("note") String note);
 
     int updateByPrimaryKey(Material record);
+
+    List<Material> selectByPrimaryId(String searchValue);
+
+    List<Material> selectByPrimarytype(String searchValue);
 }

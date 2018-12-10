@@ -63,4 +63,26 @@ public class MaterialServiceimpl implements MaterialService {
     public int updateMaterialServiceSelective(String materialId, String note) {
         return materialMapper.updateByPrimaryKeySelective(materialId,note);
     }
+
+    @Override
+    public PageShowResult searcMaterial(String searchValue, Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        List<Material> materials = materialMapper.selectByPrimaryId(searchValue);
+        PageShowResult pageShowResult = new PageShowResult();
+        pageShowResult.setRows(materials);
+        PageInfo<Material> materialPageInfo = new PageInfo<>(materials);
+        pageShowResult.setTotal(materialPageInfo.getTotal());
+        return pageShowResult;
+    }
+
+    @Override
+    public PageShowResult searcMaterialtype(String searchValue, Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        List<Material> materials = materialMapper.selectByPrimarytype(searchValue);
+        PageShowResult pageShowResult = new PageShowResult();
+        pageShowResult.setRows(materials);
+        PageInfo<Material> materialPageInfo = new PageInfo<>(materials);
+        pageShowResult.setTotal(materialPageInfo.getTotal());
+        return pageShowResult;
+    }
 }
