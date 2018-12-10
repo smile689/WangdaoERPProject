@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/technologyRequirement")
@@ -71,12 +72,19 @@ public String find(){
 @RequestMapping(value = "/insert",method = RequestMethod.POST)
     @ResponseBody
     public Result insert(@Valid TechnologyRequirement technologyRequirement, BindingResult bindingResult, Model model) {
-    Result result;
-    //验证
-    if (bindingResult.hasErrors()) {
-        FieldError fieldError = bindingResult.getFieldError();
-        String defaultMessage = fieldError.getDefaultMessage();
-        model.addAttribute("error", defaultMessage);
+    Result result=new Result();
+    if (bindingResult.hasErrors()){
+
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        for (FieldError fieldError:fieldErrors
+        ) {
+            String defaultMessage = fieldError.getDefaultMessage();
+            System.out.println(defaultMessage);
+            result.setMsg(defaultMessage);
+            result.setData(null);
+            result.setStatus(null);
+            return  result;
+        }
     }
     //校验
     if (technologyRequirementService.get(technologyRequirement.getTechnologyRequirementId()) != null) {
