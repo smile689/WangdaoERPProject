@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.DeviceFaultMapper">
+  <!--sql和bean的对照 以及查询结果放入的对象-->
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.DeviceFault">
     <id column="device_fault_id" jdbcType="VARCHAR" property="deviceFaultId" />
     <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
@@ -9,28 +10,109 @@
     <result column="device_fault_date" jdbcType="TIMESTAMP" property="deviceFaultDate" />
     <result column="device_fault_maintenance" jdbcType="VARCHAR" property="deviceFaultMaintenance" />
   </resultMap>
+  <resultMap id="AddResultMap" type="com.cskaoyan.bean.vo.DeviceFaultVO" extends="BaseResultMap">
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--sql片段1-->
   <sql id="Base_Column_List">
     device_fault_id, device_id, device_fault_cause, device_fault_detail, device_fault_date, 
     device_fault_maintenance
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+  <!--sql片段2 vo里的-->
+  <sql id="Base_Column_List2">
+    device_name
+  </sql>
+  <!--sql片段3 多表查询-->
+  <sql id="Base_Column_List3">
+    device_fault_id,
+    device_fault.device_id,
+    device_fault_cause,
+    device_fault_detail,
+    device_fault_date,
+    device_fault_maintenance,
+    device_name
+  </sql>
+  <!--查找全部 隐式内连接-->
+  <select id="selectAll" parameterType="java.lang.String" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    from
+    device_fault,device
+    WHERE
+    device_fault.device_id = device.device_id
+  </select>
+  <!--新增一例-->
+  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceFault">
+    insert into device_fault
+    (<include refid="Base_Column_List" />)
+    values (#{deviceFaultId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceFaultCause,jdbcType=VARCHAR},
+    #{deviceFaultDetail,jdbcType=VARCHAR}, #{deviceFaultDate,jdbcType=TIMESTAMP}, #{deviceFaultMaintenance,jdbcType=VARCHAR}
+    )
+  </insert>
+  <!--通过id查-->
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from device_fault
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </select>
+  <!--编辑-->
+  <update id="update" parameterType="com.cskaoyan.bean.DeviceFault">
+    update device_fault
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+    device_fault_cause = #{deviceFaultCause,jdbcType=VARCHAR},
+    device_fault_detail = #{deviceFaultDetail,jdbcType=VARCHAR},
+    device_fault_date = #{deviceFaultDate,jdbcType=TIMESTAMP},
+    device_fault_maintenance = #{deviceFaultMaintenance,jdbcType=VARCHAR}
+    where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
+  </update>
+  <!--批量删除(也可以单删)-->
+  <delete id="deleteBatch">
+    DELETE
+    FROM
+    device_fault
+    <where>
+      device_fault_id IN
+      <foreach collection="array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+  <!--根据故障编号查找设备故障信息-->
+  <select id="searchDeviceFaultByDeviceFaultId" parameterType="java.lang.String" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    from
+    device_fault,device
+    WHERE
+    device_fault.device_id = device.device_id
+    AND
+    device_fault.device_fault_id LIKE CONCAT('%',#{deviceFaultId},'%' )
+  </select>
+  <!--根据设备名称查找设备故障信息-->
+  <select id="searchDeviceFaultByDeviceName" parameterType="java.lang.String" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    from
+    device_fault,device
+    WHERE
+    device_fault.device_id = device.device_id
+    AND
+    device.device_name LIKE CONCAT('%',#{deviceName},'%' )
+  </select>
+  <!--编辑备注-->
+  <update id="updateNote" parameterType="deviceFault">
+    update device_fault
+    set
+    device_fault_detail = #{deviceFaultDetail,jdbcType=VARCHAR}
+    where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
+  </update>
+
+  <!--逆向工程生成的没有用到的方法-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_fault
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceFault">
-    insert into device_fault (device_fault_id, device_id, device_fault_cause, 
-      device_fault_detail, device_fault_date, device_fault_maintenance
-      )
-    values (#{deviceFaultId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceFaultCause,jdbcType=VARCHAR}, 
-      #{deviceFaultDetail,jdbcType=VARCHAR}, #{deviceFaultDate,jdbcType=TIMESTAMP}, #{deviceFaultMaintenance,jdbcType=VARCHAR}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.DeviceFault">
     insert into device_fault
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -93,15 +175,6 @@
         device_fault_maintenance = #{deviceFaultMaintenance,jdbcType=VARCHAR},
       </if>
     </set>
-    where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.DeviceFault">
-    update device_fault
-    set device_id = #{deviceId,jdbcType=VARCHAR},
-      device_fault_cause = #{deviceFaultCause,jdbcType=VARCHAR},
-      device_fault_detail = #{deviceFaultDetail,jdbcType=VARCHAR},
-      device_fault_date = #{deviceFaultDate,jdbcType=TIMESTAMP},
-      device_fault_maintenance = #{deviceFaultMaintenance,jdbcType=VARCHAR}
     where device_fault_id = #{deviceFaultId,jdbcType=VARCHAR}
   </update>
 </mapper>

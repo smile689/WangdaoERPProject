@@ -1,9 +1,9 @@
 package com.cskaoyan.controller;
 
 
-import com.cskaoyan.bean.DeviceType;
+import com.cskaoyan.bean.DeviceFault;
 import com.cskaoyan.bean.pojo.EUDataGridResult;
-import com.cskaoyan.service.DeviceTypeService;
+import com.cskaoyan.service.DeviceFaultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/deviceType")
-public class DeviceTypeController {
+@RequestMapping("/deviceFault")
+public class DeviceFaultController {
 
     @Autowired
-    DeviceTypeService service;
+    DeviceFaultService service;
 
     HashMap<String,String> result =new HashMap<>();
     public HashMap<String, String> getResult() {
@@ -32,7 +32,7 @@ public class DeviceTypeController {
         this.result = result;
     }
 
-    //对应 deviceType/list 查看清单
+    //对应 deviceFault/list 查看清单
     @RequestMapping("/list")
     @ResponseBody
     public EUDataGridResult getList(Integer page, Integer rows) {
@@ -40,39 +40,40 @@ public class DeviceTypeController {
         return result;
     }
 
-    //找到所有deviceType的id和name
+    //找到所有deviceFault的id和name
     @ResponseBody
     @RequestMapping("/get_data")
-    public List<DeviceType> findAll(){
+    public List<DeviceFault> findAll(){
         return service.findAll();
     }
 
-    //根据id找到对应deviceType(有地方好像需要这个方法)
+    //根据id找到对应deviceFault(有地方好像需要这个方法)
     @ResponseBody
-    @RequestMapping("/get/{deviceTypeID}")
-    public DeviceType getDeviceById(@PathVariable String deviceTypeId) {
-        return service.selectById(deviceTypeId);
+    @RequestMapping("/get/{deviceFaultId}")
+    public DeviceFault getDeviceById(@PathVariable String deviceFaultId) {
+        return service.selectById(deviceFaultId);
     }
+
 
     //弹出页面的具体操作
     //增加设备
     @RequestMapping("/insert")
     @ResponseBody
-    public HashMap insert(@Valid DeviceType deviceType, BindingResult bindingResult) throws Exception{
+    public HashMap insert(@Valid DeviceFault deviceFault, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
             FieldError fieldError = bindingResult.getFieldError();
             result.put("status",fieldError.getDefaultMessage());
             result.put("msg",fieldError.getDefaultMessage());
         }
-        String id = deviceType.getDeviceTypeId();
-        DeviceType exists = service.selectById(id);
+        String id = deviceFault.getDeviceFaultId();
+        DeviceFault exists = service.selectById(id);
         //先判断有没有重复的编号 如果有 返回错误
         if(exists==null){
-            result = service.insert(deviceType);
+            result = service.insert(deviceFault);
             //再判断是否增加成功
         }else{
             result.put("status","0");
-            result.put("msg","该设备型号编号已经存在，请更换设备型号编号！");
+            result.put("msg","该设备故障编号已经存在，请更换设备检查编号！");
         }
         System.out.println("insert result = "+result);
         return result;
@@ -81,13 +82,13 @@ public class DeviceTypeController {
     //更新
     @RequestMapping("/update")
     @ResponseBody
-    public HashMap update(@Valid DeviceType deviceType, BindingResult bindingResult) throws Exception{
+    public HashMap update(@Valid DeviceFault deviceFault, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
             FieldError fieldError = bindingResult.getFieldError();
             result.put("status",fieldError.getDefaultMessage());
             result.put("msg",fieldError.getDefaultMessage());
         }
-        result = service.update(deviceType);
+        result = service.update(deviceFault);
         //再判断是否更新成功
         System.out.println("update result = "+result);
         return result;
@@ -97,25 +98,41 @@ public class DeviceTypeController {
     @RequestMapping("/delete_batch")
     @ResponseBody
     public HashMap deleteBatch(String ids) throws Exception{
-        String[] deviceTypeIds = ids.split(",");
-        result = service.deleteBatch(deviceTypeIds);
+        String[] deviceFaultIds = ids.split(",");
+        result = service.deleteBatch(deviceFaultIds);
         //返回是否删除成功
         System.out.println("deleteBatch result = "+result);
         return result;
     }
 
     //二例搜索(和显示list很类似)
-    @RequestMapping("/search_deviceType_by_deviceTypeId")
+    @RequestMapping("/search_deviceFault_by_deviceFaultId")
     @ResponseBody
-    public EUDataGridResult searchDeviceByDeviceId(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceByDeviceTypeID(page,rows,searchValue);
+    public EUDataGridResult searchDeviceFaultByDeviceFaultId(String searchValue, Integer page, Integer rows) {
+        EUDataGridResult result = service.searchDeviceFaultByDeviceFaultId(page,rows,searchValue);
         return result;
     }
 
-    @RequestMapping("/search_deviceType_by_deviceTypeName")
+    @RequestMapping("/search_deviceFault_by_deviceName")
     @ResponseBody
-    public EUDataGridResult searchDeviceByDeviceName(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceByDeviceTypeName(page,rows,searchValue);
+    public EUDataGridResult searchDeviceFaultByDeviceName(String searchValue, Integer page, Integer rows) {
+        EUDataGridResult result = service.searchDeviceFaultByDeviceName(page,rows,searchValue);
+        return result;
+    }
+
+    //修改备注
+    //更新
+    @RequestMapping("/update_note")
+    @ResponseBody
+    public HashMap updateNote(@Valid DeviceFault deviceFault, BindingResult bindingResult) throws Exception{
+        if(bindingResult.hasErrors()){
+            FieldError fieldError = bindingResult.getFieldError();
+            result.put("status",fieldError.getDefaultMessage());
+            result.put("msg",fieldError.getDefaultMessage());
+        }
+        result = service.updateNote(deviceFault);
+        //再判断是否更新成功
+        System.out.println("update result = "+result);
         return result;
     }
 
@@ -141,11 +158,12 @@ public class DeviceTypeController {
     //弹出页面
     @RequestMapping("/add")
     public String add() throws Exception{
-        return "/deviceType_add";
+        return "/deviceFault_add";
     }
 
     @RequestMapping("/edit")
     public String edit() throws Exception{
-        return "/deviceType_edit";
+        return "/deviceFault_edit";
     }
+
 }

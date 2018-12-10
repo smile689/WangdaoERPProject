@@ -1,7 +1,10 @@
 package com.cskaoyan.bean;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Date;
 
+@Repository
 public class DeviceFault {
     private String deviceFaultId;
 
@@ -14,6 +17,32 @@ public class DeviceFault {
     private Date deviceFaultDate;
 
     private String deviceFaultMaintenance;
+
+    public DeviceFault() {
+    }
+
+    public DeviceFault(String deviceFaultId, String deviceId,
+                       String deviceFaultCause, String deviceFaultDetail,
+                       Date deviceFaultDate, String deviceFaultMaintenance) {
+        this.deviceFaultId = deviceFaultId;
+        this.deviceId = deviceId;
+        this.deviceFaultCause = deviceFaultCause;
+        this.deviceFaultDetail = deviceFaultDetail;
+        this.deviceFaultDate = deviceFaultDate;
+        this.deviceFaultMaintenance = deviceFaultMaintenance;
+    }
+
+    @Override
+    public String toString() {
+        return "DeviceFault{" +
+                "deviceFaultId='" + deviceFaultId + '\'' +
+                ", deviceId='" + deviceId + '\'' +
+                ", deviceFaultCause='" + deviceFaultCause + '\'' +
+                ", deviceFaultDetail='" + deviceFaultDetail + '\'' +
+                ", deviceFaultDate=" + deviceFaultDate +
+                ", deviceFaultMaintenance='" + deviceFaultMaintenance + '\'' +
+                '}';
+    }
 
     public String getDeviceFaultId() {
         return deviceFaultId;

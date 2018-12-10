@@ -9,28 +9,126 @@
     <result column="device_check_result" jdbcType="VARCHAR" property="deviceCheckResult" />
     <result column="device_check_fault_id" jdbcType="VARCHAR" property="deviceCheckFaultId" />
   </resultMap>
+  <resultMap id="AddResultMap" type="com.cskaoyan.bean.vo.DeviceCheckVO" extends="BaseResultMap">
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="device_check_emp" property="deviceCheckEmp" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--sql片段1-->
   <sql id="Base_Column_List">
     device_check_id, device_id, device_check_emp_id, device_check_date, device_check_result, 
     device_check_fault_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <!--sql片段2 vo里的-->
+  <sql id="Base_Column_List2">
+    device_name, device_check_emp
+  </sql>
+  <!--sql片段3 多表查询-->
+  <sql id="Base_Column_List3">
+    device_check_id,
+    device_check.device_id,
+    emp_id as device_check_emp_id,
+    device_check_date,
+    device_check_result,
+    device_check_fault_id,
+    device.device_name,
+    emp_name as device_check_emp
+  </sql>
+  <!--查找全部 隐式内连接-->
+  <select id="selectAll" parameterType="deviceCheck" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3"/>
+    FROM
+    device_check,
+    device,
+    employee
+    WHERE
+    device_check.device_id = device.device_id
+    AND
+    device_check.device_check_emp_id = employee.emp_id
+    order by device_check_id ASC
+  </select>
+  <!--新增一例-->
+  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceCheck">
+    insert into device_check
+    (<include refid="Base_Column_List"/>)
+    values (#{deviceCheckId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceCheckEmpId,jdbcType=VARCHAR},
+    #{deviceCheckDate,jdbcType=TIMESTAMP}, #{deviceCheckResult,jdbcType=VARCHAR}, #{deviceCheckFaultId,jdbcType=VARCHAR}
+    )
+  </insert>
+  <!--通过id查-->
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </select>
+  <!--编辑-->
+  <update id="update" parameterType="com.cskaoyan.bean.DeviceCheck">
+    update device_check
+    set device_id = #{deviceId,jdbcType=VARCHAR},
+    device_check_emp_id = #{deviceCheckEmpId,jdbcType=VARCHAR},
+    device_check_date = #{deviceCheckDate,jdbcType=TIMESTAMP},
+    device_check_result = #{deviceCheckResult,jdbcType=VARCHAR},
+    device_check_fault_id = #{deviceCheckFaultId,jdbcType=VARCHAR}
+    where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
+  </update>
+  <!--批量删除(也可以单删)-->
+  <delete id="deleteBatch">
+    DELETE
+    FROM
+    device_check
+    <where>
+      device_check_id IN
+      <foreach collection="array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+  <!--根据设备例检编号查找设备例检信息-->
+  <select id="searchDeviceCheckByDeviceCheckId" parameterType="deviceCheck" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    FROM
+    device_check,
+    device,
+    employee
+    WHERE
+    device_check.device_id = device.device_id
+    AND
+    device_check.device_check_emp_id = employee.emp_id
+    AND
+    device_check_id LIKE CONCAT('%',#{deviceCheckId},'%' )
+    order by device_check_id ASC
+  </select>
+  <!--根据设备名称查找设备例检信息-->
+  <select id="searchDeviceCheckByDeviceName" parameterType="deviceCheck" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    FROM
+    device_check,
+    device,
+    employee
+    WHERE
+    device_check.device_id = device.device_id
+    AND
+    device_check.device_check_emp_id = employee.emp_id
+    AND
+    device.device_name LIKE CONCAT('%',#{deviceName},'%' )
+    order by device_check_id ASC
+  </select>
+  <!--编辑备注-->
+  <update id="updateNote" parameterType="deviceCheck">
+    update device_check
+    set
+    device_check_result = #{deviceCheckResult,jdbcType=VARCHAR}
+    where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
+  </update>
+
+  <!--逆向工程生成的没有用到的方法-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_check
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceCheck">
-    insert into device_check (device_check_id, device_id, device_check_emp_id, 
-      device_check_date, device_check_result, device_check_fault_id
-      )
-    values (#{deviceCheckId,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{deviceCheckEmpId,jdbcType=VARCHAR}, 
-      #{deviceCheckDate,jdbcType=TIMESTAMP}, #{deviceCheckResult,jdbcType=VARCHAR}, #{deviceCheckFaultId,jdbcType=VARCHAR}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.DeviceCheck">
     insert into device_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -95,13 +193,5 @@
     </set>
     where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.DeviceCheck">
-    update device_check
-    set device_id = #{deviceId,jdbcType=VARCHAR},
-      device_check_emp_id = #{deviceCheckEmpId,jdbcType=VARCHAR},
-      device_check_date = #{deviceCheckDate,jdbcType=TIMESTAMP},
-      device_check_result = #{deviceCheckResult,jdbcType=VARCHAR},
-      device_check_fault_id = #{deviceCheckFaultId,jdbcType=VARCHAR}
-    where device_check_id = #{deviceCheckId,jdbcType=VARCHAR}
-  </update>
+
 </mapper>
