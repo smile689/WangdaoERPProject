@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     public EUDataGridResult findAllDepartments(String currentPageNum, String perPageNum) {
         int selectCount = departmentMapper.selectCount();
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffset();
+        List<Department> departmentList = departmentMapper.select();
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(departmentList);
         euDataGridResult.setTotal(selectCount);
@@ -96,10 +97,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public EUDataGridResult findDepartmentById(String currentPageNum, String perPageNum, String departmentId) {
+    public EUDataGridResult findOneDepartmentById(String currentPageNum, String perPageNum, String departmentId) {
         int selectCount = departmentMapper.selectCountById(departmentId);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndId(departmentId);
+        Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(departmentId);
+        List<Department> departmentList = new ArrayList<>();
+        departmentList.add(selectByPrimaryKey);
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(departmentList);
         euDataGridResult.setTotal(selectCount);
@@ -107,10 +110,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public EUDataGridResult findDepartmentByName(String currentPageNum, String perPageNum, String departmentName) {
+    public EUDataGridResult findDepartmentsByNames(String currentPageNum, String perPageNum, String departmentName) {
         int selectCount = departmentMapper.selectCountByName(departmentName);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
-        List<Department> departmentList = departmentMapper.selectByLimitAndOffsetAndName(departmentName);
+        List<Department> departmentList = departmentMapper.selectByNames(departmentName);
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(departmentList);
         euDataGridResult.setTotal(selectCount);

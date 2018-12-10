@@ -1,14 +1,24 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Technology;
+import com.cskaoyan.controller.JsonResult.EUDataGridResult;
+import com.cskaoyan.controller.JsonResult.Result;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
 public interface TechnologyService {
 
-    Technology findTechnologyById(String technologyId);
+    Technology get(String technologyId);
 
-    boolean updateTechnology(Technology technology);
+    EUDataGridResult getList(Integer page, Integer rows, Technology technology);
 
-    List<Technology> findAll();
+    Result insert(Technology technology);
+
+    Result deleteById(String[] ids);
+
+    Result updateAll(Technology technology);
+
+    EUDataGridResult search_technology_by_technologyId(Integer page, Integer rows, String tenologyId);
+
+    EUDataGridResult search_technology_by_technologyName(Integer page, Integer rows, String technologyName);
 }

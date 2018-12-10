@@ -21,7 +21,7 @@ public interface DepartmentMapper {
 
     int selectCount();
 
-    List<Department> selectByLimitAndOffset();
+    List<Department> select();
 
     Department selectByName(String departmentName);
 
@@ -29,9 +29,7 @@ public interface DepartmentMapper {
 
     int selectCountById(String departmentId);
 
-    List<Department> selectByLimitAndOffsetAndId(String departmentId);
-
     int selectCountByName(String departmentName);
 
-    List<Department> selectByLimitAndOffsetAndName(String departmentName);
+    List<Department> selectByNames(String departmentName);
 }
