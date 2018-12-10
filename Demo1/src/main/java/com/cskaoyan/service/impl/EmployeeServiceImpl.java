@@ -34,10 +34,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         int selectCount = employeeMapper.selectCount();
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
         List<Employee> employeeList = employeeMapper.select();
-        for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
-            employeeList.get(i).setDepartment(selectByPrimaryKey);
-        }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(employeeList);
         euDataGridResult.setTotal(selectCount);
@@ -112,10 +108,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeMapper.selectByPrimaryKey(employeeId);
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(employee);
-        for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
-            employeeList.get(i).setDepartment(selectByPrimaryKey);
-        }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(employeeList);
         euDataGridResult.setTotal(selectCount);
@@ -127,10 +119,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         int selectCount = employeeMapper.selectCountByName(employeeName);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
         List<Employee> employeeList = employeeMapper.selectByNames(employeeName);
-        for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
-            employeeList.get(i).setDepartment(selectByPrimaryKey);
-        }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(employeeList);
         euDataGridResult.setTotal(selectCount);
@@ -149,10 +137,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         int selectCount = employeeMapper.selectCountByEmployeeOV(employeeOV);
         com.github.pagehelper.PageHelper.startPage(Integer.parseInt(currentPageNum), Integer.parseInt(perPageNum));
         List<Employee> employeeList = employeeMapper.selectByEmployeeOV(employeeOV);
-        for (int i = 0; i < employeeList.size(); i++) {
-            Department selectByPrimaryKey = departmentMapper.selectByPrimaryKey(employeeList.get(i).getDepartment().getDepartmentId());
-            employeeList.get(i).setDepartment(selectByPrimaryKey);
-        }
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(employeeList);
         euDataGridResult.setTotal(selectCount);

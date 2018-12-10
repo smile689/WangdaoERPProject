@@ -32,4 +32,6 @@ public interface DepartmentMapper {
     int selectCountByName(String departmentName);
 
     List<Department> selectByNames(String departmentName);
+
+    Department selectByPrimaryKeyForOneToMany(String departmentId);
 }
