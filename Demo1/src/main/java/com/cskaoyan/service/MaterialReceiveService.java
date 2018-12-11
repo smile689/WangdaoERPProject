@@ -2,7 +2,7 @@ package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Material;
 import com.cskaoyan.bean.MaterialReceive;
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 
 /**
  * @Description: java类作用描述
