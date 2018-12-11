@@ -1,7 +1,6 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.Utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.FinalCountVo;
+import com.cskaoyan.utils.EUDataGridResult;
 import com.cskaoyan.bean.Vo.FinalMeasuretVo;
 import com.cskaoyan.bean.FinalMeasuret;
 

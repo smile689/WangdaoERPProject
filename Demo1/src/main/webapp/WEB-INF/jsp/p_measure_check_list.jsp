@@ -65,7 +65,23 @@
 		    </div>  
 		</c:if>
 	</c:forEach>
-	
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="pMeasureCheck_add()">
+			新增
+		</a>
+	</div>
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="pMeasureCheck_edit()">
+			编辑
+		</a>
+	</div>
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="pMeasureCheck_delete()">
+			删除
+		</a>
+	</div>
+
 	<div class="datagrid-btn-separator"></div>  
 	
 	<div style="float: left;">  

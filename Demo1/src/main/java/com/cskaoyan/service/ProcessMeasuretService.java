@@ -1,6 +1,6 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.Utils.EUDataGridResult;
+import com.cskaoyan.utils.EUDataGridResult;
 import com.cskaoyan.bean.Vo.ProcessMeasuretVo;
 
 

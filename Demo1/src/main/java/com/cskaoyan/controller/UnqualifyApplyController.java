@@ -1,6 +1,6 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.Utils.EUDataGridResult;
+import com.cskaoyan.utils.EUDataGridResult;
 import com.cskaoyan.bean.Vo.UnqualifyApplyVo;
 import com.cskaoyan.service.UnqualifyApplyService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.cskaoyan.service.impl;
 
-import com.cskaoyan.Utils.EUDataGridResult;
+import com.cskaoyan.utils.EUDataGridResult;
 import com.cskaoyan.bean.Vo.ProcessCountVo;
 import com.cskaoyan.bean.ProcessCount;
 import com.cskaoyan.mapper.ProcessCountMapper;
