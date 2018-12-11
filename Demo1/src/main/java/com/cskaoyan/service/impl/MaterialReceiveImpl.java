@@ -58,4 +58,31 @@ public class MaterialReceiveImpl implements MaterialReceiveService {
     public int deleteMaterialReceiveService(String[] ids) {
         return materialReceiveMapper.deleteByPrimaryKey(ids);
     }
+    //物料收入ID模糊搜索
+    @Override
+    public PageShowResult searcMaterialReveice(String searchValue, Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        List<MaterialReceive> materialReceives = materialReceiveMapper.selectByPrimaryId(searchValue);
+        PageShowResult pageShowResult = new PageShowResult();
+        pageShowResult.setRows(materialReceives);
+        PageInfo<MaterialReceive> materialPageInfo = new PageInfo<>(materialReceives);
+        pageShowResult.setTotal(materialPageInfo.getTotal());
+        return pageShowResult;
+    }
+
+    @Override
+    public PageShowResult serachMaterialReceiveMaterialId(Material material, Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        List<MaterialReceive> materialReceives = materialReceiveMapper.selectByPrimaryMaterialId(material);
+        PageShowResult pageShowResult = new PageShowResult();
+        pageShowResult.setRows(materialReceives);
+        PageInfo<MaterialReceive> materialPageInfo = new PageInfo<>(materialReceives);
+        pageShowResult.setTotal(materialPageInfo.getTotal());
+        return pageShowResult;
+    }
+
+    @Override
+    public int updateMaterialReceiveSelective(String receiveId, String note) {
+        return materialReceiveMapper.updateByReceiveIdSelective(receiveId,note);
+    }
 }
