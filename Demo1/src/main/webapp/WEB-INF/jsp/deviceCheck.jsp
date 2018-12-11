@@ -29,7 +29,7 @@
 <!-- Toolbar -->
 <div  id="toolbar_deviceCheck" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+	<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='deviceCheck:add'}">
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="deviceCheck_add()">
@@ -48,8 +48,21 @@
 		        	删除</a>  
 		    </div>  
 		</c:if>
-	</c:forEach>
-	
+	</c:forEach>--%>
+		<!--下面是临时修改的-->
+				<div style="float: left;">
+					<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="deviceCheck_add()">
+						新增</a>
+				</div>
+				<div style="float: left;">
+					<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="deviceCheck_edit()">
+						编辑</a>
+				</div>
+				<div style="float: left;">
+					<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="deviceCheck_delete()">
+						删除</a>
+				</div>
+		<!--上面是临时修改的-->
 	<div class="datagrid-btn-separator"></div>  
 	
 	<div style="float: left;">  

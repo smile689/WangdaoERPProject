@@ -1,9 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<html>
-<body>
-<h2>Hello World!</h2>
-<hr>
-${user.username}
-</body>
-</html>
+    pageEncoding="UTF-8"%>
+<!-- 立即请求/main -->
+<jsp:forward page="/login"/>

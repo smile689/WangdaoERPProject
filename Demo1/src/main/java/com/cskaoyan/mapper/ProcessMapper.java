@@ -2,10 +2,11 @@ package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Process;
 
-public interface ProcessMapper {
-    int deleteByPrimaryKey(String processId);
 
-    int insert(Process record);
+import java.util.List;
+
+public interface ProcessMapper {
+
 
     int insertSelective(Process record);
 
@@ -13,5 +14,19 @@ public interface ProcessMapper {
 
     int updateByPrimaryKeySelective(Process record);
 
-    int updateByPrimaryKey(Process record);
+    int updateByPrimaryKey(Process process);
+
+
+    List<Process> selectAll();
+
+    int deleteByPrimaryKey(String[] ids);
+
+
+    List<Process> searchProcessByProcessId(String processId);
+
+    List<Process> searchProcessByTechnologyPlanId(String technologyPlanId);
+
+    List<Process> selectProcessId();
+
+    int insert(Process process);
 }

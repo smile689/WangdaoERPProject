@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.ManufactureMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" javaType="com.cskaoyan.bean.Corder">
+      <result column="order_id" property="orderId"/>
+    </association>
+    <association property="technology"  javaType="com.cskaoyan.bean.Technology">
+      <result column="technology_id" property="technologyId"/>
+      <result column="technology_name" property="technologyName"/>
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    manufacture_sn, order_id, technology_id, launch_quantity, begin_date, end_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manufacture
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    manufacture_sn, order_id, manufacture.technology_id, launch_quantity, begin_date, end_date, technology_name
+    from manufacture left join technology on manufacture.technology_id=technology.technology_id
+    <include refid="multiCondition"/>
+  </select>
+
+  <sql id="multiCondition">
+    <where>
+      <if test="manufacture!=null">
+        <if test="manufacture.manufactureSn!=null">
+          manufacture_sn LIKE concat ('%', #{manufacture.manufactureSn}, '%')
+        </if>
+        <if test="manufacture.cOrder!=null">
+          <if test="manufacture.cOrder.orderId!=null">
+            and order_id like concat ('%', #{manufacture.cOrder.orderId}, '%')
+          </if>
+        </if>
+        <if test="manufacture.technology!=null">
+          <if test="manufacture.technology.technologyName!=null">
+            and technology_name like concat ('%', #{manufacture.technology.technologyName}, '%')
+          </if>
+        </if>
+      </if>
+    </where>
+  </sql>
+
+
+  <insert id="insert" parameterType="com.cskaoyan.bean.Manufacture">
+    insert into manufacture (manufacture_sn, order_id, technology_id,
+      launch_quantity, begin_date, end_date
+      )
+    values (#{manufactureSn,jdbcType=VARCHAR}, #{cOrder.orderId,jdbcType=VARCHAR}, #{technology.technologyId,jdbcType=VARCHAR},
+      #{launchQuantity,jdbcType=INTEGER}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Manufacture">
+    update manufacture
+    set order_id = #{cOrder.orderId,jdbcType=VARCHAR},
+      technology_id = #{technology.technologyId,jdbcType=VARCHAR},
+      launch_quantity = #{launchQuantity,jdbcType=INTEGER},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP}
+    where manufacture_sn = #{manufactureSn,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByPrimaryKey" >
+    delete from manufacture
+    where manufacture_sn = #{manufactureSn}
+  </delete>
+
+
+
+  <resultMap id="getDataMap" type="com.cskaoyan.bean.Manufacture">
+    <id column="manufacture_sn" jdbcType="VARCHAR" property="manufactureSn" />
+    <result column="launch_quantity" jdbcType="INTEGER" property="launchQuantity" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <association property="cOrder" javaType="com.cskaoyan.bean.Corder">
+      <result column="order_id" property="orderId"/>
+    </association>
+    <association property="technology"  javaType="com.cskaoyan.bean.Technology">
+      <result column="technology_id" property="technologyId"/>
+    </association>
+  </resultMap>
+  <select id="selectAll"  resultMap="getDataMap">
+    select
+    <include refid="Base_Column_List" />
+    from manufacture
+  </select>
+</mapper>

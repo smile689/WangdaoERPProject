@@ -22,5 +22,13 @@ public interface MaterialService {
 
     int deleteMaterialService(String materialId);
 
-    int updateMaterialServiceSelective(String materialId,String note);
+    int updateMaterialServiceSelective(String materialId, String note);
+
+    PageShowResult searcMaterial(String searchValue, Integer page, Integer rows);
+
+    PageShowResult searcMaterialtype(String searchValue, Integer page, Integer rows);
+
+
+    List<Material> getMaterial();
+
 }

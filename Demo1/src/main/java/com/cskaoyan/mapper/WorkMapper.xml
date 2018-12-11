@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.WorkMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+    <association property="product" javaType="product">
+      <result column="product_id" property="productId"/>
+      <result column="product_name" property="productName"/>
+    </association>
+    <association property="process" javaType="process">
+      <result column="process_id" property="processId"/>
+    </association>
+    <association property="device" javaType="device">
+      <result column="device_id" property="deviceId"/>
+      <result column="device_name" property="deviceName"/>
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List">
+    work_id, process_number, product_id, process_id, device_id, rating
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from work
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    work_id, process_number, work.product_id, work.process_id, work.device_id, rating, product.product_name, device.device_name
+    from work left join product on work.product_id=product.product_id
+    left join process on work.process_id=process.process_id
+    left join device on work.device_id=device.device_id
+    <include refid="multiCondition"/>
+  </select>
+
+  <sql id="multiCondition">
+    <where>
+      <if test="work!=null">
+        <if test="work.workId!=null">
+          work_id LIKE concat ('%', #{work.workId}, '%')
+        </if>
+        <if test="work.product!=null">
+          <if test="work.product.productName!=null">
+            and product.product_name like concat ('%', #{work.product.productName}, '%')
+          </if>
+        </if>
+        <if test="work.process!=null">
+          <if test="work.process.processId!=null">
+            and work.process_id like concat ('%', #{work.process.processId}, '%')
+          </if>
+        </if>
+        <if test="work.device!=null">
+          <if test="work.device.deviceName!=null">
+            and device.device_name like concat ('%', #{work.device.deviceName}, '%')
+          </if>
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <insert id="insert" >
+    insert into work (work_id, process_number, product_id,
+      process_id, device_id, rating
+      )
+    values (#{workId,jdbcType=VARCHAR}, #{processNumber,jdbcType=VARCHAR}, #{product.productId,jdbcType=VARCHAR},
+      #{process.processId,jdbcType=VARCHAR}, #{device.deviceId,jdbcType=VARCHAR}, #{rating,jdbcType=INTEGER}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.Work">
+    update work
+    set process_number = #{processNumber,jdbcType=VARCHAR},
+      product_id = #{product.productId,jdbcType=VARCHAR},
+      process_id = #{process.processId,jdbcType=VARCHAR},
+      device_id = #{device.deviceId,jdbcType=VARCHAR},
+      rating = #{rating,jdbcType=INTEGER}
+    where work_id = #{workId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByPrimaryKey">
+    delete from work where work_id = #{workId}
+  </delete>
+
+
+
+  <resultMap id="getDataMap" type="com.cskaoyan.bean.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId" />
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    <result column="rating" jdbcType="INTEGER" property="rating" />
+    <association property="product" javaType="product">
+      <result column="product_id" property="productId"/>
+    </association>
+    <association property="process" javaType="process">
+      <result column="process_id" property="processId"/>
+    </association>
+    <association property="device" javaType="device">
+      <result column="device_id" property="deviceId"/>
+    </association>
+  </resultMap>
+  <select id="selectAll" resultMap="getDataMap">
+    select
+    <include refid="Base_Column_List" />
+    from work
+  </select>
+</mapper>

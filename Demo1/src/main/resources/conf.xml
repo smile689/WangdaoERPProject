@@ -7,6 +7,16 @@
     <typeAliases>
         <package name="com.cskaoyan.bean"/>
     </typeAliases>
+
+    <!-- 配置分页插件 -->
+    <plugins>
+        <!--注意这里要写成PageInterceptor, 5.0之前的版本都是写PageHelper, 5.0之后要换成PageInterceptor-->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+
     <!--<environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"></transactionManager>
@@ -22,4 +32,5 @@
     <mappers>
         <package name="com.cskaoyan.mapper"/>
     </mappers>
+
 </configuration>
