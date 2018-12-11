@@ -4,12 +4,13 @@ import com.cskaoyan.bean.Material;
 import com.cskaoyan.bean.MaterialReceive;
 import com.cskaoyan.pojo.PageShowResult;
 import com.cskaoyan.service.MaterialReceiveService;
+import com.cskaoyan.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +56,7 @@ public class MaterialReceiveController {
     public String addMaterReceivePage (){
         return "materialReceive_add";
     }
-
+    //新增物料收入信息
     @ResponseBody
     @RequestMapping("/insert")
     public Map addMaterReceive (MaterialReceive materialReceive, String materialId){
@@ -106,5 +107,33 @@ public class MaterialReceiveController {
         return hashMap;
     }
 
+    //物料收入ID模糊搜索
+    @ResponseBody
+    @RequestMapping("/search_materialReceive_by_receiveId")
+    public PageShowResult  serachMaterialReceiveId (@RequestParam String searchValue, @RequestParam Integer page, @RequestParam Integer rows){
+        PageShowResult pageShowResult = materialReceiveService.searcMaterialReveice(searchValue,page,rows);
+        return pageShowResult;
+    }
+   //物料收入里物料ID模糊搜索
+    @ResponseBody
+    @RequestMapping("/search_materialReceive_by_materialId")
+    public PageShowResult  serachMaterialReceive(@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
+        MaterialReceive materialReceive = new MaterialReceive();
+        Material material = new Material();
+        material.setMaterialId(searchValue);
+        materialReceive.setMaterial(material);
+        PageShowResult pageShowResult = materialReceiveService.serachMaterialReceiveMaterialId(material,page,rows);
+        return pageShowResult;
+    }
+    //更新备注
+    @ResponseBody
+    @RequestMapping("/update_note")
+    public Map updateMaterReceive (@RequestParam String receiveId, @RequestParam String note ){
 
+        materialReceiveService.updateMaterialReceiveSelective(receiveId,note);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status",200);
+        hashMap.put("msg","失败");
+        return hashMap;
+    }
 }

@@ -34,8 +34,11 @@
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from material_receive
-    where receive_id = #{receiveId,jdbcType=VARCHAR}
-  </delete>
+    where receive_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+   </delete>
   <insert id="insert" parameterType="com.cskaoyan.bean.MaterialReceive">
     insert into material_receive (receive_id, material_id, amount, 
       receive_date, sender, receiver, 
@@ -127,4 +130,25 @@
       note = #{note,jdbcType=VARCHAR}
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByPrimaryId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material_receive where receive_id like concat('%', #{receiveid,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="selectByPrimaryMaterialId" resultMap="BaseResultMap">
+    select
+    receive_id, material_receive.material_id, amount, receive_date, sender, receiver, material_receive.note
+    from material_receive left join material on material.material_id=material_receive.material_id
+    where material_receive.material_id like concat('%', #{material.materialId,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <update id="updateByReceiveIdSelective" parameterType="com.cskaoyan.bean.MaterialReceive">
+    update material_receive
+    set note = #{note,jdbcType=VARCHAR}
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
+  </update>
 </mapper>
+
+

@@ -111,7 +111,7 @@ public class MaterialController {
     }
     @ResponseBody
     @RequestMapping("/delete_batch")
-    public Map deleteMaterPage (String ids){
+    public Map deleteMaterPage (String[] ids){
         materialService.deleteMaterialService(ids);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status",200);
@@ -139,5 +139,13 @@ public class MaterialController {
     public List<Material> getdata(){
        List<Material> materials= materialService.getMaterial();
        return materials;
+    }
+
+    //物料收入列表中点击物料ID查看物料信息
+    @ResponseBody
+    @RequestMapping(value = "/get/{materialId}")
+    public Material getMaterialinfo(@PathVariable("materialId") String materialId){
+        Material material = materialService.selectByMaterialId(materialId);
+        return material;
     }
 }

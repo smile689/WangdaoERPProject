@@ -48,7 +48,7 @@ public class MaterialServiceimpl implements MaterialService {
     }
 
    @Override
-    public int deleteMaterialService(String materialId) {
+    public int deleteMaterialService(String[] materialId) {
         return materialMapper.deleteByPrimaryKey(materialId);
     }
 
@@ -88,5 +88,11 @@ public class MaterialServiceimpl implements MaterialService {
     @Override
     public List<Material> getMaterial() {
         return materialMapper.selectByPrimaryKey();
+    }
+
+
+    @Override
+    public Material selectByMaterialId(String materialId) {
+        return materialMapper.findByMaterialId(materialId);
     }
 }

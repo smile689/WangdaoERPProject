@@ -20,7 +20,7 @@ public interface MaterialService {
 
     int updateMaterialService(Material material);
 
-    int deleteMaterialService(String materialId);
+    int deleteMaterialService(String[] materialId);
 
     int updateMaterialServiceSelective(String materialId, String note);
 
@@ -31,4 +31,5 @@ public interface MaterialService {
 
     List<Material> getMaterial();
 
+    Material selectByMaterialId(String materialId);
 }
