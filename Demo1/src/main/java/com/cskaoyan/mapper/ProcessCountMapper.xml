@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.ProcessCountMapper">
+
+
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.ProcessCount">
     <id column="p_count_check_id" jdbcType="VARCHAR" property="pCountCheckId" />
     <result column="process_id" jdbcType="VARCHAR" property="processId" />
@@ -15,9 +17,21 @@
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+
+  <!--查询所有的结果映射-->
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.Vo.ProcessCountVo" extends="BaseResultMap">
+    <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
+  </resultMap>
+
+
   <sql id="Base_Column_List">
     p_count_check_id, process_id, check_item, sample, check_number, unqualify, qualify, 
     cdate, measure_data, emp_id, result, note
+  </sql>
+
+  <sql id="Base_Column_List_selectAll">
+    p_count_check_id, process_id, check_item, sample, check_number, unqualify, qualify,
+    cdate, measure_data, employee.emp_id, result, note,emp_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -174,4 +188,33 @@
       note = #{note,jdbcType=VARCHAR}
     where p_count_check_id = #{pCountCheckId,jdbcType=VARCHAR}
   </update>
+
+  <!--选择出所有的-->
+  <select id="selectAll" resultMap="selectAllResultMap">
+    select
+    <include refid="Base_Column_List_selectAll"/>
+    from process_count_check ,employee
+    where process_count_check.emp_id=employee.emp_id
+  </select>
+
+
+  <!--多选删除-->
+  <delete id="deleteByIds">
+    DELETE  FROM
+    process_count_check
+    <where>
+      p_count_check_id  IN
+      <foreach collection = "array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+
+  <!--&lt;!&ndash;根据订单编号查询产品计数&ndash;&gt;-->
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from process_count_check
+    where p_count_check_id = #{orderid,jdbcType=VARCHAR}
+  </select>
 </mapper>

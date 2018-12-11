@@ -1,57 +1,39 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.bean.Device;
-import com.cskaoyan.service.DeviceService;
-import com.cskaoyan.utils.JsonChangeRet;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-import java.util.Map;
 
 @Controller
-@RequestMapping("/deviceList")
+@RequestMapping("/device")
 public class DeviceController {
 
-    @Autowired
-    DeviceService deviceService;
-
-    //找到所有device的id和name
-    @ResponseBody
-    @RequestMapping("/get_data")
-    public List<Device> findAll(){
-        return deviceService.findAll();
+    //对应 侧边栏的设备台账 device/deviceList
+    @RequestMapping("/deviceList")
+    public String deviceList() throws Exception{
+        return "deviceList";
     }
 
-    //根据id找到对应device
-    @ResponseBody
-    @RequestMapping("/get/{deviceId}")
-    public Device getDeviceById(@PathVariable String deviceId){
-        return deviceService.findDeviceById(deviceId);
+    //对应 侧边栏的设备种类 device/deviceType
+    @RequestMapping("/deviceType")
+    public String deviceType() throws Exception{
+        return "deviceType";
     }
 
-    //修改权限的判断
-    @ResponseBody
-    @RequestMapping("/edit_judge")
-    public Map deviceJudge(){
-        return null;
+    //对应 侧边栏的设备例检 device/deviceCheck
+    @RequestMapping("/deviceCheck")
+    public String deviceCheck() throws Exception{
+        return "deviceCheck";
     }
 
-    //修改
-    @ResponseBody
-    @RequestMapping("/update")
-    public JsonChangeRet updateProcess(Device device){
-        JsonChangeRet jsonChangeRet=new JsonChangeRet();
-        if(deviceService.updateDevice(device)){
-            jsonChangeRet.setStatus(200);
-            jsonChangeRet.setMsg("OK");
-        }else{
-            jsonChangeRet.setMsg("添加失败，重新添加");
-        }
-        return jsonChangeRet;
+    //对应 侧边栏的设备故障 device/deviceFault
+    @RequestMapping("/deviceFault")
+    public String deviceFault() throws Exception{
+        return "deviceFault";
+    }
 
+    //对应 侧边栏的设备维修 device/deviceMaintain
+    @RequestMapping("/deviceMaintain")
+    public String deviceMaintain() throws Exception{
+        return "deviceMaintain";
     }
 }

@@ -1,8 +1,11 @@
 package com.cskaoyan.bean;
 
+import org.springframework.stereotype.Repository;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Repository
 public class DeviceMaintain {
     private String deviceMaintainId;
 

@@ -5,6 +5,14 @@
     <id column="department_id" jdbcType="VARCHAR" property="departmentId" />
     <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <collection column="department_id" javaType="list" property="employeeList"
+                select="com.cskaoyan.mapper.EmployeeMapper.selectByDepartmentForOneToMany">
+    </collection>
+  </resultMap>
+  <resultMap id="BaseResultMapForOneToMany" type="com.cskaoyan.bean.Department">
+    <id column="department_id" jdbcType="VARCHAR" property="departmentId" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
     department_id, department_name, note
@@ -95,4 +103,10 @@
   <select id="selectByNames" parameterType="string" resultMap="BaseResultMap">
         select * from department where department_name like concat('%', #{departmentName,jdbcType=VARCHAR}, '%')
    </select>
+  <select id="selectByPrimaryKeyForOneToMany" parameterType="java.lang.String" resultMap="BaseResultMapForOneToMany">
+    select
+    <include refid="Base_Column_List" />
+    from department
+    where department_id = #{departmentId,jdbcType=VARCHAR}
+  </select>
 </mapper>

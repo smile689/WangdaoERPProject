@@ -1,7 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Material;
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 
 import java.util.List;
 
@@ -20,7 +20,16 @@ public interface MaterialService {
 
     int updateMaterialService(Material material);
 
-    int deleteMaterialService(String materialId);
+    int deleteMaterialService(String[] materialId);
 
     int updateMaterialServiceSelective(String materialId, String note);
+
+    PageShowResult searcMaterial(String searchValue, Integer page, Integer rows);
+
+    PageShowResult searcMaterialtype(String searchValue, Integer page, Integer rows);
+
+
+    List<Material> getMaterial();
+
+    Material selectByMaterialId(String materialId);
 }

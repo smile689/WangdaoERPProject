@@ -35,4 +35,6 @@ public interface EmployeeMapper {
     int selectCountByEmployeeOV(EmployeeOV employeeOV);
 
     List<Employee> selectByEmployeeOV(EmployeeOV employeeOV);
+
+    List<Employee> selectByDepartmentForOneToMany(String departmentId);
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.DeviceTypeMapper">
+  <!--sql和bean的对照 以及查询结果放入的对象-->
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.DeviceType">
     <id column="device_type_id" jdbcType="VARCHAR" property="deviceTypeId" />
     <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName" />
@@ -11,14 +12,170 @@
     <result column="device_type_quantity" jdbcType="INTEGER" property="deviceTypeQuantity" />
     <result column="device_type_warranty" jdbcType="TIMESTAMP" property="deviceTypeWarranty" />
   </resultMap>
+  <!--sql片段1-->
   <sql id="Base_Column_List">
     device_type_id, device_type_name, device_type_model, device_type_spec, device_type_supplier, 
     device_type_producer, device_type_quantity, device_type_warranty
-  </sql>
-  <select id="selectAll" resultMap="BaseResultMap">
+</sql>
+
+  <!--查找全部-->
+  <select id="selectAll" parameterType="deviceType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    device_type
+    order by device_type_id ASC
+  </select>
+
+  <!--新增一例-->
+  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceType">
+    insert into device_type
+    (<include refid="Base_Column_List" />)
+    values (#{deviceTypeId,jdbcType=VARCHAR}, #{deviceTypeName,jdbcType=VARCHAR}, #{deviceTypeModel,jdbcType=VARCHAR},
+    #{deviceTypeSpec,jdbcType=VARCHAR}, #{deviceTypeSupplier,jdbcType=VARCHAR}, #{deviceTypeProducer,jdbcType=VARCHAR},
+    #{deviceTypeQuantity,jdbcType=INTEGER}, #{deviceTypeWarranty,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <!--通过id查-->
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from device_type
+    where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
   </select>
+  <!--编辑-->
+  <update id="update" parameterType="com.cskaoyan.bean.DeviceType">
+    update device_type
+    set device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
+    device_type_model = #{deviceTypeModel,jdbcType=VARCHAR},
+    device_type_spec = #{deviceTypeSpec,jdbcType=VARCHAR},
+    device_type_supplier = #{deviceTypeSupplier,jdbcType=VARCHAR},
+    device_type_producer = #{deviceTypeProducer,jdbcType=VARCHAR},
+    device_type_quantity = #{deviceTypeQuantity,jdbcType=INTEGER},
+    device_type_warranty = #{deviceTypeWarranty,jdbcType=TIMESTAMP}
+    where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
+  </update>
+  <!--批量删除(也可以单删)-->
+  <delete id="deleteBatch">
+    DELETE
+    FROM
+    device_type
+    <where>
+      device_id IN
+      <foreach collection="array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+  <!--根据设备种类编号查找设备信息-->
+  <select id="searchDeviceByDeviceTypeID" parameterType="deviceType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    device_type
+    WHERE
+    device_type_id LIKE CONCAT('%',#{deviceTypeId},'%' )
+    order by device_type_id ASC
+  </select>
+  <!--根据设备种类名称查找设备信息-->
+  <select id="searchDeviceByDeviceTypeName" parameterType="deviceType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    device_type
+    WHERE
+    device_type_name LIKE CONCAT('%',#{deviceTypeName},'%' )
+    order by device_type_id ASC
+  </select>
+
+
+  <!--逆向工程生成的没有用到的方法-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from device_type
+    where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.cskaoyan.bean.DeviceType">
+    insert into device_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceTypeId != null">
+        device_type_id,
+      </if>
+      <if test="deviceTypeName != null">
+        device_type_name,
+      </if>
+      <if test="deviceTypeModel != null">
+        device_type_model,
+      </if>
+      <if test="deviceTypeSpec != null">
+        device_type_spec,
+      </if>
+      <if test="deviceTypeSupplier != null">
+        device_type_supplier,
+      </if>
+      <if test="deviceTypeProducer != null">
+        device_type_producer,
+      </if>
+      <if test="deviceTypeQuantity != null">
+        device_type_quantity,
+      </if>
+      <if test="deviceTypeWarranty != null">
+        device_type_warranty,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceTypeId != null">
+        #{deviceTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeName != null">
+        #{deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeModel != null">
+        #{deviceTypeModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeSpec != null">
+        #{deviceTypeSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeSupplier != null">
+        #{deviceTypeSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeProducer != null">
+        #{deviceTypeProducer,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeQuantity != null">
+        #{deviceTypeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="deviceTypeWarranty != null">
+        #{deviceTypeWarranty,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.DeviceType">
+    update device_type
+    <set>
+      <if test="deviceTypeName != null">
+        device_type_name = #{deviceTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeModel != null">
+        device_type_model = #{deviceTypeModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeSpec != null">
+        device_type_spec = #{deviceTypeSpec,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeSupplier != null">
+        device_type_supplier = #{deviceTypeSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeProducer != null">
+        device_type_producer = #{deviceTypeProducer,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeQuantity != null">
+        device_type_quantity = #{deviceTypeQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="deviceTypeWarranty != null">
+        device_type_warranty = #{deviceTypeWarranty,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where device_type_id = #{deviceTypeId,jdbcType=VARCHAR}
+  </update>
 
 </mapper>

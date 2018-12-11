@@ -11,20 +11,38 @@
     <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+
+  <!--查询所有的结果映射-->
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.Vo.UnqualifyApplyVo" extends="BaseResultMap">
+    <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
+    <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+  </resultMap>
+
   <sql id="Base_Column_List">
     unqualify_apply_id, product_id, unqualify_item, unqualify_count, assembly_date, emp_id, 
     apply_date, note
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+  <sql id="Base_Column_List_selectAll">
+    unqualify_apply_id, unqualify_apply.product_id, unqualify_item, unqualify_count, assembly_date, employee.emp_id,
+    apply_date, unqualify_apply.note,emp_name,product_name
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="selectAllResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from unqualify_apply
-    where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
+    <include refid="Base_Column_List_selectAll" />
+    from unqualify_apply,employee,product
+    where unqualify_apply.unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
+    and  unqualify_apply.emp_id = employee.emp_id
+    and  unqualify_apply.product_id = product.product_id;
   </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from unqualify_apply
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </delete>
+
   <insert id="insert" parameterType="com.cskaoyan.bean.UnqualityApply">
     insert into unqualify_apply (unqualify_apply_id, product_id, unqualify_item, 
       unqualify_count, assembly_date, emp_id, 
@@ -126,4 +144,44 @@
       note = #{note,jdbcType=VARCHAR}
     where unqualify_apply_id = #{unqualifyApplyId,jdbcType=VARCHAR}
   </update>
+
+
+  <!--选择出所有的-->
+  <select id="selectAll" resultMap="selectAllResultMap">
+    select
+    <include refid="Base_Column_List_selectAll"/>
+    from unqualify_apply,employee,product
+    where unqualify_apply.emp_id=employee.emp_id
+    and  unqualify_apply.product_id = product.product_id
+  </select>
+
+
+  <!--多选删除-->
+  <delete id="deleteByIds">
+    DELETE  FROM
+    unqualify_apply
+    <where>
+      unqualify_apply_id  IN
+      <foreach collection = "array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+
+  <!--根据订单编号查询产品计数-->
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from unqualify_apply
+    where unqualify_apply_id = #{orderid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByProductName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_selectAll" />
+    from unqualify_apply,employee,product
+    where unqualify_apply.emp_id = employee.emp_id
+    and  unqualify_apply.product_id=
+    (select product_id from product where product_name = #{productname,jdbcType=VARCHAR})
+  </select>
 </mapper>
