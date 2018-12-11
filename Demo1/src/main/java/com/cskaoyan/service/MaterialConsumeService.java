@@ -1,6 +1,6 @@
 package com.cskaoyan.service;
 
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 
 /**
  * @Description: java类作用描述

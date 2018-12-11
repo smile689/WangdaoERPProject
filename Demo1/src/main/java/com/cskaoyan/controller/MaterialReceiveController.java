@@ -2,7 +2,7 @@ package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Material;
 import com.cskaoyan.bean.MaterialReceive;
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 import com.cskaoyan.service.MaterialReceiveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

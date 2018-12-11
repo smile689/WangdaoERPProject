@@ -29,6 +29,13 @@
         </environment>
     </environments>-->
     <!--会自动的把该包下面的所有的接口对应的同名的mapper映射文件导入-->
+    <plugins>
+        <!-- com.github.pagehelper为PageHelper类所在包名 -->
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
     <mappers>
         <package name="com.cskaoyan.mapper"/>
     </mappers>

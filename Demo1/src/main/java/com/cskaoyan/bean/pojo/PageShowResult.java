@@ -1,4 +1,4 @@
-package com.cskaoyan.pojo;
+package com.cskaoyan.bean.pojo;
 
 import java.util.List;
 

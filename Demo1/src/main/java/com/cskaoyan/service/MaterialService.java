@@ -1,7 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Material;
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 import com.cskaoyan.service.MaterialConsumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
