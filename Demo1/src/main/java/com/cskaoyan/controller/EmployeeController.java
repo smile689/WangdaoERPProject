@@ -256,7 +256,7 @@ public class EmployeeController {
      */
     @RequestMapping("get/{empId}")
     @ResponseBody
-    public Employee findOneDepartmentById(@PathVariable("empId") String empId) {
+    public Employee findOneEmployeeById(@PathVariable("empId") String empId) {
         EUDataGridResult euDataGridResult = employeeService.findOneEmployeeById("1", String.valueOf(Integer.MAX_VALUE), empId);
         return (Employee) euDataGridResult.getRows().get(0);
     }
