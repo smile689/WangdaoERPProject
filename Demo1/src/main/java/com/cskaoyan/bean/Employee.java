@@ -29,7 +29,7 @@ public class Employee {
     @Pattern(regexp = "((学士)|(硕士)|(博士))?", message = "学位请输入‘学士’、‘硕士’、‘博士’或留空！")
     private String degree;
 
-    @Pattern(regexp = "[\\u4e00-\\u9fa5]*",message = "专业请使用中文或留空！")
+    @Pattern(regexp = "([A-Za-z]*)|([\\u4e00-\\u9fa5]*)",message = "专业请使用中文、大小写字母或留空！")
     private String major;
 
     @Pattern(regexp = "([A-Za-z]*)|([\\u4e00-\\u9fa5]*)",message = "毕业学校请使用中文、大小写字母或留空！")
@@ -40,16 +40,13 @@ public class Employee {
 
     private Department department;
 
-
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
     public Department getDepartment() {
         return department;
     }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
     public String getEmpId() {
         return empId;

@@ -109,4 +109,13 @@
     from department
     where department_id = #{departmentId,jdbcType=VARCHAR}
   </select>
+  <delete id="deleteByPrimaryKeys" parameterType="list">
+    delete from department
+    <where>
+      department_id in
+      <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")" >
+        #{departmentId,jdbcType=VARCHAR}
+      </foreach>
+    </where>
+  </delete>
 </mapper>

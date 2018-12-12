@@ -228,30 +228,37 @@
   <select id="selectByNames" parameterType="string" resultMap="BaseResultMap">
         select * from employee where emp_name like concat('%', #{empName,jdbcType=VARCHAR}, '%')
    </select>
-  <select id="selectCountByEmployeeOV" resultType="int">
+  <select id="selectCountByDepartments" parameterType="list" resultType="int">
       select count(*) from employee
     <where>
       department_id in
       <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")" >
-        #{departmentId}
+        #{departmentId,jdbcType=VARCHAR}
       </foreach>
     </where>
   </select>
-  <select id="selectByEmployeeOV" parameterType="com.cskaoyan.utils.EmployeeOV" resultMap="BaseResultMap">
+  <select id="selectByDepartments" parameterType="list" resultMap="BaseResultMap">
         select * from employee
     <where>
       department_id in
       <foreach collection="departmentIds" item="departmentId" separator="," open="(" close=")" >
-        #{departmentId}
+        #{departmentId,jdbcType=VARCHAR}
       </foreach>
     </where>
    </select>
-
   <select id="selectByDepartmentForOneToMany" parameterType="string" resultMap="BaseResultMapForOneToMany">
     select * from employee
     <where>
-      department_id = #{departmentId}
+      department_id = #{departmentId,jdbcType=VARCHAR}
     </where>
   </select>
-
+  <delete id="deleteByPrimaryKeys" parameterType="list">
+    delete from employee
+    <where>
+      emp_id in
+      <foreach collection="empIds" item="empId" separator="," open="(" close=")" >
+        #{empId,jdbcType=VARCHAR}
+      </foreach>
+    </where>
+  </delete>
 </mapper>

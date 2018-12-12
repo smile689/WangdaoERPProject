@@ -4,6 +4,7 @@ import com.cskaoyan.bean.Technology;
 import com.cskaoyan.controller.JsonResult.EUDataGridResult;
 import com.cskaoyan.controller.JsonResult.Result;
 import com.cskaoyan.service.TechnologyService;
+import com.cskaoyan.utils.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,13 +77,12 @@ public Result add_judge(){
 }
 @RequestMapping(value = "/insert",method= RequestMethod.POST)
     @ResponseBody
-    public Result insert(@Valid Technology technology, BindingResult bindingResult, Model model){
-    Result result ;
-    //验证
-    if (bindingResult.hasErrors()){
-        FieldError fieldError = bindingResult.getFieldError();
-        String defaultMessage = fieldError.getDefaultMessage();
-        model.addAttribute("error",defaultMessage);
+    public Result insert(@Valid Technology technology, BindingResult bindingResult){
+    Result result = new Result();
+    String errorMsg = ValidateUtil.handleError(bindingResult);
+    if (errorMsg!=null&&!(errorMsg.trim().isEmpty())) {
+        result.setMsg(errorMsg);
+        return result;
     }
     //校验
     if (technologyService.get(technology.getTechnologyId())!=null){
