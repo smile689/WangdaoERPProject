@@ -1,7 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.FinalCount;
-import com.cskaoyan.bean.Vo.FinalCountVo;
+import com.cskaoyan.bean.vo.FinalCountVo;
 
 import java.util.List;
 

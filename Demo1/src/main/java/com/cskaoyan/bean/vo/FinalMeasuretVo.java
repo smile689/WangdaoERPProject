@@ -1,4 +1,4 @@
-package com.cskaoyan.bean.Vo;
+package com.cskaoyan.bean.vo;
 
 import com.cskaoyan.bean.FinalMeasuret;
 

@@ -1,7 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.UnqualifyApplyVo;
+import com.cskaoyan.bean.vo.UnqualifyApplyVo;
 
 public interface UnqualifyApplyService {
     int deleteByPrimaryKey(String Id);

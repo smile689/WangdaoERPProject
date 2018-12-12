@@ -2,7 +2,7 @@ package com.cskaoyan.service.impl;
 
 import com.cskaoyan.utils.EUDataGridResult;
 import com.cskaoyan.bean.FinalCount;
-import com.cskaoyan.bean.Vo.FinalCountVo;
+import com.cskaoyan.bean.vo.FinalCountVo;
 import com.cskaoyan.mapper.FinalCountMapper;
 import com.cskaoyan.service.FinalCountCheckService;
 import com.github.pagehelper.PageHelper;

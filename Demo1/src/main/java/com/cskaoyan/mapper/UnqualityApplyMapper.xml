@@ -13,7 +13,7 @@
   </resultMap>
 
   <!--查询所有的结果映射-->
-  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.Vo.UnqualifyApplyVo" extends="BaseResultMap">
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.vo.UnqualifyApplyVo" extends="BaseResultMap">
     <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
     <result column="product_name" jdbcType="VARCHAR" property="productName"/>
   </resultMap>

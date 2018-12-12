@@ -1,7 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.FinalMeasuretVo;
+import com.cskaoyan.bean.vo.FinalMeasuretVo;
 import com.cskaoyan.bean.FinalMeasuret;
 
 import java.util.List;

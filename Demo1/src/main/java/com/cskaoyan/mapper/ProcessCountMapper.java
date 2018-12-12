@@ -1,9 +1,7 @@
 package com.cskaoyan.mapper;
 
-import com.cskaoyan.bean.FinalMeasuret;
 import com.cskaoyan.bean.ProcessCount;
-import com.cskaoyan.bean.ProcessMeasure;
-import com.cskaoyan.bean.Vo.ProcessCountVo;
+import com.cskaoyan.bean.vo.ProcessCountVo;
 
 import java.util.List;
 

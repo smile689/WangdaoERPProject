@@ -1,6 +1,6 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.bean.Vo.FinalCountVo;
+import com.cskaoyan.bean.vo.FinalCountVo;
 import com.cskaoyan.bean.FinalCount;
 import com.cskaoyan.service.FinalCountCheckService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,7 +19,7 @@
   </resultMap>
 
   <!--查询所有的结果映射-->
-  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.Vo.ProcessCountVo" extends="BaseResultMap">
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.vo.ProcessCountVo" extends="BaseResultMap">
     <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
   </resultMap>
 

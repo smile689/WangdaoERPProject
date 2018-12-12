@@ -1,7 +1,7 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.FinalMeasuretVo;
+import com.cskaoyan.bean.vo.FinalMeasuretVo;
 import com.cskaoyan.bean.FinalMeasuret;
 import com.cskaoyan.service.FinalMeasuretService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package com.cskaoyan.mapper;
 
 
 import com.cskaoyan.bean.FinalMeasuret;
-import com.cskaoyan.bean.Vo.FinalMeasuretVo;
+import com.cskaoyan.bean.vo.FinalMeasuretVo;
 
 import java.util.List;
 

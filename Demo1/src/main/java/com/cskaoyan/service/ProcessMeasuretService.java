@@ -1,7 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.ProcessMeasuretVo;
+import com.cskaoyan.bean.vo.ProcessMeasuretVo;
 
 
 public interface ProcessMeasuretService {

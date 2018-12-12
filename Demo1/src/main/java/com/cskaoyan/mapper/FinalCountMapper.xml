@@ -18,7 +18,7 @@
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
 
-  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.Vo.FinalCountVo" extends="BaseResultMap">
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.vo.FinalCountVo" extends="BaseResultMap">
         <result column="emp_name" property="empName" jdbcType="VARCHAR"/>
   </resultMap>
 

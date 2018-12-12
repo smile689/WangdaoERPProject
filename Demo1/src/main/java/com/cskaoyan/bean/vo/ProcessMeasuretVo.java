@@ -1,14 +1,15 @@
-package com.cskaoyan.bean.Vo;
+package com.cskaoyan.bean.vo;
 
-import com.cskaoyan.bean.ProcessCount;
+import com.cskaoyan.bean.ProcessMeasure;
 
-public class ProcessCountVo extends ProcessCount {
+public class ProcessMeasuretVo  extends ProcessMeasure{
+
     private String empName;
 
-    public ProcessCountVo() {
+    public ProcessMeasuretVo() {
     }
 
-    public ProcessCountVo(String empName) {
+    public ProcessMeasuretVo(String empName) {
         this.empName = empName;
     }
 
@@ -22,7 +23,7 @@ public class ProcessCountVo extends ProcessCount {
 
     @Override
     public String toString() {
-        return "ProcessCountVo{" +
+        return "ProcessMeasuretVo{" +
                 "empName='" + empName + '\'' +
                 '}';
     }

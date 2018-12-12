@@ -1,7 +1,6 @@
 package com.cskaoyan.mapper;
 
-import com.cskaoyan.bean.Vo.UnqualifyApplyVo;
-import com.cskaoyan.bean.ProcessMeasure;
+import com.cskaoyan.bean.vo.UnqualifyApplyVo;
 import com.cskaoyan.bean.UnqualityApply;
 
 import java.util.List;

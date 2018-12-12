@@ -13,7 +13,7 @@
   </resultMap>
 
   <!--查询所有的结果映射-->
-  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.Vo.ProcessMeasuretVo" extends="BaseResultMap">
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.vo.ProcessMeasuretVo" extends="BaseResultMap">
     <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
   </resultMap>
 

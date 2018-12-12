@@ -1,7 +1,7 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.ProcessCountVo;
+import com.cskaoyan.bean.vo.ProcessCountVo;
 import com.cskaoyan.service.ProcessCountCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

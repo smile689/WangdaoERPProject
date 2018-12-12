@@ -1,7 +1,7 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.utils.EUDataGridResult;
-import com.cskaoyan.bean.Vo.UnqualifyApplyVo;
+import com.cskaoyan.bean.vo.UnqualifyApplyVo;
 import com.cskaoyan.bean.UnqualityApply;
 import com.cskaoyan.mapper.UnqualityApplyMapper;
 import com.cskaoyan.service.UnqualifyApplyService;
