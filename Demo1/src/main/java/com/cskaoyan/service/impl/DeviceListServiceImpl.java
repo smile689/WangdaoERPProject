@@ -1,9 +1,10 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.mapper.DeviceMapper;
 import com.cskaoyan.service.DeviceListService;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,14 @@ public class DeviceListServiceImpl implements DeviceListService {
 
     //获得清单
     @Override
-    public EUDataGridResult getList(int page, int rows) {
+    public JsonFindRet getList(int page, int rows) {
         Device device = new Device();
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<Device> list = mapper.selectAll(device);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -117,13 +118,13 @@ public class DeviceListServiceImpl implements DeviceListService {
 
     //三例查询
     @Override
-    public EUDataGridResult searchDeviceByDeviceId(int page, int rows, String deviceId) {
+    public JsonFindRet searchDeviceByDeviceId(int page, int rows, String deviceId) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<Device> list = mapper.searchDeviceByDeviceId(deviceId);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -133,13 +134,13 @@ public class DeviceListServiceImpl implements DeviceListService {
     }
 
     @Override
-    public EUDataGridResult searchDeviceByDeviceName(int page, int rows, String deviceName) {
+    public JsonFindRet searchDeviceByDeviceName(int page, int rows, String deviceName) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<Device> list = mapper.searchDeviceByDeviceName(deviceName);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -149,13 +150,13 @@ public class DeviceListServiceImpl implements DeviceListService {
     }
 
     @Override
-    public EUDataGridResult searchDeviceByDeviceTypeName(int page, int rows, String deviceTypeName) {
+    public JsonFindRet searchDeviceByDeviceTypeName(int page, int rows, String deviceTypeName) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<Device> list = mapper.searchDeviceByDeviceTypeName(deviceTypeName);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result

@@ -26,7 +26,7 @@
   <sql id="Base_Column_List3">
     device_check_id,
     device_check.device_id,
-    emp_id as device_check_emp_id,
+    device_check_emp_id,
     device_check_date,
     device_check_result,
     device_check_fault_id,

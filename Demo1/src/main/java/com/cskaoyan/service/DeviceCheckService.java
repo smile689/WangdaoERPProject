@@ -1,14 +1,14 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 
 import java.util.HashMap;
 import java.util.List;
 
 public interface DeviceCheckService {
     //查找全部
-    EUDataGridResult getList(int page, int rows);
+    JsonFindRet getList(int page, int rows);
     //查找全部不分页(get_data)
     List<DeviceCheck> findAll();
     //增加
@@ -22,9 +22,9 @@ public interface DeviceCheckService {
 
     //搜索三例
     //根据设备例检编号查找设备例检信息
-    EUDataGridResult searchDeviceCheckByDeviceCheckId(int page, int rows, String deviceCheckId);
+    JsonFindRet searchDeviceCheckByDeviceCheckId(int page, int rows, String deviceCheckId);
     //根据设备名称查找设备例检信息
-    EUDataGridResult searchDeviceCheckByDeviceName(int page, int rows, String deviceName);
+    JsonFindRet searchDeviceCheckByDeviceName(int page, int rows, String deviceName);
 
     //编辑备注
     public HashMap updateNote(DeviceCheck deviceCheck);

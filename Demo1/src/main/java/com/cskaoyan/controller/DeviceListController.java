@@ -1,7 +1,7 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.service.DeviceListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +34,8 @@ public class DeviceListController {
     //对应 deviceList/list 查看清单
     @RequestMapping("/list")
     @ResponseBody
-    public EUDataGridResult getList(Integer page, Integer rows) {
-        EUDataGridResult result = service.getList(page,rows);
+    public JsonFindRet getList(Integer page, Integer rows) {
+        JsonFindRet result = service.getList(page,rows);
         return result;
     }
 
@@ -107,22 +107,22 @@ public class DeviceListController {
     //三例搜索(和显示list很类似)
     @RequestMapping("/search_device_by_deviceId")
     @ResponseBody
-    public EUDataGridResult searchDeviceByDeviceId(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceByDeviceId(page,rows,searchValue);
+    public JsonFindRet searchDeviceByDeviceId(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceByDeviceId(page,rows,searchValue);
         return result;
     }
 
     @RequestMapping("/search_device_by_deviceName")
     @ResponseBody
-    public EUDataGridResult searchDeviceByDeviceName(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceByDeviceName(page,rows,searchValue);
+    public JsonFindRet searchDeviceByDeviceName(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceByDeviceName(page,rows,searchValue);
         return result;
     }
 
     @RequestMapping("/search_device_by_deviceTypeName")
     @ResponseBody
-    public EUDataGridResult searchDeviceByDeviceTypeName(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceByDeviceTypeName(page,rows,searchValue);
+    public JsonFindRet searchDeviceByDeviceTypeName(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceByDeviceTypeName(page,rows,searchValue);
         return result;
     }
 

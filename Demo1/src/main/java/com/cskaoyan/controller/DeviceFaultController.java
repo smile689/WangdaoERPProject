@@ -2,7 +2,7 @@ package com.cskaoyan.controller;
 
 
 import com.cskaoyan.bean.DeviceFault;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.service.DeviceFaultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,8 +35,8 @@ public class DeviceFaultController {
     //对应 deviceFault/list 查看清单
     @RequestMapping("/list")
     @ResponseBody
-    public EUDataGridResult getList(Integer page, Integer rows) {
-        EUDataGridResult result = service.getList(page,rows);
+    public JsonFindRet getList(Integer page, Integer rows) {
+        JsonFindRet result = service.getList(page,rows);
         return result;
     }
 
@@ -108,15 +108,15 @@ public class DeviceFaultController {
     //二例搜索(和显示list很类似)
     @RequestMapping("/search_deviceFault_by_deviceFaultId")
     @ResponseBody
-    public EUDataGridResult searchDeviceFaultByDeviceFaultId(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceFaultByDeviceFaultId(page,rows,searchValue);
+    public JsonFindRet searchDeviceFaultByDeviceFaultId(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceFaultByDeviceFaultId(page,rows,searchValue);
         return result;
     }
 
     @RequestMapping("/search_deviceFault_by_deviceName")
     @ResponseBody
-    public EUDataGridResult searchDeviceFaultByDeviceName(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceFaultByDeviceName(page,rows,searchValue);
+    public JsonFindRet searchDeviceFaultByDeviceName(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceFaultByDeviceName(page,rows,searchValue);
         return result;
     }
 

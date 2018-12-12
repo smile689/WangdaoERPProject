@@ -1,7 +1,7 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.Device;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public interface DeviceListService {
 
     //查找全部
-    EUDataGridResult getList(int page, int rows);
+    JsonFindRet getList(int page, int rows);
     //查找全部不分页(get_data)
     List<Device> findAll();
     //增加
@@ -24,11 +24,11 @@ public interface DeviceListService {
 
     //搜索三例
     //根据设备id查找设备信息
-    EUDataGridResult searchDeviceByDeviceId(int page, int rows, String deviceId);
+    JsonFindRet searchDeviceByDeviceId(int page, int rows, String deviceId);
     //根据设备名称查找设备信息
-    EUDataGridResult searchDeviceByDeviceName(int page, int rows, String deviceName);
+    JsonFindRet searchDeviceByDeviceName(int page, int rows, String deviceName);
     //根据设备种类名称查找设备信息
-    EUDataGridResult searchDeviceByDeviceTypeName(int page, int rows, String deviceTypeName);
+    JsonFindRet searchDeviceByDeviceTypeName(int page, int rows, String deviceTypeName);
 
     //编辑备注
     public HashMap updateNote(Device device);

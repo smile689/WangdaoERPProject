@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,6 +50,17 @@ public class EmployeeController {
     public EUDataGridResult findAllEmployees(String page, String rows) {
         EUDataGridResult euDataGridResult = employeeService.findAllEmployees(page, rows);
         return euDataGridResult;
+    }
+    /**
+     * 查找：查找一条信息，使用 restful 风格的 url
+     * @param empId
+     * @return
+     */
+    @RequestMapping("get/{empId}")
+    @ResponseBody
+    public Employee findOneDepartmentById(@PathVariable("empId") String empId) {
+        EUDataGridResult euDataGridResult = employeeService.findOneEmployeeById("1", String.valueOf(Integer.MAX_VALUE), empId);
+        return (Employee) euDataGridResult.getRows().get(0);
     }
 
     /**

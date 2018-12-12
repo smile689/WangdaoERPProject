@@ -1,9 +1,10 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
 import com.cskaoyan.mapper.DeviceCheckMapper;
 import com.cskaoyan.service.DeviceCheckService;
+import com.cskaoyan.utils.JsonChangeRet;
+import com.cskaoyan.utils.JsonFindRet;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
     @Autowired
     DeviceCheckMapper mapper;
 
+
     HashMap<String,String> result =new HashMap<>();
     public HashMap<String, String> getResult() {
         return result;
@@ -29,14 +31,14 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 
     //获得清单
     @Override
-    public EUDataGridResult getList(int page, int rows) {
+    public JsonFindRet getList(int page, int rows) {
         DeviceCheck deviceCheck = new DeviceCheck();
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceCheck> list = mapper.selectAll(deviceCheck);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -114,13 +116,13 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
 
     //二例查询
     @Override
-    public EUDataGridResult searchDeviceCheckByDeviceCheckId(int page, int rows, String deviceCheckId) {
+    public JsonFindRet searchDeviceCheckByDeviceCheckId(int page, int rows, String deviceCheckId) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceCheck> list = mapper.searchDeviceCheckByDeviceCheckId(deviceCheckId);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -130,13 +132,13 @@ public class DeviceCheckServiceImpl implements DeviceCheckService {
     }
 
     @Override
-    public EUDataGridResult searchDeviceCheckByDeviceName(int page, int rows, String deviceName) {
+    public JsonFindRet searchDeviceCheckByDeviceName(int page, int rows, String deviceName) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceCheck> list = mapper.searchDeviceCheckByDeviceName(deviceName);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result

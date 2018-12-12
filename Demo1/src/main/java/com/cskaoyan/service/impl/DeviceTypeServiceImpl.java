@@ -1,7 +1,7 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.DeviceType;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.mapper.DeviceTypeMapper;
 import com.cskaoyan.service.DeviceTypeService;
 import com.github.pagehelper.PageHelper;
@@ -28,7 +28,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
 
     //获得清单
     @Override
-    public EUDataGridResult getList(int page, int rows) {
+    public JsonFindRet getList(int page, int rows) {
         DeviceType deviceType = new DeviceType();
         //分页处理
         PageHelper.startPage(page, rows);
@@ -36,7 +36,7 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
         List<DeviceType> list = mapper.selectAll(deviceType);
         System.out.println("DeviceType getList = " +list);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -113,13 +113,13 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
     //二例查询
     //根据设备种类编号查找
     @Override
-    public EUDataGridResult searchDeviceByDeviceTypeID(int page, int rows, String deviceTypeId) {
+    public JsonFindRet searchDeviceByDeviceTypeID(int page, int rows, String deviceTypeId) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceType> list = mapper.searchDeviceByDeviceTypeID(deviceTypeId);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -130,13 +130,13 @@ public class DeviceTypeServiceImpl implements DeviceTypeService {
 
     //根据设备种类名称查找
     @Override
-    public EUDataGridResult searchDeviceByDeviceTypeName(int page, int rows, String deviceTypeName) {
+    public JsonFindRet searchDeviceByDeviceTypeName(int page, int rows, String deviceTypeName) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceType> list = mapper.searchDeviceByDeviceTypeName(deviceTypeName);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result

@@ -2,7 +2,7 @@ package com.cskaoyan.controller;
 
 
 import com.cskaoyan.bean.DeviceMaintain;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.service.DeviceMaintainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,21 +35,21 @@ public class DeviceMaintainController {
     //对应 deviceMaintain/list 查看清单
     @RequestMapping("/list")
     @ResponseBody
-    public EUDataGridResult getList(Integer page, Integer rows) {
-        EUDataGridResult result = service.getList(page,rows);
+    public JsonFindRet getList(Integer page, Integer rows) {
+        JsonFindRet result = service.getList(page,rows);
         return result;
     }
 
     //找到所有deviceMaintain的id和name
-    @ResponseBody
     @RequestMapping("/get_data")
+    @ResponseBody
     public List<DeviceMaintain> findAll(){
         return service.findAll();
     }
 
     //根据id找到对应deviceMaintain(有地方好像需要这个方法)
-    @ResponseBody
     @RequestMapping("/get/{deviceMaintainId}")
+    @ResponseBody
     public DeviceMaintain getDeviceById(@PathVariable String deviceMaintainId) {
         return service.selectById(deviceMaintainId);
     }
@@ -108,15 +108,15 @@ public class DeviceMaintainController {
     //二例搜索(和显示list很类似)
     @RequestMapping("/search_deviceMaintain_by_deviceMaintainId")
     @ResponseBody
-    public EUDataGridResult searchDeviceMaintainByDeviceMaintainId(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceMaintainByDeviceMaintainId(page,rows,searchValue);
+    public JsonFindRet searchDeviceMaintainByDeviceMaintainId(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceMaintainByDeviceMaintainId(page,rows,searchValue);
         return result;
     }
 
     @RequestMapping("/search_deviceMaintain_by_deviceFaultId")
     @ResponseBody
-    public EUDataGridResult searchDeviceMaintainByDeviceName(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceMaintainByDeviceFaultId(page,rows,searchValue);
+    public JsonFindRet searchDeviceMaintainByDeviceName(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceMaintainByDeviceFaultId(page,rows,searchValue);
         return result;
     }
 

@@ -1,7 +1,7 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.DeviceCheck;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.service.DeviceCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,21 +34,21 @@ public class DeviceCheckController {
     //对应 deviceCheck/list 查看清单
     @RequestMapping("/list")
     @ResponseBody
-    public EUDataGridResult getList(Integer page, Integer rows) {
-        EUDataGridResult result = service.getList(page,rows);
+    public JsonFindRet getList(Integer page, Integer rows) {
+        JsonFindRet result = service.getList(page,rows);
         return result;
     }
 
     //找到所有device的id和name
-    @ResponseBody
     @RequestMapping("/get_data")
+    @ResponseBody
     public List<DeviceCheck> findAll(){
         return service.findAll();
     }
 
     //根据id找到对应deviceCheck(有地方好像需要这个方法)
-    @ResponseBody
     @RequestMapping("/get/{deviceCheckId}")
+    @ResponseBody
     public DeviceCheck getDeviceById(@PathVariable String deviceCheckId) {
         return service.selectById(deviceCheckId);
     }
@@ -107,15 +107,15 @@ public class DeviceCheckController {
     //二例搜索(和显示list很类似)
     @RequestMapping("/search_deviceCheck_by_deviceCheckId")
     @ResponseBody
-    public EUDataGridResult searchDeviceCheckByDeviceCheckId(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceCheckByDeviceCheckId(page,rows,searchValue);
+    public JsonFindRet searchDeviceCheckByDeviceCheckId(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceCheckByDeviceCheckId(page,rows,searchValue);
         return result;
     }
 
     @RequestMapping("/search_deviceCheck_by_deviceName")
     @ResponseBody
-    public EUDataGridResult searchDeviceCheckByDeviceName(String searchValue, Integer page, Integer rows) {
-        EUDataGridResult result = service.searchDeviceCheckByDeviceName(page,rows,searchValue);
+    public JsonFindRet searchDeviceCheckByDeviceName(String searchValue, Integer page, Integer rows) {
+        JsonFindRet result = service.searchDeviceCheckByDeviceName(page,rows,searchValue);
         return result;
     }
 

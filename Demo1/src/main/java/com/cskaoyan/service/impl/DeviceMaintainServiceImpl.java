@@ -1,7 +1,7 @@
 package com.cskaoyan.service.impl;
 
 import com.cskaoyan.bean.DeviceMaintain;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.mapper.DeviceMaintainMapper;
 import com.cskaoyan.service.DeviceMaintainService;
 import com.github.pagehelper.PageHelper;
@@ -29,14 +29,14 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
     //获得清单
     @Override
-    public EUDataGridResult getList(int page, int rows) {
+    public JsonFindRet getList(int page, int rows) {
         DeviceMaintain deviceMaintain = new DeviceMaintain();
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceMaintain> list = mapper.selectAll(deviceMaintain);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -114,13 +114,13 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
 
     //二例查询
     @Override
-    public EUDataGridResult searchDeviceMaintainByDeviceMaintainId(int page, int rows, String deviceMaintainId) {
+    public JsonFindRet searchDeviceMaintainByDeviceMaintainId(int page, int rows, String deviceMaintainId) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceMaintain> list = mapper.searchDeviceMaintainByDeviceMaintainId(deviceMaintainId);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result
@@ -130,13 +130,13 @@ public class DeviceMaintainServiceImpl implements DeviceMaintainService {
     }
 
     @Override
-    public EUDataGridResult searchDeviceMaintainByDeviceFaultId(int page, int rows, String deviceFaultId) {
+    public JsonFindRet searchDeviceMaintainByDeviceFaultId(int page, int rows, String deviceFaultId) {
         //分页处理
         PageHelper.startPage(page, rows);
         //查询列表
         List<DeviceMaintain> list = mapper.searchDeviceMaintainByDeviceFaultId(deviceFaultId);
         //创建一个返回值对象
-        EUDataGridResult result = new EUDataGridResult();
+        JsonFindRet result = new JsonFindRet();
         //几条具体信息 放入result
         result.setRows(list);
         //取记录信息总条数 放入result

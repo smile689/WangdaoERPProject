@@ -1,14 +1,14 @@
 package com.cskaoyan.service;
 
 import com.cskaoyan.bean.DeviceMaintain;
-import com.cskaoyan.bean.pojo.EUDataGridResult;
+import com.cskaoyan.utils.JsonFindRet;
 
 import java.util.HashMap;
 import java.util.List;
 
 public interface DeviceMaintainService {
     //查找全部
-    EUDataGridResult getList(int page, int rows);
+    JsonFindRet getList(int page, int rows);
     //查找全部不分页(get_data)
     List<DeviceMaintain> findAll();
     //增加
@@ -22,9 +22,9 @@ public interface DeviceMaintainService {
 
     //搜索二例
     //根据设备例检编号查找设备例检信息 search_deviceMaintain_by_deviceMaintainId
-    EUDataGridResult searchDeviceMaintainByDeviceMaintainId(int page, int rows, String deviceMaintainId);
+    JsonFindRet searchDeviceMaintainByDeviceMaintainId(int page, int rows, String deviceMaintainId);
     //根据设备故障编号查找设备例检信息 search_deviceMaintain_by_deviceFaultId
-    EUDataGridResult searchDeviceMaintainByDeviceFaultId(int page, int rows, String deviceFaultId);
+    JsonFindRet searchDeviceMaintainByDeviceFaultId(int page, int rows, String deviceFaultId);
 
     //编辑备注
     public HashMap updateNote(DeviceMaintain deviceMaintain);
