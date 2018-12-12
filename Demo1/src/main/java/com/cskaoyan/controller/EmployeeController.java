@@ -236,4 +236,16 @@ public class EmployeeController {
         EUDataGridResult euDataGridResult = employeeService.findAllEmployees("1", String.valueOf(Integer.MAX_VALUE));
         return euDataGridResult.getRows();
     }
+    
+    /**
+     * 查找：查找一条信息，使用 restful 风格的 url
+     * @param empId
+     * @return
+     */
+    @RequestMapping("get/{empId}")
+    @ResponseBody
+    public Employee findOneDepartmentById(@PathVariable("empId") String empId) {
+        EUDataGridResult euDataGridResult = employeeService.findOneEmployeeById("1", String.valueOf(Integer.MAX_VALUE), empId);
+        return (Employee) euDataGridResult.getRows().get(0);
+    }
 }
