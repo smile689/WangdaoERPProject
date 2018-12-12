@@ -75,15 +75,19 @@ public class ProcessController {
   @RequestMapping(value = "/insert",method = RequestMethod.POST)
   @ResponseBody
   public Result insert(@Valid Process process, BindingResult bindingResult){
-      Result result=null;
-      if (bindingResult.hasErrors()){
-          FieldError fieldError = bindingResult.getFieldError();
-          String defaultMessage = fieldError.getDefaultMessage();
-          //model.addAttribute("error",defaultMessage);
-          result.setMsg(defaultMessage);
-          result.setData("null");
-          result.setStatus(0);
-          return  result;
+      Result result=new Result();
+      if (bindingResult.hasErrors()) {
+
+          List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+          for (FieldError fieldError : fieldErrors
+          ) {
+              String defaultMessage = fieldError.getDefaultMessage();
+              System.out.println(defaultMessage);
+              result.setMsg(defaultMessage);
+              result.setData(null);
+              result.setStatus(null);
+              return result;
+          }
       }
       if (processService.get(process.getProcessId())!=null){
           result = new Result(0, "工序编号已经纯在，请重新输入", null);
@@ -94,6 +98,7 @@ public class ProcessController {
       }
       return result;
   }
+
 
 /**
  * 删除

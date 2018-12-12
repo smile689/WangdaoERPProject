@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.FinalCount;
+import com.cskaoyan.bean.vo.FinalCountVo;
+
+import java.util.List;
 
 public interface FinalCountMapper {
     int deleteByPrimaryKey(String fCountCheckId);
@@ -9,9 +12,16 @@ public interface FinalCountMapper {
 
     int insertSelective(FinalCount record);
 
-    FinalCount selectByPrimaryKey(String fCountCheckId);
+    FinalCountVo selectByPrimaryKey(String fCountCheckId);
 
     int updateByPrimaryKeySelective(FinalCount record);
 
     int updateByPrimaryKey(FinalCount record);
+
+    List<FinalCountVo> selectAll();
+
+    List<FinalCountVo>  selectByOrderId(String orderid);
+
+    boolean deleteByIds(String [] ids);
+
 }

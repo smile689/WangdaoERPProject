@@ -18,7 +18,10 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from material
-    where material_id = #{materialId,jdbcType=VARCHAR}
+    where material_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
   </delete>
   <insert id="insert" parameterType="com.cskaoyan.bean.Material">
     insert into material (material_id, material_type, status, 
@@ -91,6 +94,12 @@
     select
     <include refid="Base_Column_List" />
     from material where material_type like concat('%', #{materialType,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="findByMaterialId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material where material_id = #{materialId,jdbcType=VARCHAR}
   </select>
 </mapper>
 

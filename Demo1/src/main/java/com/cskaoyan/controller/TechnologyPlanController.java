@@ -69,14 +69,20 @@ public TechnologyPlan getItemById(@PathVariable("technologyPlanId") String techn
 @RequestMapping(value = "/insert",method = RequestMethod.POST)
     @ResponseBody
 public Result insert(@Valid TechnologyPlan technologyPlan, BindingResult bindingResult){
-Result result=null;
+Result result=new Result();
 if (bindingResult.hasErrors()){
-    FieldError fieldError = bindingResult.getFieldError();
-    String defaultMessage = fieldError.getDefaultMessage();
+
+    List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+    for (FieldError fieldError:fieldErrors
+         ) {
+        String defaultMessage = fieldError.getDefaultMessage();
+        System.out.println(defaultMessage);
     result.setMsg(defaultMessage);
-    result.setData("null");
-    result.setStatus(0);
+    result.setData(null);
+    result.setStatus(null);
     return  result;
+}
+
 }
 if (technologyPlanService.get(technologyPlan.getTechnologyPlanId())!=null){
 

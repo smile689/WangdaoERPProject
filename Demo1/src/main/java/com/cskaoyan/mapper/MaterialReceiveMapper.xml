@@ -3,12 +3,18 @@
 <mapper namespace="com.cskaoyan.mapper.MaterialReceiveMapper">
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.MaterialReceive">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
-    <result column="material_id" jdbcType="VARCHAR" property="materialId" />
     <result column="amount" jdbcType="INTEGER" property="amount" />
     <result column="receive_date" jdbcType="TIMESTAMP" property="receiveDate" />
     <result column="sender" jdbcType="VARCHAR" property="sender" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <association property="material" column="material_Id" javaType="com.cskaoyan.bean.Material">
+      <result column="material_id" jdbcType="VARCHAR" property="materialId" />
+      <result column="material_type" jdbcType="VARCHAR" property="materialType" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="remaining" jdbcType="INTEGER" property="remaining" />
+      <result column="note" jdbcType="VARCHAR" property="note" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     receive_id, material_id, amount, receive_date, sender, receiver, note
@@ -19,15 +25,25 @@
     from material_receive
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectReceiveList"  resultMap="BaseResultMap">
+    select
+    receive_id,material.material_id ,amount,receive_date,sender,receiver,material_receive.note
+    from material_receive left join material on material.material_id=material_receive.material_id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from material_receive
-    where receive_id = #{receiveId,jdbcType=VARCHAR}
-  </delete>
+    where receive_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")">
+      #{id}
+    </foreach>
+   </delete>
   <insert id="insert" parameterType="com.cskaoyan.bean.MaterialReceive">
     insert into material_receive (receive_id, material_id, amount, 
       receive_date, sender, receiver, 
       note)
-    values (#{receiveId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
+    values (#{receiveId,jdbcType=VARCHAR}, #{material.materialId,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER},
       #{receiveDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, 
       #{note,jdbcType=VARCHAR})
   </insert>
@@ -106,7 +122,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.MaterialReceive">
     update material_receive
-    set material_id = #{materialId,jdbcType=VARCHAR},
+    set material_id = #{material.materialId,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=INTEGER},
       receive_date = #{receiveDate,jdbcType=TIMESTAMP},
       sender = #{sender,jdbcType=VARCHAR},
@@ -114,4 +130,25 @@
       note = #{note,jdbcType=VARCHAR}
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByPrimaryId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material_receive where receive_id like concat('%', #{receiveid,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="selectByPrimaryMaterialId" resultMap="BaseResultMap">
+    select
+    receive_id, material_receive.material_id, amount, receive_date, sender, receiver, material_receive.note
+    from material_receive left join material on material.material_id=material_receive.material_id
+    where material_receive.material_id like concat('%', #{material.materialId,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <update id="updateByReceiveIdSelective" parameterType="com.cskaoyan.bean.MaterialReceive">
+    update material_receive
+    set note = #{note,jdbcType=VARCHAR}
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
+  </update>
 </mapper>
+
+
