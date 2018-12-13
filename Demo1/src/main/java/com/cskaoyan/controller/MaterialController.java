@@ -1,12 +1,11 @@
 package com.cskaoyan.controller;
 
 import com.cskaoyan.bean.Material;
-import com.cskaoyan.pojo.PageShowResult;
+import com.cskaoyan.bean.pojo.PageShowResult;
 import com.cskaoyan.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,6 @@ public class MaterialController {
     public String findMaterialList (){
         return "material_list";
     }
-
     /**
      *
      * @param page 页数
@@ -43,7 +41,6 @@ public class MaterialController {
         PageShowResult list = materialService.getList(page, rows);
         return list;
     }
-
 
     @ResponseBody
     @RequestMapping("/add_judge")
@@ -70,7 +67,7 @@ public class MaterialController {
         return hashMap;
     }
 
-
+//跳转到物料编辑页面
     @ResponseBody
     @RequestMapping("/edit_judge")
     public Map editShow(){
@@ -81,7 +78,7 @@ public class MaterialController {
         return "material_edit";
     }
 
-
+//进行物料编辑
     @ResponseBody
     @RequestMapping("/update_all")
     public Map updateMater (Material material){
@@ -93,7 +90,7 @@ public class MaterialController {
         hashMap.put("msg","失败");
         return hashMap;
     }
-
+//更新备注
     @ResponseBody
     @RequestMapping("/update_note")
     public Map updateMater (@RequestParam String materialId, @RequestParam String note ){
@@ -105,7 +102,7 @@ public class MaterialController {
         return hashMap;
     }
 
-
+//删除物料信息
     @ResponseBody
     @RequestMapping("/delete_judge")
     public Map deleteShow(){
@@ -113,24 +110,41 @@ public class MaterialController {
     }
     @ResponseBody
     @RequestMapping("/delete_batch")
-    public Map deleteMaterPage (String ids){
+    public Map deleteMaterPage (String[] ids){
         materialService.deleteMaterialService(ids);
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status",200);
         hashMap.put("msg","失败");
         return hashMap;
     }
-
-
+//物料ID模糊搜索
     @ResponseBody
     @RequestMapping("/search_material_by_materialId")
-    public List<Material> serachMaterial (@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
-       // materialService.deleteMaterialService(ids);
-        HashMap<String, Object> hashMap = new HashMap<>();
-        return null;
+    public PageShowResult serachMaterialId (@RequestParam String searchValue, @RequestParam Integer page, @RequestParam Integer rows){
+        PageShowResult pageShowResult = materialService.searcMaterial(searchValue,page,rows);
+        return pageShowResult;
+    }
+//物料类型模糊搜索
+    @ResponseBody
+    @RequestMapping("/search_material_by_materialType")
+    public PageShowResult  serachMaterialtype(@RequestParam String searchValue,@RequestParam Integer page,@RequestParam Integer rows){
+        PageShowResult pageShowResult = materialService.searcMaterialtype(searchValue,page,rows);
+        return pageShowResult;
     }
 
+    //物料收入页面中新增物料页面获取物料ID
+    @ResponseBody
+    @RequestMapping("/get_data")
+    public List<Material> getdata(){
+       List<Material> materials= materialService.getMaterial();
+       return materials;
+    }
 
-
-
+    //物料收入列表中点击物料ID查看物料信息
+    @ResponseBody
+    @RequestMapping(value = "/get/{materialId}")
+    public Material getMaterialinfo(@PathVariable("materialId") String materialId){
+        Material material = materialService.selectByMaterialId(materialId);
+        return material;
+    }
 }

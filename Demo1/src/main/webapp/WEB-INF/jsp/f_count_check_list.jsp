@@ -5,7 +5,8 @@
 <script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 
 <table  id="fCountCheckList" title="成品计数质检" class="easyui-datagrid"
-       data-options="singleSelect:false,collapsible:true,pagination:true,rownumbers:true,url:'f_count_check/list',
+       data-options="singleSelect:false,collapsible:true,pagination:true,rownumbers:true,
+       url:'f_count_check/list',
        	method:'get',fitColumns:true,pageSize:10,toolbar:toolbar_fCountCheck">
     <thead>
         <tr>
@@ -26,30 +27,45 @@
     </thead>
 </table>
 
-<div  id="toolbar_fCountCheck" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
-		<c:if test="${per=='fCountCheck:add' }" >
-		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="fCountCheck_add()">新增</a>  
-		    </div>  
-		</c:if>
-		<c:if test="${per=='fCountCheck:edit' }" >
-		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="fCountCheck_edit()">
-					编辑
-				</a>
-		    </div>  
-		</c:if>
-		<c:if test="${per=='fCountCheck:delete' }" >
-		    <div style="float: left;">  
-		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="fCountCheck_delete()">
-					删除
-				</a>
-		    </div>  
-		</c:if>
-	</c:forEach>
-	
+<div  id="toolbar_fCountCheck" style=" height: 22px; padding: 3px 11px; background: #fafafa;">
+
+	<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >--%>
+		<%--<c:if test="${per=='fCountCheck:add' }" >--%>
+		    <%--<div style="float: left;">  --%>
+		        <%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="fCountCheck_add()">新增</a>  --%>
+		    <%--</div>  --%>
+		<%--</c:if>--%>
+		<%--<c:if test="${per=='fCountCheck:edit' }" >--%>
+		    <%--<div style="float: left;">  --%>
+		        <%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="fCountCheck_edit()">--%>
+					<%--编辑--%>
+				<%--</a>--%>
+		    <%--</div>  --%>
+		<%--</c:if>--%>
+		<%--<c:if test="${per=='fCountCheck:delete' }" >--%>
+		    <%--<div style="float: left;">  --%>
+		        <%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="fCountCheck_delete()">--%>
+					<%--删除--%>
+				<%--</a>--%>
+		    <%--</div>  --%>
+		<%--</c:if>--%>
+	<%--</c:forEach>--%>
+
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="fCountCheck_add()">新增</a>
+	</div>
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="fCountCheck_edit()">
+			编辑
+		</a>
+	</div>
+	<div style="float: left;">
+		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="fCountCheck_delete()">
+			删除
+		</a>
+	</div>
+
+
 	<div class="datagrid-btn-separator"></div>  
 	
 	<div style="float: left;">  

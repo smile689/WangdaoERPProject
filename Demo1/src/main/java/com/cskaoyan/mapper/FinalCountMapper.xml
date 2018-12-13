@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--java bean  与 数据库的字段对应-->
 <mapper namespace="com.cskaoyan.mapper.FinalCountMapper">
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.FinalCount">
     <id column="f_count_check_id" jdbcType="VARCHAR" property="fCountCheckId" />
@@ -15,20 +17,38 @@
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.vo.FinalCountVo" extends="BaseResultMap">
+        <result column="emp_name" property="empName" jdbcType="VARCHAR"/>
+  </resultMap>
+
+  <!--基本数据库语句-->
   <sql id="Base_Column_List">
     f_count_check_id, order_id, check_item, sample, check_number, unqualify, qualify, 
     cdate, measure_data, emp_id, result, note
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+  <sql id="Base_Column_List_selectAll">
+    f_count_check_id, order_id, check_item, sample, check_number, unqualify, qualify,
+    cdate, measure_data, employee.emp_id result, note,emp_name
+  </sql>
+
+  <!--根据主键查询-->
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="selectAllResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from final_count_check
-    where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
+    <include refid="Base_Column_List_selectAll" />
+    from final_count_check,employee
+    where final_count_check.f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
+    AND  final_count_check.emp_id = employee.emp_id;
   </select>
+
+  <!--根据主键删除-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from final_count_check
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </delete>
+
+
   <insert id="insert" parameterType="com.cskaoyan.bean.FinalCount">
     insert into final_count_check (f_count_check_id, order_id, check_item, 
       sample, check_number, unqualify, 
@@ -41,6 +61,7 @@
       #{empId,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.FinalCount">
     insert into final_count_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -120,6 +141,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.FinalCount">
     update final_count_check
     <set>
@@ -159,6 +181,8 @@
     </set>
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </update>
+
+
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.FinalCount">
     update final_count_check
     set order_id = #{orderId,jdbcType=VARCHAR},
@@ -174,4 +198,35 @@
       note = #{note,jdbcType=VARCHAR}
     where f_count_check_id = #{fCountCheckId,jdbcType=VARCHAR}
   </update>
+
+  <!--查询出所有的产品计数-->
+  <select id="selectAll" resultMap="selectAllResultMap">
+    select
+    <include refid="Base_Column_List_selectAll"/>
+    from final_count_check ,employee
+    where final_count_check.emp_id=employee.emp_id
+  </select>
+
+  <!--根据订单编号查询产品计数-->
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="selectAllResultMap">
+    select
+    <include refid="Base_Column_List_selectAll" />
+    from final_count_check,employee
+    where order_id = #{orderid,jdbcType=VARCHAR}
+    and final_count_check.emp_id = employee.emp_id;
+  </select>
+
+
+  <!--多选删除-->
+  <delete id="deleteByIds">
+    DELETE  FROM
+    final_count_check
+    <where>
+      f_count_check_id  IN
+      <foreach collection = "array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+
 </mapper>

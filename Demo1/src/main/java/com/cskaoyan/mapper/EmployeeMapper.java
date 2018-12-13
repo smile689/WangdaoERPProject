@@ -1,7 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Employee;
-import com.cskaoyan.utils.EmployeeOV;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -32,7 +32,11 @@ public interface EmployeeMapper {
 
     List<Employee> selectByNames(String employeeName);
 
-    int selectCountByEmployeeOV(EmployeeOV employeeOV);
+    int selectCountByDepartments(@Param("departmentIds") List departmentIds);
 
-    List<Employee> selectByEmployeeOV(EmployeeOV employeeOV);
+    List<Employee> selectByDepartments(@Param("departmentIds") List departmentIds);
+
+    List<Employee> selectByDepartmentForOneToMany(String departmentId);
+
+    int deleteByPrimaryKeys(@Param("empIds") String[] empIds);
 }

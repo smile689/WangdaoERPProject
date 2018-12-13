@@ -1,38 +1,34 @@
 package com.cskaoyan.bean;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+
+
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+     public class Technology {
+         @Pattern(regexp = "[0-5]{3}",message = "工艺要求由三位组成，qie为正数")
 
-public class Technology {
+     private String technologyId;
 
-@Size(max=10,message = "id长度错误")
-    private String technologyId;
-
-
-@Size(min=2,max = 20,message = "名称不符合")
-    private String technologyName;
-
-
-@DecimalMax(value = "1000",message = "价格太高")
+@Pattern(regexp = "[\\u4e00-\\u9fa5]{0,}" ,message = "必须为汉字")
+private String technologyName;
     private BigDecimal price;
-    @NotNull
 
+@NotBlank(message ="瓶颈工序工期，不能为空")
     private String vitalProcessPeriod;
-    @NotNull
 
     private Integer standardCapacity;
-    @NotNull
 
     private Integer overtimeStandardCapacity;
-    @NotNull
+
 
     private Integer overtimeOverfulfilCapacity;
-    @NotNull
+
 
     private Integer doubleCapacity;
-    @NotNull
+
 
     private Integer overfulfilCapacity;
 

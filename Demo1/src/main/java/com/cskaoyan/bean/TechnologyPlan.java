@@ -1,12 +1,17 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
+
 import java.util.Date;
 
 public class TechnologyPlan {
+
+    @Pattern(regexp = "[0-5]{3}",message = "工艺要求由三位组成，qie为正数")
+
+
     private String technologyPlanId;
 
     private String technologyId;
-
     private Integer batchAmount;
 
     private Date startPlan;

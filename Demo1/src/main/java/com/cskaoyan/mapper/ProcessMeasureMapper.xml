@@ -11,20 +11,38 @@
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+
+  <!--查询所有的结果映射-->
+  <resultMap id="selectAllResultMap" type="com.cskaoyan.bean.vo.ProcessMeasuretVo" extends="BaseResultMap">
+    <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
+  </resultMap>
+
+
   <sql id="Base_Column_List">
     p_measure_check_id, process_id, check_item, cdate, measure_data, emp_id, result, 
     note
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+  <sql id="Base_Column_List_selectAll">
+    p_measure_check_id, process_id, check_item, cdate, measure_data, employee.emp_id, result,
+    note,emp_name
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="selectAllResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from process_measure_check
-    where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
+    <include refid="Base_Column_List_selectAll" />
+    from process_measure_check,employee
+    where process_measure_check.p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
+    and process_measure_check.emp_id = employee.emp_id
   </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from process_measure_check
     where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </delete>
+
+
   <insert id="insert" parameterType="com.cskaoyan.bean.ProcessMeasure">
     insert into process_measure_check (p_measure_check_id, process_id, check_item, 
       cdate, measure_data, emp_id, 
@@ -33,6 +51,8 @@
       #{cdate,jdbcType=TIMESTAMP}, #{measureData,jdbcType=VARCHAR}, #{empId,jdbcType=VARCHAR}, 
       #{result,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
+
+
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.ProcessMeasure">
     insert into process_measure_check
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -88,6 +108,8 @@
       </if>
     </trim>
   </insert>
+
+
   <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.ProcessMeasure">
     update process_measure_check
     <set>
@@ -115,6 +137,8 @@
     </set>
     where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </update>
+
+
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.ProcessMeasure">
     update process_measure_check
     set process_id = #{processId,jdbcType=VARCHAR},
@@ -126,4 +150,33 @@
       note = #{note,jdbcType=VARCHAR}
     where p_measure_check_id = #{pMeasureCheckId,jdbcType=VARCHAR}
   </update>
+
+  <!--选择出所有的-->
+  <select id="selectAll" resultMap="selectAllResultMap">
+    select
+    <include refid="Base_Column_List_selectAll"/>
+    from process_measure_check ,employee
+    where process_measure_check.emp_id=employee.emp_id
+  </select>
+
+
+  <!--多选删除-->
+  <delete id="deleteByIds">
+    DELETE  FROM
+    process_measure_check
+    <where>
+      p_measure_check_id  IN
+      <foreach collection = "array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+
+  <!--根据订单编号查询产品计数-->
+  <select id="selectByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from process_measure_check
+    where p_measure_check_id = #{orderid,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -30,6 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(departmentList);
         euDataGridResult.setTotal(selectCount);
+        euDataGridResult.setStatus(200);
         return euDataGridResult;
     }
 
@@ -61,14 +62,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public boolean deleteDepartmentsByIds(String[] ids) {
         boolean ret = false;
-        int i = 0;
-        for (; i < ids.length; i++) {
-            int deleteByPrimaryKey = departmentMapper.deleteByPrimaryKey(ids[i]);
-            if (deleteByPrimaryKey != 1) {
-                break;
-            }
-        }
-        if (i == ids.length) {
+        int deleteByPrimaryKeys = departmentMapper.deleteByPrimaryKeys(ids);
+        if (deleteByPrimaryKeys == ids.length) {
             ret = true;
         }
         return ret;
@@ -106,6 +101,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(departmentList);
         euDataGridResult.setTotal(selectCount);
+        euDataGridResult.setStatus(200);
         return euDataGridResult;
     }
 
@@ -117,6 +113,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         EUDataGridResult euDataGridResult = new EUDataGridResult();
         euDataGridResult.setRows(departmentList);
         euDataGridResult.setTotal(selectCount);
+        euDataGridResult.setStatus(200);
         return euDataGridResult;
     }
 }

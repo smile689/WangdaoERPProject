@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -80,7 +81,7 @@ public class EmployeeController {
     @RequestMapping("insert")
     @ResponseBody
     public EUDataGridResult insertOneEmployee(@Valid Employee employee, BindingResult bindingResult, String departmentId) {
-        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        EUDataGridResult euDataGridResult = new EUDataGridResult(bindingResult);
         if (euDataGridResult.getStatus() == 500) {
             return euDataGridResult;
         }
@@ -129,6 +130,8 @@ public class EmployeeController {
         boolean deleteEmployeesByIds = employeeService.deleteEmployeesByIds(ids);
         if (deleteEmployeesByIds) {
             euDataGridResult.setStatus(200);
+        } else {
+            euDataGridResult.setStatus(500);
         }
         return euDataGridResult;
     }
@@ -162,7 +165,7 @@ public class EmployeeController {
     @RequestMapping("update_all")
     @ResponseBody
     public EUDataGridResult updateOneEmployee(@Valid Employee employee, BindingResult bindingResult, String departmentId) {
-        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        EUDataGridResult euDataGridResult = new EUDataGridResult(bindingResult);
         if (euDataGridResult.getStatus() == 500) {
             return euDataGridResult;
         }
@@ -180,17 +183,6 @@ public class EmployeeController {
             euDataGridResult.setStatus(200);
         }
         return euDataGridResult;
-    }
-
-    /**
-     * 查找：查找所有信息，用于页面回显
-     * @return
-     */
-    @RequestMapping("get_data")
-    @ResponseBody
-    public List findAllEmployees() {
-        EUDataGridResult euDataGridResult = employeeService.findAllEmployees("1", String.valueOf(Integer.MAX_VALUE));
-        return euDataGridResult.getRows();
     }
 
     /**
@@ -233,5 +225,28 @@ public class EmployeeController {
     public EUDataGridResult findEmployeesByDepartments(String page, String rows, String searchValue) {
         EUDataGridResult euDataGridResult = employeeService.findEmployeesByDepartments(page, rows, searchValue);
         return euDataGridResult;
+    }
+
+    /**
+     * 查找：查找所有信息，返回 list 类型的 json
+     * @return
+     */
+    @RequestMapping("get_data")
+    @ResponseBody
+    public List findAllEmployees() {
+        EUDataGridResult euDataGridResult = employeeService.findAllEmployees("1", String.valueOf(Integer.MAX_VALUE));
+        return euDataGridResult.getRows();
+    }
+
+    /**
+     * 查找：查找一条信息，使用 restful 风格的 url
+     * @param empId
+     * @return
+     */
+    @RequestMapping("get/{empId}")
+    @ResponseBody
+    public Employee findOneEmployeeById(@PathVariable("empId") String empId) {
+        EUDataGridResult euDataGridResult = employeeService.findOneEmployeeById("1", String.valueOf(Integer.MAX_VALUE), empId);
+        return (Employee) euDataGridResult.getRows().get(0);
     }
 }

@@ -29,6 +29,7 @@
         </environment>
     </environments>-->
     <!--会自动的把该包下面的所有的接口对应的同名的mapper映射文件导入-->
+
     <mappers>
         <package name="com.cskaoyan.mapper"/>
     </mappers>

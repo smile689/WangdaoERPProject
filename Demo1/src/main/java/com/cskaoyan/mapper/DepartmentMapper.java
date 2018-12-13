@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper;
 
 import com.cskaoyan.bean.Department;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,4 +33,8 @@ public interface DepartmentMapper {
     int selectCountByName(String departmentName);
 
     List<Department> selectByNames(String departmentName);
+
+    Department selectByPrimaryKeyForOneToMany(String departmentId);
+
+    int deleteByPrimaryKeys(@Param("departmentIds") String[] departmentIds);
 }

@@ -11,7 +11,7 @@
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'receiveId',align:'center',width:100">物料收入编号</th>
             <th data-options="field:'material',width:100,align:'center',formatter:formatMaterial">物料</th>
-            <th data-options="field:'ammount',align:'center',width:100">收入数量</th>
+            <th data-options="field:'amount',align:'center',width:100">收入数量</th>
             <th data-options="field:'receiveDate',width:130,align:'center',formatter:TAOTAO.formatDateTime">
 				收入日期
 			</th>
@@ -24,7 +24,7 @@
 
 <div  id="toolbar_materialReceive" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
+	<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='materialReceive:add' }" >
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="materialReceive_add()">
@@ -46,11 +46,26 @@
 				</a>
 		    </div>  
 		</c:if>
-	</c:forEach>
+	</c:forEach>--%>
 	
-	<div class="datagrid-btn-separator"></div>  
-	
-	<div style="float: left;">  
+	<div class="datagrid-btn-separator"></div>
+		<div style="float: left;">
+			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="materialReceive_add()">
+				新增
+			</a>
+		</div>
+		<div style="float: left;">
+			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="materialReceive_edit()">
+				编辑
+			</a>
+		</div>
+		<div style="float: left;">
+			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="materialReceive_delete()">
+				删除
+			</a>
+		</div>
+
+		<div style="float: left;">
 		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="materialReceive_reload()">
 			刷新
 		</a>

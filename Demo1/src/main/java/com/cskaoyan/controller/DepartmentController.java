@@ -80,7 +80,7 @@ public class DepartmentController {
     @RequestMapping("insert")
     @ResponseBody
     public EUDataGridResult insertOneDepartment(@Valid Department department, BindingResult bindingResult) {
-        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        EUDataGridResult euDataGridResult = new EUDataGridResult(bindingResult);
         if (euDataGridResult.getStatus() == 500) {
             return euDataGridResult;
         }
@@ -126,6 +126,8 @@ public class DepartmentController {
         boolean deleteDepartmentsByIds = departmentService.deleteDepartmentsByIds(ids);
         if (deleteDepartmentsByIds) {
             euDataGridResult.setStatus(200);
+        } else {
+            euDataGridResult.setStatus(500);
         }
         return euDataGridResult;
     }
@@ -159,7 +161,7 @@ public class DepartmentController {
     @RequestMapping("update_all")
     @ResponseBody
     public EUDataGridResult updateOneDepartment(@Valid Department department, BindingResult bindingResult) {
-        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        EUDataGridResult euDataGridResult = new EUDataGridResult(bindingResult);
         if (euDataGridResult.getStatus() == 500) {
             return euDataGridResult;
         }
@@ -184,7 +186,7 @@ public class DepartmentController {
     @RequestMapping("update_note")
     @ResponseBody
     public EUDataGridResult updateOneDepartmentNote(@Valid Department department, BindingResult bindingResult) {
-        EUDataGridResult euDataGridResult = EUDataGridResult.bindingResult(bindingResult);
+        EUDataGridResult euDataGridResult = new EUDataGridResult(bindingResult);
         if (euDataGridResult.getStatus() == 500) {
             return euDataGridResult;
         }
@@ -235,7 +237,7 @@ public class DepartmentController {
     }
 
     /**
-     * 查找：查找一条信息，利用 restful 风格的 url
+     * 查找：查找一条信息，使用 restful 风格的 url
      * @param departmentId
      * @return
      */

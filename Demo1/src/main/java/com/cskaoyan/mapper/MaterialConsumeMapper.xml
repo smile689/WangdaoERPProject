@@ -3,13 +3,22 @@
 <mapper namespace="com.cskaoyan.mapper.MaterialConsumeMapper">
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.MaterialConsume">
     <id column="consume_id" jdbcType="VARCHAR" property="consumeId" />
-    <result column="work_id" jdbcType="VARCHAR" property="workId" />
-    <result column="material_id" jdbcType="VARCHAR" property="materialId" />
     <result column="consume_amount" jdbcType="INTEGER" property="consumeAmount" />
     <result column="consume_date" jdbcType="TIMESTAMP" property="consumeDate" />
     <result column="sender" jdbcType="VARCHAR" property="sender" />
     <result column="receiver" jdbcType="VARCHAR" property="receiver" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <association property="material"  javaType="com.cskaoyan.bean.Material">
+      <result column="material_id" jdbcType="VARCHAR" property="materialId" />
+      <result column="material_type" jdbcType="VARCHAR" property="materialType" />
+      <result column="status" jdbcType="VARCHAR" property="status" />
+      <result column="remaining" jdbcType="INTEGER" property="remaining" />
+      <result column="note" jdbcType="VARCHAR" property="note" />
+    </association>
+    <association property="work"  javaType="com.cskaoyan.bean.Work">
+      <result column="work_id" jdbcType="VARCHAR" property="workId" />
+      <result column="process_number" jdbcType="VARCHAR" property="processNumber" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List">
     consume_id, work_id, material_id, consume_amount, consume_date, sender, receiver, 
@@ -21,15 +30,22 @@
     from material_consume
     where consume_id = #{consumeId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from material_consume
-    where consume_id = #{consumeId,jdbcType=VARCHAR}
-  </delete>
+
+  <select id="selectConsumeList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    consume_id, consume.work_id, consume.material_id, consume_amount, consume_date,
+    consume.sender, consume.receiver,
+    consume.note
+    from material_consume consume
+    left join material on consume.consume_id=material.material_id
+    left join work on consume.work_id = work.work_id
+  </select>
+
   <insert id="insert" parameterType="com.cskaoyan.bean.MaterialConsume">
     insert into material_consume (consume_id, work_id, material_id, 
       consume_amount, consume_date, sender, 
       receiver, note)
-    values (#{consumeId,jdbcType=VARCHAR}, #{workId,jdbcType=VARCHAR}, #{materialId,jdbcType=VARCHAR}, 
+    values (#{consumeId,jdbcType=VARCHAR}, #{work.workId,jdbcType=VARCHAR}, #{material.materialId,jdbcType=VARCHAR},
       #{consumeAmount,jdbcType=INTEGER}, #{consumeDate,jdbcType=TIMESTAMP}, #{sender,jdbcType=VARCHAR}, 
       #{receiver,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
@@ -91,24 +107,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.MaterialConsume">
     update material_consume
     <set>
-      <if test="workId != null">
-        work_id = #{workId,jdbcType=VARCHAR},
-      </if>
-      <if test="materialId != null">
-        material_id = #{materialId,jdbcType=VARCHAR},
-      </if>
-      <if test="consumeAmount != null">
-        consume_amount = #{consumeAmount,jdbcType=INTEGER},
-      </if>
-      <if test="consumeDate != null">
-        consume_date = #{consumeDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sender != null">
-        sender = #{sender,jdbcType=VARCHAR},
-      </if>
-      <if test="receiver != null">
-        receiver = #{receiver,jdbcType=VARCHAR},
-      </if>
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
@@ -117,8 +115,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.MaterialConsume">
     update material_consume
-    set work_id = #{workId,jdbcType=VARCHAR},
-      material_id = #{materialId,jdbcType=VARCHAR},
+    set work_id = #{work.workId,jdbcType=VARCHAR},
+      material_id = #{material.materialId,jdbcType=VARCHAR},
       consume_amount = #{consumeAmount,jdbcType=INTEGER},
       consume_date = #{consumeDate,jdbcType=TIMESTAMP},
       sender = #{sender,jdbcType=VARCHAR},
@@ -126,4 +124,36 @@
       note = #{note,jdbcType=VARCHAR}
     where consume_id = #{consumeId,jdbcType=VARCHAR}
   </update>
+
+  <delete id="deleteByPrimaryKey">
+    delete from material_consume
+    where consume_id in
+    <foreach collection="ids" item="id" separator="," open="(" close=")" >
+      #{id}
+    </foreach>
+  </delete>
+  <select id="selectConsumeId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material_Consume where consume_id like concat('%', #{consumeid,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="selectWorkId" resultMap="BaseResultMap">
+    select
+    consume_id, consume.work_id, material_id, consume_amount, consume_date, sender, receiver,
+    note from material_Consume consume
+    left join  work on consume.work_id=work.work_id
+    where consume.work_id like concat('%', #{work.workId,jdbcType=VARCHAR}, '%')
+  </select>
+
+  <select id="selectMaterialId" resultMap="BaseResultMap">
+    select
+    consume_id, consume.work_id, consume.material_id, consume_amount, consume_date, consume.sender, consume.receiver,
+    consume.note from material_Consume consume
+    left join  material on consume.material_id=material.material_id
+    where material.material_id like concat('%', #{material.materialId,jdbcType=VARCHAR}, '%')
+  </select>
+
+
+
 </mapper>

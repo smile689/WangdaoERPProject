@@ -1,8 +1,11 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 public class TechnologyRequirement {
+    @Pattern(regexp = "\\d{3}$",message = "工艺要求编号由三位组成")
+
     private String technologyRequirementId;
 
     private String technologyId;

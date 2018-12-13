@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.DeviceMaintainMapper">
+  <!--sql和bean的对照 以及查询结果放入的对象-->
   <resultMap id="BaseResultMap" type="com.cskaoyan.bean.DeviceMaintain">
     <id column="device_maintain_id" jdbcType="VARCHAR" property="deviceMaintainId" />
     <result column="device_fault_id" jdbcType="VARCHAR" property="deviceFaultId" />
@@ -10,30 +11,117 @@
     <result column="device_maintain_cost" jdbcType="DECIMAL" property="deviceMaintainCost" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+  <resultMap id="AddResultMap" type="com.cskaoyan.bean.vo.DeviceMaintainVO" extends="BaseResultMap">
+    <result column="device_maintain_emp" property="deviceMaintainEmp" jdbcType="VARCHAR" />
+  </resultMap>
+  <!--sql片段1-->
   <sql id="Base_Column_List">
     device_maintain_id, device_fault_id, device_maintain_emp_id, device_maintain_date, 
     device_maintain_result, device_maintain_cost, note
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <!--sql片段2 vo里的-->
+  <sql id="Base_Column_List2">
+    device_maintain_emp
+  </sql>
+  <!--sql片段3 多表查询-->
+  <sql id="Base_Column_List3">
+    device_maintain_id,
+    device_fault_id,
+    device_maintain.device_maintain_emp_id,
+    device_maintain_date,
+    device_maintain_result,
+    device_maintain_cost,
+    note,
+    emp_name as device_maintain_emp
+  </sql>
+  <!--查找全部 隐式内连接-->
+  <select id="selectAll" parameterType="java.lang.String" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    from
+    device_maintain,employee
+    WHERE
+    device_maintain.device_maintain_emp_id = employee.emp_id
+    order by device_maintain_id ASC
+  </select>
+  <!--新增一例-->
+  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceMaintain">
+    insert into device_maintain (device_maintain_id, device_fault_id,
+    device_maintain_emp_id, device_maintain_date,
+    device_maintain_result, device_maintain_cost,
+    note)
+    values (#{deviceMaintainId,jdbcType=VARCHAR}, #{deviceFaultId,jdbcType=VARCHAR},
+    #{deviceMaintainEmpId,jdbcType=VARCHAR}, #{deviceMaintainDate,jdbcType=TIMESTAMP},
+    #{deviceMaintainResult,jdbcType=VARCHAR}, #{deviceMaintainCost,jdbcType=DECIMAL},
+    #{note,jdbcType=VARCHAR})
+  </insert>
+  <!--通过id查-->
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </select>
+  <!--编辑-->
+  <update id="update" parameterType="com.cskaoyan.bean.DeviceMaintain">
+    update device_maintain
+    set device_fault_id = #{deviceFaultId,jdbcType=VARCHAR},
+    device_maintain_emp_id = #{deviceMaintainEmpId,jdbcType=VARCHAR},
+    device_maintain_date = #{deviceMaintainDate,jdbcType=TIMESTAMP},
+    device_maintain_result = #{deviceMaintainResult,jdbcType=VARCHAR},
+    device_maintain_cost = #{deviceMaintainCost,jdbcType=DECIMAL},
+    note = #{note,jdbcType=VARCHAR}
+    where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
+  </update>
+  <!--批量删除(也可以单删)-->
+  <delete id="deleteBatch">
+    DELETE
+    FROM
+    device_maintain
+    <where>
+      device_maintain_id IN
+      <foreach collection="array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
+  <!--根据设备例检编号查找设备例检信息 search_deviceMaintain_by_deviceMaintainId-->
+  <select id="searchDeviceMaintainByDeviceMaintainId" parameterType="java.lang.String" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    from
+    device_maintain,employee
+    WHERE
+    device_maintain.device_maintain_emp_id = employee.emp_id
+    AND
+    device_maintain_id LIKE CONCAT('%',#{deviceMaintainId},'%' )
+    order by device_maintain_id ASC
+  </select>
+  <!--根据设备故障编号查找设备例检信息 search_deviceMaintain_by_deviceFaultId-->
+  <select id="searchDeviceMaintainByDeviceFaultId" parameterType="java.lang.String" resultMap="AddResultMap">
+    select
+    <include refid="Base_Column_List3" />
+    from
+    device_maintain,employee
+    WHERE
+    device_maintain.device_maintain_emp_id = employee.emp_id
+    AND
+    device_fault_id LIKE CONCAT('%',#{deviceFaultId},'%' )
+    order by device_maintain_id ASC
+  </select>
+  <!--编辑备注-->
+  <update id="updateNote" parameterType="deviceMaintain">
+    update device_maintain
+    set
+    note = #{note,jdbcType=VARCHAR}
+    where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
+  </update>
+
+  <!--逆向工程生成的没有用到的方法-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from device_maintain
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.DeviceMaintain">
-    insert into device_maintain (device_maintain_id, device_fault_id, 
-      device_maintain_emp_id, device_maintain_date, 
-      device_maintain_result, device_maintain_cost, 
-      note)
-    values (#{deviceMaintainId,jdbcType=VARCHAR}, #{deviceFaultId,jdbcType=VARCHAR}, 
-      #{deviceMaintainEmpId,jdbcType=VARCHAR}, #{deviceMaintainDate,jdbcType=TIMESTAMP}, 
-      #{deviceMaintainResult,jdbcType=VARCHAR}, #{deviceMaintainCost,jdbcType=DECIMAL}, 
-      #{note,jdbcType=VARCHAR})
-  </insert>
   <insert id="insertSelective" parameterType="com.cskaoyan.bean.DeviceMaintain">
     insert into device_maintain
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -105,16 +193,6 @@
         note = #{note,jdbcType=VARCHAR},
       </if>
     </set>
-    where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.DeviceMaintain">
-    update device_maintain
-    set device_fault_id = #{deviceFaultId,jdbcType=VARCHAR},
-      device_maintain_emp_id = #{deviceMaintainEmpId,jdbcType=VARCHAR},
-      device_maintain_date = #{deviceMaintainDate,jdbcType=TIMESTAMP},
-      device_maintain_result = #{deviceMaintainResult,jdbcType=VARCHAR},
-      device_maintain_cost = #{deviceMaintainCost,jdbcType=DECIMAL},
-      note = #{note,jdbcType=VARCHAR}
     where device_maintain_id = #{deviceMaintainId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,7 +1,13 @@
 package com.cskaoyan.bean;
 
+import javax.validation.constraints.Pattern;
+
 public class Process {
+
+    @Pattern(regexp = "[0-5]{3}",message = "工序编号由三位组成，且为正数")
+
     private String processId;
+    @Pattern(regexp = "[0-5]{3}",message = "工艺计划编号由三位组成，且为正数")
 
     private String technologyPlanId;
 
