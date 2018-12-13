@@ -48,17 +48,27 @@
 			</value>
 		</property>
 	</bean>
-
-	<!-- securityManager安全管理器 -->
+<!-- securityManager安全管理器 -->
 	<!--<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
 		<property name="realm" ref="customRealm"/>
 	</bean>-->
-	<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+
+
+	<!--安全认证器-->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="customRealm"/>
+		<!--注入缓存管理器-->
+		<property name="cacheManager" ref="cacheManager"/>
+
+		<!--注入session管理器-->
+
 	</bean>
 
-	<!-- realm -->
-	<bean id="customRealm" class="com.cskaoyan.shiro.CustomRealm"/>
+
+	<bean id="customRealm" class="com.cskaoyan.shiro.CustomRealm">
+		<!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
+
+	</bean>
 
 
 	<!-- 配置异常跳转页面，此处异常页面是使用shiro注解时没有权限访问的跳转页面，不配置则会报500错误 -->
@@ -67,10 +77,28 @@
 			<props>
 				<prop key="org.apache.shiro.authz.UnauthorizedException">
 					<!-- 没有权限时跳转的页面 -->
-					/refuse.jsp
+					refuse
 				</prop>
 			</props>
 		</property>
 	</bean>
+
+
+	<!--cacheManager-->
+	<!-- 缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+	</bean>
+	<!--会话管理器-->
+
+
+
+
+	<!--凭证-->
+	<!--<bean id="credentialsMatcher"
+		  class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="md5"></property>
+		<property name="hashIterations" value="1"></property>
+	</bean>-->
 
 </beans>

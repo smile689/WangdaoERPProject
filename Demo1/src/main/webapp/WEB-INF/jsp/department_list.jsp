@@ -40,7 +40,7 @@
 	
 
 
-	<div style="float: left;">
+	<%--<div style="float: left;">
 		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="department_add()">新增</a>
 	</div>
 
@@ -58,7 +58,7 @@
 	
 	<div style="float: left;">  
 		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" onclick="department_reload()">刷新</a>  
-	</div>  
+	</div>  --%>
 	
     <div id="search_department" style="float: right;">
         <input id="search_text_department" class="easyui-searchbox"  

@@ -1,6 +1,5 @@
 package com.cskaoyan.controller;
 
-import com.cskaoyan.bean.SysUser;
 import com.cskaoyan.bean.vo.UserRoleVO;
 import com.cskaoyan.service.SysUserService;
 import org.apache.shiro.subject.SimplePrincipalCollection;

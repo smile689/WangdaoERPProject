@@ -47,19 +47,19 @@
 		</c:if>
 	</c:forEach>
 
-	<div style="float: left;">
-		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="employee_add()">新增</a>
-	</div>
+	<%--<div style="float: left;">--%>
+		<%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="employee_add()">新增</a>--%>
+	<%--</div>--%>
 
-	<div style="float: left;">
-		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="employee_edit()">编辑</a>
-	</div>
+	<%--<div style="float: left;">--%>
+		<%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="employee_edit()">编辑</a>--%>
+	<%--</div>--%>
 
-	<div style="float: left;">
-		<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="employee_delete()">
-			删除
-		</a>
-	</div>
+	<%--<div style="float: left;">--%>
+		<%--<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="employee_delete()">--%>
+			<%--删除--%>
+		<%--</a>--%>
+	<%--</div>--%>
 	
 	<div class="datagrid-btn-separator"></div>  
 	

@@ -12,17 +12,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 设备故障模块
+ */
 @Controller
 @RequestMapping("/deviceFault")
 public class DeviceFaultController {
 
     @Autowired
     DeviceFaultService service;
+
+    @Autowired
+    DeviceController controller;
 
     HashMap<String,String> result =new HashMap<>();
     public HashMap<String, String> getResult() {
@@ -122,7 +129,7 @@ public class DeviceFaultController {
 
     //修改备注
     //更新
-    @RequestMapping("/update_note")
+    @RequestMapping(path={"/update","/update_all"})
     @ResponseBody
     public HashMap updateNote(@Valid DeviceFault deviceFault, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
@@ -139,20 +146,23 @@ public class DeviceFaultController {
     //judge控制
     @RequestMapping("/add_judge")
     @ResponseBody
-    public Map add_judge() throws Exception{
-        return null;
+    public HashMap add_judge(HttpSession session) throws Exception{
+        String percode = "deviceFault:add";
+        return controller.deviceJudge(session,percode);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
-    public Map edit_judge() throws Exception{
-        return null;
+    public Map edit_judge(HttpSession session) throws Exception{
+        String percode = "deviceFault:edit";
+        return controller.deviceJudge(session,percode);
     }
 
     @RequestMapping("/delete_judge")
     @ResponseBody
-    public Map delete_judge() throws Exception{
-        return null;
+    public Map delete_judge(HttpSession session) throws Exception{
+        String percode = "deviceFault:delete";
+        return controller.deviceJudge(session,percode);
     }
 
     //弹出页面

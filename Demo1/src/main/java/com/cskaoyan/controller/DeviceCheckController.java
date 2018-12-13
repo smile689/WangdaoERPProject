@@ -3,6 +3,7 @@ package com.cskaoyan.controller;
 import com.cskaoyan.bean.DeviceCheck;
 import com.cskaoyan.utils.JsonFindRet;
 import com.cskaoyan.service.DeviceCheckService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,17 +12,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 设备检查模块
+ */
 @Controller
 @RequestMapping("/deviceCheck")
 public class DeviceCheckController {
 
     @Autowired
     DeviceCheckService service;
+
+    @Autowired
+    DeviceController controller;
+
 
     HashMap<String,String> result =new HashMap<>();
     public HashMap<String, String> getResult() {
@@ -121,7 +130,7 @@ public class DeviceCheckController {
 
     //修改备注
     //更新
-    @RequestMapping("/update_note")
+    @RequestMapping(path={"/update","/update_all"})
     @ResponseBody
     public HashMap updateNote(@Valid DeviceCheck deviceCheck, BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){
@@ -138,20 +147,23 @@ public class DeviceCheckController {
     //judge控制
     @RequestMapping("/add_judge")
     @ResponseBody
-    public Map add_judge() throws Exception{
-        return null;
+    public HashMap add_judge(HttpSession session) throws Exception{
+        String percode = "deviceCheck:add";
+        return controller.deviceJudge(session,percode);
     }
 
     @RequestMapping("/edit_judge")
     @ResponseBody
-    public Map edit_judge() throws Exception{
-        return null;
+    public Map edit_judge(HttpSession session) throws Exception{
+        String percode = "deviceCheck:edit";
+        return controller.deviceJudge(session,percode);
     }
 
     @RequestMapping("/delete_judge")
     @ResponseBody
-    public Map delete_judge() throws Exception{
-        return null;
+    public Map delete_judge(HttpSession session) throws Exception{
+        String percode = "deviceCheck:delete";
+        return controller.deviceJudge(session,percode);
     }
 
     //弹出页面

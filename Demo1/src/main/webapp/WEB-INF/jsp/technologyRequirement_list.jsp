@@ -30,29 +30,27 @@
 
 <div  id="toolbar_technologyRequirement" style=" height: 22px; padding: 3px 11px; background: #fafafa;">
 	<%--先提取出来--%>
-		<div style="float: left;">
-			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add"
-			   onclick="technologyRequirement_add()">新增</a>
-		</div>
-		<div style="float: left;">
-			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit"
-			   onclick="technologyRequirement_edit()">编辑</a>
-		</div>
-		<div style="float: left;">
-			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel"
-			   onclick="technologyRequirement_delete()">删除</a>
-		</div>
+
 
 
 		<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='technologyRequirement:add' }" >
-
+			<div style="float: left;">
+				<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add"
+				   onclick="technologyRequirement_add()">新增</a>
+			</div>
 		</c:if>
 		<c:if test="${per=='technologyRequirement:edit' }" >
-
+			<div style="float: left;">
+				<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit"
+				   onclick="technologyRequirement_edit()">编辑</a>
+			</div>
 		</c:if>
 		<c:if test="${per=='technologyRequirement:delete' }" >
-
+			<div style="float: left;">
+				<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel"
+				   onclick="technologyRequirement_delete()">删除</a>
+			</div>
 		</c:if>
 	</c:forEach>
 	

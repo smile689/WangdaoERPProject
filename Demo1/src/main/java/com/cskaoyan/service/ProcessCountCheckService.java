@@ -9,11 +9,11 @@ public interface ProcessCountCheckService {
 
     int deleteByPrimaryKey(String Id);
 
-    EUDataGridResult insert(ProcessCount record);
+    EUDataGridResult insert(ProcessCountVo record);
 
     int insertSelective(ProcessCount record);
 
-    EUDataGridResult selectByPrimaryKey(String  Id);
+    EUDataGridResult selectByPrimaryKey(String Id);
 
     EUDataGridResult updateByPrimaryKeySelective(ProcessCountVo record);
 
@@ -24,7 +24,7 @@ public interface ProcessCountCheckService {
 
 
     //多选删除
-    EUDataGridResult deleteByIds(String [] ids);
+    EUDataGridResult deleteByIds(String[] ids);
 
     //根据订单id 去查询成品计数
     EUDataGridResult selectByOrderId(String orderid);

@@ -3,6 +3,7 @@ package com.cskaoyan.shiro;
 import com.cskaoyan.bean.SysUser;
 import com.cskaoyan.bean.vo.UserRoleVO;
 import com.cskaoyan.service.SysUserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -54,6 +55,10 @@ public class CustomRealm extends AuthorizingRealm {
         simpleAuthorizationInfo.addStringPermissions(permissionsByUsername);
         return simpleAuthorizationInfo;
     }
+    public void clearCached(){
+        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        super.clearCache(principals);
 
+    }
 
 }

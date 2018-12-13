@@ -27,7 +27,7 @@ public class ProcessCountCheckServiceImp implements ProcessCountCheckService {
     }
 
     @Override
-    public EUDataGridResult insert(ProcessCount record) {
+    public EUDataGridResult insert(ProcessCountVo record) {
         //插入之前先查询这个主键是否有数据
         ProcessCount processCount = processCountMapper.selectByPrimaryKey(record.getpCountCheckId());
         int insert = -1;

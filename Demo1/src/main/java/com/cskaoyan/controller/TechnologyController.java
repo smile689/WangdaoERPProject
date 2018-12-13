@@ -4,6 +4,7 @@ import com.cskaoyan.bean.Technology;
 import com.cskaoyan.controller.JsonResult.EUDataGridResult;
 import com.cskaoyan.controller.JsonResult.Result;
 import com.cskaoyan.service.TechnologyService;
+import com.cskaoyan.shiro.CustomRealm;
 import com.cskaoyan.utils.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -177,7 +178,14 @@ return result;
 
 
 
+@Autowired
+    CustomRealm customRealm;
+@RequestMapping("/clear")
+    public String clearCache(){
 
+    customRealm.clearCached();
+    return "redirect:/home";
+}
 
 
 

@@ -29,31 +29,28 @@
 
 
 	<%--先提取出来--%>
-		<div style="float: left;">
-			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="process_add()">
-				新增
-			</a>
-		</div>
-		<div style="float: left;">
-			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="process_edit()">
-				编辑
-			</a>
-		</div>
-		<div style="float: left;">
-			<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="process_delete()">
-				删除
-			</a>
-		</div>
 
 		<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='process:add'}" >
-
+			<div style="float: left;">
+				<a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="process_add()">
+					新增
+				</a>
+			</div>
 		</c:if>
 		<c:if test="${per=='process:edit'}" >
-
+			<div style="float: left;">
+				<a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="process_edit()">
+					编辑
+				</a>
+			</div>
 		</c:if>
 		<c:if test="${per=='process:delete'}" >
-
+			<div style="float: left;">
+				<a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="process_delete()">
+					删除
+				</a>
+			</div>
 		</c:if>
 	</c:forEach>
 	

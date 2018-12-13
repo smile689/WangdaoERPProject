@@ -4,6 +4,9 @@ import com.cskaoyan.bean.Process;
 import com.cskaoyan.controller.JsonResult.EUDataGridResult;
 import com.cskaoyan.controller.JsonResult.Result;
 import com.cskaoyan.service.ProcessService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -46,13 +49,22 @@ public class ProcessController {
  *
  */
   @RequestMapping("/add")
+  @RequiresPermissions("process:add")
   public String add(){
+      System.out.println("aaaaa");
       return "process_add";
   }
   @RequestMapping("/add_judge")
   @ResponseBody
   public Result add_judge(){
-      return  null;
+    Subject subject = SecurityUtils.getSubject();
+      boolean permitted = subject.isPermitted("process:add");
+      Result result = new Result();
+      if (!permitted){
+          result.setMsg("抱歉你沒有權限");
+      }
+
+      return  result;
   }
   /**
      * 根据id找到对应的
@@ -120,13 +132,23 @@ public class ProcessController {
  * 编辑
  * */
 @RequestMapping("/edit")
+@RequiresPermissions("process:edit")
     public String edit(){
+    System.out.println("qqqa");
     return "process_edit";
 }
    @RequestMapping("/edit_judge")
     @ResponseBody
     public Result edit_judge(){
-    return null;
+       Subject subject = SecurityUtils.getSubject();
+       boolean permitted = subject.isPermitted("process:edit");
+       Result result = new Result();
+       if (!permitted){
+           result.setMsg("抱歉你沒有權限");
+       }
+
+       return  result;
+
 }
 
 @RequestMapping("/update_all")
