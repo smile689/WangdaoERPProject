@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthorizedInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String requestURI = request.getRequestURI();
-        System.out.println(requestURI);
+        /*String requestURI = request.getRequestURI();
+        System.out.println(requestURI);*/
         return true;
     }
 

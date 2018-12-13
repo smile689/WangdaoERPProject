@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.SysUserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.SysUserRole">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sys_user_id" jdbcType="VARCHAR" property="sysUserId" />
+    <result column="sys_role_id" jdbcType="VARCHAR" property="sysRoleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sys_user_id, sys_role_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_role
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insert" parameterType="com.cskaoyan.bean.SysUserRole">
+    insert into sys_user_role (id, sys_user_id, sys_role_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sysUserId,jdbcType=VARCHAR}, #{sysRoleId,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateByUserId">
+    update sys_user_role
+    set sys_role_id = #{sysRoleId,jdbcType=VARCHAR}
+    where sys_user_id = #{sysUserId,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.SysUserRole">
+    update sys_user_role
+    set sys_user_id = #{sysUserId,jdbcType=VARCHAR},
+      sys_role_id = #{sysRoleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteBatchByUserId">
+    delete from sys_user_role
+    <where>
+      sys_user_id in
+      <foreach collection="array" item="userId" open="(" close=")" separator=",">
+        #{userId}
+      </foreach>
+    </where>
+  </delete>
+</mapper>

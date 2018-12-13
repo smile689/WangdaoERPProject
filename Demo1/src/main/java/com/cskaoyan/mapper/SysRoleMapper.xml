@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.SysRole">
+    <id column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="available" jdbcType="CHAR" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    role_id, role_name, available
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </select>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+  </select>
+
+
+  <sql id="multiCondition">
+    <where>
+      <if test="sysRole!=null">
+        <if test="sysRole.roleId!=null">
+          role_id LIKE concat ('%', #{sysRole.roleId}, '%')
+        </if>
+        <if test="sysRole.roleName!=null">
+          and role_name like concat ('%', #{sysRole.roleName}, '%')
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectRolesByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    <include refid="multiCondition"/>
+  </select>
+
+  <insert id="insert" parameterType="com.cskaoyan.bean.SysRole">
+    insert into sys_role (role_id, role_name, available
+      )
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{available,jdbcType=CHAR}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.SysRole">
+    update sys_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      available = #{available,jdbcType=CHAR}
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteBatchByKeys" >
+    delete from sys_role
+    <where>
+      role_id in
+      <foreach collection="array" item="roleId" open="(" close=")" separator=",">
+        #{roleId}
+      </foreach>
+    </where>
+  </delete>
+</mapper>

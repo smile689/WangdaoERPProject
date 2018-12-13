@@ -123,7 +123,7 @@
 									$("#passwordspan").html("");
 									$
 											.ajax({
-												url : '${baseurl}ajaxLogin',// 跳转到 action  
+												url : '${baseurl}ajaxLogin',// 跳转到 action
 												data : {
 													username : uname.val(),
 													password : pwd.val(),

@@ -1,11 +1,5 @@
 <%@page import="org.springframework.web.context.request.SessionScope"%>
-<<<<<<< Updated upstream
 <%--<%@page import="org.apache.shiro.session.Session"%>--%>
-=======
-<%--
-<%@page import="org.apache.shiro.session.Session"%>
---%>
->>>>>>> Stashed changes
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,7 +34,7 @@
 								大型生产管理中间件
 							</span><br/>
 							
-							<%--<span style="color:#c1dff7;">${activeUser.rolename}:</span>--%>
+							<span style="color:#c1dff7;">${activeUser.roleName}:</span>
 							<span style="color:#c1dff7;">
 								${activeUser.username}
 							</span>
@@ -163,7 +157,7 @@
 			</ul>
 		</div>
 		
-		<%--<c:if test="${activeUser.rolename == '超级管理员' }">--%>
+		<c:if test="${activeUser.roleName == '超级管理员' }">
 			<div title="系统管理" style="padding:10px;">
 	
 				<ul id="sysManager" class="easyui-tree"
@@ -178,7 +172,7 @@
 					</li>
 				</ul>
 			</div>
-		<%--</c:if>--%>
+		</c:if>
 	</div>
 
 	<!-- </div> -->

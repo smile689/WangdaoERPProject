@@ -19,7 +19,7 @@
 </table>
 
 <div  id="toolbar_user" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
-	
+	<%--在登陆的时候，通过鉴权放置了登陆用户所有的权限？怎么感觉是放了数据库里所有的权限？--%>
 	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
 		<c:if test="${per=='user:add' }" >
 		    <div style="float: left;">  

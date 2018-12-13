@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.SysRolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.SysRolePermission">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sys_role_id" jdbcType="VARCHAR" property="sysRoleId" />
+    <result column="sys_permission_id" jdbcType="VARCHAR" property="sysPermissionId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sys_role_id, sys_permission_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insert" parameterType="com.cskaoyan.bean.SysRolePermission">
+    insert into sys_role_permission (id, sys_role_id, sys_permission_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sysRoleId,jdbcType=VARCHAR}, #{sysPermissionId,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <select id="selectByRoleId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role_permission
+    where sys_role_id = #{roleId}
+  </select>
+
+  <update id="updateByRoleId">
+    update sys_role_permission
+    set sys_permission_id = #{sysPermissionId,jdbcType=VARCHAR}
+    where sys_role_id = #{sysRoleId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteBatchByRoleId">
+    delete from sys_role_permission
+    <where>
+      sys_role_id in
+      <foreach collection="array" item="roleId" open="(" close=")" separator=",">
+        #{roleId}
+      </foreach>
+    </where>
+  </delete>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+			            http://www.springframework.org/schema/context
+			            http://www.springframework.org/schema/context/spring-context-4.2.xsd
+			            http://www.springframework.org/schema/mvc
+			            http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+			            http://www.springframework.org/schema/tx
+			            http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+			            http://mybatis.org/schema/mybatis-spring 
+			            http://mybatis.org/schema/mybatis-spring.xsd ">
+			      
+	<!--配置shiro专门，因为web.xml已经识别所有applicationContext*.xml文件-->
+	<!-- web.xml中shiro的filter对应的bean -->
+	<!-- Shiro 的Web过滤器 -->
+	<bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
+		<property name="securityManager" ref="securityManager"/>
+		<!-- loginUrl认证提交地址，如果没有认证将会请求此地址进行认证，请求此地址将由 formAuthenticationFilter进行表单认证 -->
+		<property name="loginUrl" value="/login"/>
+		<!-- 认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 -->
+		 <property name="successUrl" value="/home"/>
+		<!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
+		<property name="unauthorizedUrl" value="/refuse.jsp"/>
+		<!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/** = anon
+				/js/** = anon
+				/image/** = anon
+				/file/** = anon
+				/pic/** = anon
+				/favicon.ico = anon
+				/ajaxLogin = anon
+				/validatecode.jsp = anon
+				<!--对应的验证码jsp，登陆url要放行！！！-->
+				<!---->
+				<!--/dept/selectDept = perms[dept:query1]
+				-->
+				/logout = logout
+				/** = authc
+			</value>
+		</property>
+	</bean>
+
+	<!-- securityManager安全管理器 -->
+	<!--<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+		<property name="realm" ref="customRealm"/>
+	</bean>-->
+	<bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+		<property name="realm" ref="customRealm"/>
+	</bean>
+
+	<!-- realm -->
+	<bean id="customRealm" class="com.cskaoyan.shiro.CustomRealm"/>
+
+
+	<!-- 配置异常跳转页面，此处异常页面是使用shiro注解时没有权限访问的跳转页面，不配置则会报500错误 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">
+					<!-- 没有权限时跳转的页面 -->
+					/refuse.jsp
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

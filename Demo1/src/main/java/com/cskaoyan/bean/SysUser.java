@@ -1,13 +1,31 @@
 package com.cskaoyan.bean;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Pattern;
+
 public class SysUser {
+
+    @Pattern(regexp = "\\d{3}", message = "用户编号由三位数字组成")
     private String id;
 
+    @NotBlank(message = "用户名称不为空")
     private String username;
 
+    @NotBlank(message = "用户密码不为空")
     private String password;
 
     private String locked;
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", locked='" + locked + '\'' +
+                '}';
+    }
 
     public String getId() {
         return id;

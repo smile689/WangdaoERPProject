@@ -24,4 +24,81 @@
     from sys_user
     where username = #{username}
   </select>
+
+  <resultMap id="UserRoleMap" type="com.cskaoyan.bean.vo.UserRoleVO">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="locked" jdbcType="CHAR" property="locked" />
+    <result column="role_name" property="roleName"/>
+    <result column="role_id" property="roleId"/>
+  </resultMap>
+  <select id="selectActiveUserByUsername" resultMap="UserRoleMap">
+    select
+    su.id, su.username, su.password, su.locked, sr.role_name, sr.role_id
+    from sys_user su
+    left join sys_user_role sur on su.id=sur.sys_user_id
+    left join sys_role sr on sur.sys_role_id=sr.role_id
+    where username=#{username}
+  </select>
+
+  <select id="selectAllUserWithRole" resultMap="UserRoleMap">
+    select
+    su.id, su.username, su.password, su.locked, sr.role_name, sr.role_id
+    from sys_user su
+    left join sys_user_role sur on su.id=sur.sys_user_id
+    left join sys_role sr on sur.sys_role_id=sr.role_id
+    <include refid="multiCondition"/>
+  </select>
+
+
+  <sql id="multiCondition">
+    <where>
+      <if test="userRoleVO!=null">
+        <if test="userRoleVO.id!=null">
+          su.id LIKE concat ('%', #{userRoleVO.id}, '%')
+        </if>
+        <if test="userRoleVO.username!=null">
+          and su.username like concat ('%', #{userRoleVO.username}, '%')
+        </if>
+        <if test="userRoleVO.roleName!=null">
+          and sr.role_name like concat ('%', #{userRoleVO.roleName}, '%')
+        </if>
+      </if>
+    </where>
+  </sql>
+
+
+  <select id="queryPermissionsByUsername" resultType="string">
+      select sys_permission_id from sys_user su
+      left join sys_user_role sur on su.id=sur.sys_user_id
+      left join sys_role_permission srp on sur.sys_role_id=srp.sys_role_id
+      where username=#{username}
+  </select>
+
+  <insert id="insert" parameterType="com.cskaoyan.bean.SysUser">
+    insert into sys_user (id, username, password,
+      locked)
+    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{locked,jdbcType=CHAR})
+  </insert>
+
+
+  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.SysUser">
+    update sys_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      locked = #{locked,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteBatchByKeys">
+    delete from sys_user
+    <where>
+      id in
+      <foreach collection="array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </delete>
 </mapper>

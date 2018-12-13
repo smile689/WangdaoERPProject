@@ -70,44 +70,44 @@
 <!--springMVC层-->
 
     <!--validation-->
-    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
-    </bean>
+    </bean>-->
     <!--自动去增加处理器适配器和处理器映射器github可能出错-->
-    <mvc:annotation-driven  validator="validator" conversion-service="conversionService"></mvc:annotation-driven>
+    <!--<mvc:annotation-driven  validator="validator" conversion-service="conversionService"></mvc:annotation-driven>-->
 
     <!--拦截器-->
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <bean class="com.cskaoyan.interceptor.AuthorizedInterceptor"></bean>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
     <!--文件上传-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
          <property name="maxUploadSizePerFile" value="1024000">
          </property>
-    </bean>
+    </bean>-->
     <!--方式2-->
     <!--2.静态资源默认servlet配置(1)加入对静态资源的处理：js,gif,png(2)允许使用"/"做整体映射-->
      <!--<mvc:default-servlet-handler/>-->
     <!--方式3-->
-    <mvc:resources location="/, /WEB-INF/"  mapping="/**"/>
+    <!--<mvc:resources location="/, /WEB-INF/"  mapping="/**"/>-->
     <!--配置警示牌、显示ViewResolver,例如controller中某个方法返回一个string类型的“login”，实际上回返回“WEB-INF/login.jsp”！！！-->
     <!--是在视图解析的时候才会用上-->
     <!-- 3.配置jsp 显示ViewResolver -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
-    </bean>
+    </bean>-->
     <!--类型转行的时候使用你的javabean-->
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <set>
                 <bean class="com.cskaoyan.convert.MyDateConverter"></bean>
             </set>
         </property>
-    </bean>
+    </bean>-->
 
 
 

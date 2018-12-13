@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.SysPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.SysPermission">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="percode" jdbcType="VARCHAR" property="percode" />
+    <result column="parentid" jdbcType="BIGINT" property="parentid" />
+    <result column="parentids" jdbcType="VARCHAR" property="parentids" />
+    <result column="sortstring" jdbcType="VARCHAR" property="sortstring" />
+    <result column="available" jdbcType="CHAR" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type, url, percode, parentid, parentids, sortstring, available
+  </sql>
+  
+  
+  <select id="selectPermissionsByIdArray" resultType="string">
+    select percode from sys_permission
+    <where>
+      id in
+      <foreach collection="array" item="id" open="(" close=")" separator=",">
+        #{id}
+      </foreach>
+    </where>
+  </select>
+
+
+</mapper>
